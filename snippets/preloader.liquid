@@ -1,0 +1,13 @@
+{% if settings.display_preloader %}
+     <link rel="stylesheet" href="{{ 'component-loading-overlay.css' | asset_url }}" media="print" onload="this.media='all'">
+
+     <div class="ttloader">
+          <span class="rotating"></span>
+     </div>
+{% endif %}
+
+<script>
+     $(window).on('load', function () {
+          $(".ttloader").fadeOut("slow");
+     });
+</script>

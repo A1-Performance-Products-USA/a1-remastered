@@ -140,6 +140,63 @@
           ]
      },
      {
+          "name": "Newsletter Signup",
+          "settings": [
+               {
+                    "type": "checkbox",
+                    "id": "show_newsletter_signup",
+                    "label": "Show Newsletter Signup?"
+               },
+               {
+                    "type": "color",
+                    "id": "news_sign_bg_color",
+                    "label": "Background Color",
+                    "default": "#700101"
+               }, {
+                    "type": "color",
+                    "id": "news_sign_txt_color",
+                    "label": "Text Color",
+                    "default": "#fff"
+               }, {
+                    "type": "text",
+                    "id": "news_sign_icon",
+                    "label": "Icon",
+                    "default": "\f1f0"
+               },
+               {
+                    "type": "text",
+                    "id": "news_sign_icon_complete",
+                    "label": "Icon When Complete",
+                    "default": "\f1f0"
+               }
+          ]
+     },
+     {
+          "name": "Pre-Loader",
+          "settings": [
+               {
+                    "type": "header",
+                    "content": "Pre-loader"
+               },
+               {
+                    "type": "checkbox",
+                    "id": "display_preloader",
+                    "label": "Dispaly Pre-Loader"
+               },
+               {
+                    "type": "image",
+                    "id": "ajax-loader.gif",
+                    "label": "Upload Pre-loader image"
+               },
+               {
+                    "type": "color",
+                    "id": "preloader_bg",
+                    "label": "Pre-loader Background Color",
+                    "default": "#fff"
+               }
+          ]
+     },
+     {
           "name": "t:settings_schema.colors.name",
           "settings": [
                {

@@ -47,12 +47,19 @@
                "copy_to_clipboard": "Copy link",
                "share_url": "Link",
                "success_message": "Link copied to clipboard"
+          },
+          "captcha": {
+               "title": "Are you a robot?",
+               "submit": "Submit"
           }
      },
      "newsletter": {
           "label": "Email",
           "success": "Thanks for subscribing",
-          "button_label": "Subscribe"
+          "button_label": "Subscribe",
+          "placeholder": "email@example.com",
+          "message": "Sign Up To Our Newsletter",
+          "unsubscribe": "Unsubscribe"
      },
      "accessibility": {
           "skip_to_text": "Skip to content",
@@ -404,5 +411,10 @@
                "copy_code_success": "Code copied successfully",
                "print_gift_card": "Print"
           }
+     },
+     "breadcrumb": {
+          "viewing": "Viewing",
+          "from": "from",
+          "home_link_title": "Home"
      }
 }

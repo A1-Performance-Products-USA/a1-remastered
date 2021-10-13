@@ -1,0 +1,136 @@
+/**
+     Newsletter Signup
+**/
+.newsletter-signup-wrapper {
+     width: 100%;
+
+     padding: 15px 0;
+}
+
+.contact-form {
+     width: 100%;
+     max-width: 1200px;
+
+     position: relative;
+
+     margin: 0 auto;
+
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+}
+
+.newsletter-complete {
+     width: 100%;
+     text-align: center;
+}
+
+.newsletter-signup-msg {
+     font-size: 3.5rem;
+     line-height: 1;
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 15px;
+}
+
+.newsletter-signup-txt {
+     font: 600 2rem Muli,Helvetica,sans-serif;
+     text-transform: capitalize;
+     position: relative;
+     padding: 0;
+     float: none;
+     display: inline-block;
+     vertical-align: top;
+     text-align: center;
+}
+
+.newsletter-form {
+     width:40%;
+
+     display: flex;
+
+     border-radius: 5px;
+}
+
+.newsletter-form > input {
+     width: 50%;
+     border: none;
+
+     padding: 8px;
+
+     flex-grow: 1;
+
+     font-size: 1rem;
+
+     margin-right: 5px;
+
+     box-shadow: none;
+}
+
+.newsletter-form > input:focus {
+     border: 1px solid #000;
+     border-radius: 5px;
+}
+
+.newsletter-form > input:focus:invalid {
+     border: 1px solid #e20303;
+     border-radius: 5px;
+}
+
+.newsletter-form > button {
+     flex-grow: 0;
+     border-radius: 5px;
+}
+
+.newsletter-signup-wrapper > .mobile-icon {
+     display: none;
+     visibility: hidden;
+}
+
+@media only screen and (max-width: 1440px) {
+     .contact-form {
+          box-sizing: border-box;
+          padding: 0 20px;
+     }
+}
+
+@media only screen and (max-width: 767px) {
+     .contact-form {
+          flex-direction: column;
+          justify-content: center;
+
+          text-align: center;
+
+          gap: 10px;
+     }
+
+     .contact-form > .newsletter-signup-msg > .newsletter-signup-txt {
+          font-size: 1.8rem;
+          padding-left: 0;
+     }
+
+     .contact-form > .newsletter-signup-msg > .newsletter-signup-txt::before {
+          content: '';
+     }
+
+     .newsletter-form {
+          width: 100%;
+     }
+
+     .newsletter-signup-wrapper > .mobile-icon {
+          display: block;
+          visibility: visible;
+
+          text-align: center;
+          font-size: 3rem;
+
+          margin-bottom: 10px;
+     }
+
+     .newsletter-signup-msg {
+          flex-direction: column;
+          gap: 0;
+     }
+}

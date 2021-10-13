@@ -2,14 +2,13 @@
      {% comment %}
           Read the links from the menu passed in from {% include 'site-nav' ... %}
      {% endcomment %}
-     {% for link in navMenu.links %}
+     {% for link in navMenu %}
           {% comment %}
                Create a dropdown menu by naming a linklist the same as a link in the parent nav
 
                     More info on dropdowns:
                     - http://docs.shopify.com/manual/your-website/navigation/create-drop-down-menu
           {% endcomment %}
-          {% assign child_list_handle = link.title | handleize %}
 
           <li class="site-nav-item{% if link.active %} active{% endif %}">
                <a href="{{ link.url }}" class="site-nav-link">{{ link.title | upcase }}</a>

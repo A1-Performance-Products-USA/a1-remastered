@@ -9,7 +9,7 @@
 <div class="logo">
      {% if settings.logo != blank %}
           <a href="{{ routes.root_url }}" itemprop="url">
-               <img src="{{ logo | img_url: logoSize }}" alt="{{ shop.name }}" itemprop="logo">
+               <img src="{{ logo | img_url: logoSize }}" alt="{{ shop.name }}" itemprop="logo" loading="lazy">
           </a>
      {% else %}
           <a href="{{ routes.root_url }}" itemprop="url">{{ shop.name }}</a>

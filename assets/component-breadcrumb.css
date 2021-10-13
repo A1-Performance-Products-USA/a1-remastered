@@ -1,0 +1,52 @@
+/**
+     Breadcrumb
+**/
+.breadcrumb {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+
+     font-size: 24px;
+
+     color: #111;
+
+     margin: 30px 0;
+}
+
+.breadcrumb > * {
+     max-width: 50%;
+}
+
+.breadcrumb > .breadcrumb-left {
+     font-weight: normal;
+}
+
+.breadcrumb > * > .breadcrumb_sep {
+     font-size: 0;
+     line-height: 1;
+}
+
+.breadcrumb > * > .breadcrumb_sep::before {
+     content: "\f142";
+     font-family: "Material Design Icons";
+     font-size: 13px;
+     margin: 0 8px;
+}
+
+.breadcrumb > .breadcrumb-right {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: flex-end;
+     align-items: center;
+
+     font-size: 14px;
+     line-height: 1;
+}
+
+.breadcrumb > .breadcrumb-right a {
+     color: #111;
+}
+
+.breadcrumb > .breadcrumb-right > .title {
+     margin: 0;
+}

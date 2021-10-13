@@ -21,6 +21,11 @@
      -o-transition: all .3s ease-in-out;
      transition: all .3s ease-in-out;
 }
+
+.footer-wrapper a:hover {
+     color: #fff;
+}
+
 /*
      Footer Main
 */

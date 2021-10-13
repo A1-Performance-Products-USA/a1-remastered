@@ -40,7 +40,8 @@
           {% render 'meta-tags' %}
 
           <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
-          <script src="{{ 'jquery.min.js' | asset_url }}" defer="defer"></script>
+          <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
+          <script src="{{ 'jquery.min.js' | asset_url }}" async></script>
 
           {{ content_for_header }}
 
@@ -192,14 +193,6 @@
                     color: {{ settings.news_sign_txt_color }};
                }
 
-               .newsletter-signup-txt::before {
-                    content: "{{ settings.news_sign_icon }}";
-               }
-
-               .newsletter-complete > .newsletter-signup-txt::before {
-                    content: "{{ settings.news_sign_icon_complete }}";
-               }
-
                .newsletter-form {
                     background-color: {{ settings.entry_bg_color }};
                     border: 2px solid {{ settings.entry_brdr_color }};
@@ -260,11 +253,13 @@
                }
           {% endstyle %}
 
+          {{ 'animate.min.css' | asset_url | stylesheet_tag }}
           {{ 'base.css' | asset_url | stylesheet_tag }}
+          {{ 'custom.css' | asset_url | stylesheet_tag }}
+
+          {{ 'section-header.css' | asset_url | stylesheet_tag }}
 
           {{ 'materialdesignicons.min.css' | asset_url | stylesheet_tag }}
-          {{ 'animate.min.css' | asset_url | stylesheet_tag }}
-          {{ 'section-header.css' | asset_url | stylesheet_tag }}
 
           {%- unless settings.type_body_font.system? -%}
                <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -280,55 +275,115 @@
           <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
      </head>
 
-     <body class="gradient">
+     <body id="{{ page_title | handle }}" class="{{ page_title | handle }}
+     {% if customer %}
+     customer-logged-in
+     {% endif %}
+     template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}">
+
           <a class="skip-to-content-link button visually-hidden" href="#MainContent">
                {{ "accessibility.skip_to_text" | t }}
           </a>
 
-          {% section 'header' %}
+          <div class="page-wrapper">
+               {% section 'header' %}
 
-          <main class="content-for-layout focus-none" id="MainContent" role="main" tabindex="-1">
-               {{ content_for_layout }}
-          </main>
+               <div class="site-inner container page-wrapper">
+                    <main class="content-for-layout focus-none main-content" id="MainContent" role="main" tabindex="-1">
+                         {% if template != 'index' %}
+                              {% render 'breadcrumb' %}
+                         {% endif %}
 
-          {% section 'footer' %}
+                         {{ content_for_layout }}
+                    </main>
+               </div>
 
-          <ul hidden>
-               <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
-          </ul>
+               {% if settings.show_newsletter_signup %}
+                    {% render 'newsletter-signup' %}
+               {% endif %}
 
-          <script>
-               window.routes = {
-                    cart_add_url: '{{ routes.cart_add_url }}',
-                    cart_change_url: '{{ routes.cart_change_url }}',
-                    cart_update_url: '{{ routes.cart_update_url }}',
-                    predictive_search_url: '{{ routes.predictive_search_url }}'
-               };
+               {% section 'footer' %}
 
-               window.cartStrings = {
-                    error: `{{ 'sections.cart.cart_error' | t }}`,
-                    quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t }}`
-               }
+               {% render 'totop' %}
 
-               window.variantStrings = {
-                    addToCart: `{{ 'products.product.add_to_cart' | t }}`,
-                    soldOut: `{{ 'products.product.sold_out' | t }}`,
-                    unavailable: `{{ 'products.product.unavailable' | t }}`,
-               }
+               <ul hidden>
+                    <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
+               </ul>
 
-               window.accessibilityStrings = {
-                    shareSuccess: `{{ 'general.share.success_message' | t }}`,
-               }
+               <script>
+                    window.routes = {
+                         cart_add_url: '{{ routes.cart_add_url }}',
+                         cart_change_url: '{{ routes.cart_change_url }}',
+                         cart_update_url: '{{ routes.cart_update_url }}',
+                         predictive_search_url: '{{ routes.predictive_search_url }}'
+                    };
 
-               window.screenBreaks = {
-                    laptop: 1024,
-                    tablet: 768,
-                    mobile: 480
-               }
-          </script>
+                    window.cartStrings = {
+                         error: `{{ 'sections.cart.cart_error' | t }}`,
+                         quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t }}`
+                    }
 
-          {%- if settings.predictive_search_enabled -%}
-               <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
-          {%- endif -%}
+                    window.variantStrings = {
+                         addToCart: `{{ 'products.product.add_to_cart' | t }}`,
+                         soldOut: `{{ 'products.product.sold_out' | t }}`,
+                         unavailable: `{{ 'products.product.unavailable' | t }}`,
+                    }
+
+                    window.accessibilityStrings = {
+                         shareSuccess: `{{ 'general.share.success_message' | t }}`,
+                    }
+
+                    window.screenBreaks = {
+                         laptop: 1024,
+                         tablet: 768,
+                         mobile: 480
+                    }
+               </script>
+
+               {%- if settings.predictive_search_enabled -%}
+                    <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+               {%- endif -%}
+
+               <script>
+                    $(document).ready(function() {
+                         /**
+                          * Fix Site Inner Height
+                         */
+                         var totalHeight = $(window).height();
+                         var headerHeight = $('header').height();
+                         var footerHeight = $('footer').height();
+                         var minHeight = totalHeight - (headerHeight + footerHeight);
+
+                         minHeight = minHeight - $('.newsletter-signup-wrapper').height();
+
+                         $('.site-inner').css('min-height', minHeight);
+
+                         /**
+                          * Captcha
+                         */
+                         if ($('.shopify-challenge__container').length != 0) {
+                              $('.shopify-challenge__container').addClass('page-content').wrap('<div class="page-content-wrapper"></div>');
+
+                              $('<h2>{{ "general.captcha.title" | t }}</h2>').insertBefore('.shopify-challenge__message');
+
+                              $('.shopify-challenge__button').wrap('<div class="form-submit-center"></div>').replaceWith('<button type="submit" class="btn">{{ "general.captcha.submit" | t }}</button>');
+                         }
+
+                         /**
+                          * Email Marketing Subscription
+                         */
+                         if ($('.shopify-email-marketing-confirmation__container').length != 0) {
+                              $('.shopify-email-marketing-confirmation__container').addClass('page-content').wrap('<div class="page-content-wrapper"></div>');
+
+
+                              $('.shopify-email-marketing-confirmation__container > h1').replaceWith(function () {
+                                   return "<h2>" + $(this).html() + "</h2>";
+                              });
+
+                              $('.shopify-email-marketing-confirmation__container > a').replaceWith('<button type="submit" class="btn">{{ "newsletter.unsubscribe" | t }}</button>');
+                         }
+                    });
+               </script>
+          </div>
      </body>
 </html>

@@ -1,0 +1,51 @@
+<goto-top id="GotoTop" class="btn">
+     <span id="toTopHover"></span>
+     <i class="mdi mdi-chevron-up"></i>
+</goto-top>
+
+<script>
+     class ToTop extends HTMLElement {
+          constructor () {
+               super();
+
+               this.addEventListener('click', this.scrollTop.bind(this));
+               window.addEventListener('scroll', this.onScroll.bind(this));
+          }
+
+          scrollTop = () => {
+               $("html, body").animate({
+                    scrollTop: 0
+               }, '1000');
+          }
+
+          onScroll = () => {
+               if ($(document).height() > window.innerHeight) {
+                    if ($(window).scrollTop() > 100) {
+                         $(this).fadeIn();
+                    } else {
+                         $(this).fadeOut();
+                    }
+               }
+          }
+     }
+
+     customElements.define('goto-top', ToTop);
+
+     /*jQuery(window).scroll(function () {
+          if (jQuery(document).height() > jQuery(window).height()) {
+               var scroll = jQuery(window).scrollTop();
+               if (scroll > 100) {
+                    jQuery("#GotoTop").fadeIn();
+               } else {
+                    jQuery("#GotoTop").fadeOut();
+               }
+          }
+     });
+
+     jQuery("#GotoTop").on('click', function () {
+          jQuery("html, body").animate({
+               scrollTop: 0
+          }, '1000');
+          return false;
+     });*/
+</script>

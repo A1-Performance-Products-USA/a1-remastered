@@ -5,7 +5,6 @@
 
 {%- if settings.predictive_search_enabled -%}
      <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
-     <link rel="stylesheet" href="{{ 'component-loading-overlay.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
 <noscript>{{ 'component-search.css' | asset_url | stylesheet_tag }}</noscript>
@@ -30,8 +29,6 @@
      </symbol>
 </svg>
 
-{% assign navMenu = linklists[section.settings.nav_menu] %}
-
 <header class="main-header" data-section-id="{{ section.id }}" data-section-type="header">
      <div class="site-header">
           <div class="site-top-header">
@@ -51,41 +48,7 @@
                     </div>
 
                     <div class="header-right">
-                         <div class="info-buttons">
-                              <div class="header-account">
-                                   <a href="{{ routes.account_url }}" class="site-header_account_link">
-                                        {% if customer %}
-                                             <div class="header-btn-icon">
-                                                  <i class="mdi mdi-account"></i>
-                                             </div>
-                                             <span class="account-heading">{{ 'customer.layout.greeting' | t }} {{ customer.first_name }}</span>
-                                        {% else %}
-                                             <div class="header-btn-icon">
-                                                  <i class="mdi mdi-account"></i>
-                                             </div>
-                                             <span class="account-heading">{{ 'customer.log_in' | t | capitalize }} or {{ 'customer.layout.register' | t | capitalize }}</span>
-                                        {% endif %}
-                                   </a>
-                              </div>
-
-                              <div class="header-cart">
-                                   <a href="{{ routes.cart_url }}">
-                                        {% if cart.item_count > 0 %}
-                                             <div class="header-btn-icon">
-                                                  <i class="mdi mdi-cart"></i>
-                                             </div>
-                                             <span class="cart-heading">
-                                                  {% if cart.item_count > 1 %}{{ 'sections.header.cart_count.other' | t: count: cart.item_count }}{% else %}{{ 'sections.header.cart_count.one' | t: count: cart.item_count }}{% endif %} - {{ cart.total_price | money }}
-                                             </span>
-                                        {% else %}
-                                             <div class="header-btn-icon">
-                                                  <i class="mdi mdi-cart"></i>
-                                             </div>
-                                             <span class="cart-heading">{{ 'sections.cart.empty' | t }}</span>
-                                        {% endif %}
-                                   </a>
-                              </div>
-                         </div>
+                         {% render 'header-info-buttons' %}
 
                          <div class="header-search">
                               {% render 'search-bar' %}
@@ -95,7 +58,7 @@
           </div>
 
           <nav class="header-nav">
-               {% render 'header-nav', navMenu: navMenu %}
+               {% render 'header-nav', navMenu: section.settings.menu.links %}
                <hr/>
           </nav>
      </div>
@@ -153,7 +116,7 @@
           border-top: 2px solid {{ section.settings.nav_line_color }};
      }
 </style>
-
+{% comment %}
 <{% if section.settings.enable_sticky_header %}sticky-header{% else %}div{% endif %}
      class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
      <header class="header header--{{ section.settings.logo_position }} page-width{% if section.settings.menu != blank %} header--has-menu{% endif %}">
@@ -573,6 +536,8 @@
           }
      </script>
 {%- endif -%}
+
+{% endcomment %}
 
 {% schema %}
 {

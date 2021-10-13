@@ -1,0 +1,35 @@
+<div class="info-buttons animate__animated animate__slideInDown">
+     <div class="header-account">
+          <a href="{{ routes.account_url }}" class="site-header_account_link">
+               {% if customer %}
+                    <div class="header-btn-icon">
+                         <i class="mdi mdi-account"></i>
+                    </div>
+                    <span class="account-heading">{{ 'customer.layout.greeting' | t }} {{ customer.first_name }}</span>
+               {% else %}
+                    <div class="header-btn-icon">
+                         <i class="mdi mdi-account"></i>
+                    </div>
+                    <span class="account-heading">{{ 'customer.log_in' | t | capitalize }} or {{ 'customer.layout.register' | t | capitalize }}</span>
+               {% endif %}
+          </a>
+     </div>
+
+     <div class="header-cart">
+          <a href="{{ routes.cart_url }}">
+               {% if cart.item_count > 0 %}
+                    <div class="header-btn-icon">
+                         <i class="mdi mdi-cart"></i>
+                    </div>
+                    <span class="cart-heading">
+                         {% if cart.item_count > 1 %}{{ 'sections.header.cart_count.other' | t: count: cart.item_count }}{% else %}{{ 'sections.header.cart_count.one' | t: count: cart.item_count }}{% endif %} - {{ cart.total_price | money }}
+                    </span>
+               {% else %}
+                    <div class="header-btn-icon">
+                         <i class="mdi mdi-cart"></i>
+                    </div>
+                    <span class="cart-heading">{{ 'sections.cart.empty' | t }}</span>
+               {% endif %}
+          </a>
+     </div>
+</div>

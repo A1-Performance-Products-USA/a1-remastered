@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="{{ 'component-breadcrumb.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-breadcrumb.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="breadcrumb">
+     {% if template contains 'product' %}
+          <div class="breadcrumb-left">
+               <span>{{ 'breadcrumb.viewing' | t }}:
+                    {{ product.type }}
+                    {{ 'breadcrumb.from' | t }}
+                    {{ product.vendor }}</span>
+          </div>
+          <div class="breadcrumb-right">
+               <a href="/" title="{{ 'breadcrumbs.home_link_title' | t }}">
+                    <i class="mdi mdi-home-outline"></i>
+               </a>
+               {% if collection %}
+                    <span aria-hidden="true" class="breadcrumb_sep">&gt;</span>
+                    {% if collection.handle %}
+                         {% capture url %}/collections/{{ collection.handle }}
+                         {% endcapture %}
+                         {{ collection.title | link_to: url }}
+                    {% endif %}
+               {% endif %}
+          </div>
+     {% elsif template contains 'collection' and collection.handle %}
+          <div class="breadcrumb-left">
+               <span>{{ collection.title }} ({{ collection.all_products_count | times: 100 | money_without_currency | remove: '.00' }})</span>
+          </div>
+          <div class="breadcrumb-right">
+               <a href="/" title="{{ 'breadcrumbs.home_link_title' | t }}">
+                    <i class="mdi mdi-home-outline"></i>
+               </a>
+
+               <span aria-hidden="true" class="breadcrumb_sep">&gt;</span>
+               {% if current_tags %}
+                    {% capture url %}/collections/{{ collection.handle }}
+                    {% endcapture %}
+                    {{ collection.title | link_to: url }}
+                    <span aria-hidden="true" class="breadcrumb_sep">&gt;</span>
+                    <span>{{ current_tags | join: " + " }}</span>
+               {% else %}
+                    <span class="title">{{ collection.title }}</span>
+
+               {% endif %}
+          </div>
+     {% elsif template == 'blog' %}
+          <div class="breadcrumb-left">
+               <span>{{ blog.title }}</span>
+          </div>
+          <div class="breadcrumb-right">
+               <a href="/" title="{{ 'breadcrumbs.home_link_title' | t }}">
+                    <i class="mdi mdi-home-outline"></i>
+               </a>
+
+               <span aria-hidden="true" class="breadcrumb_sep">&gt;</span>
+               {% if current_tags %}
+                    {{ blog.title | link_to: blog.url }}
+                    <span aria-hidden="true" class="breadcrumb_sep">&gt;</span>
+                    <span>{{ current_tags | join: " + " }}</span>
+               {% else %}
+
+                    <span class="title">{{ blog.title }}</span>
+
+               {% endif %}
+          </div>
+
+     {% elsif template == 'article' %}
+          <div class="breadcrumb-left">
+               <span>{{ article.title }}</span>
+          </div>
+          <div class="breadcrumb-right">
+               <a href="/" title="{{ 'breadcrumbs.home_link_title' | t }}">
+                    <i class="mdi mdi-home-outline"></i>
+               </a>
+
+               <span aria-hidden="true" class="breadcrumb_sep">&gt;</span>
+               {{ blog.title | link_to: blog.url }}
+          </div>
+     {% elsif template contains 'page' %}
+          <div class="breadcrumb-left">
+               <span>{{ page.title }}</span>
+          </div>
+          <div class="breadcrumb-right">
+               <a href="/" title="{{ 'breadcrumbs.home_link_title' | t }}">
+                    <i class="mdi mdi-home-outline"></i>
+               </a>
+
+               <span aria-hidden="true" class="breadcrumb_sep">&gt;</span>
+               <span class="title">{{ page.title }}</span>
+          </div>
+     {% else %}
+          <div class="breadcrumb-left">
+               <span>{{ page_title }}</span>
+          </div>
+          <div class="breadcrumb-right">
+               <a href="/" title="{{ 'breadcrumbs.home_link_title' | t }}">
+                    <i class="mdi mdi-home-outline"></i>
+               </a>
+
+               <span aria-hidden="true" class="breadcrumb_sep">&gt;</span>
+               <span>{{ page_title }}</span>
+          </div>
+     {% endif %}
+</div>

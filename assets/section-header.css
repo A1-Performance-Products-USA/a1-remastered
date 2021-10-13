@@ -127,6 +127,8 @@
      display: flex;
 
      align-items: flex-start;
+
+     box-sizing: border-box;
 }
 
 .site-top-header > .main-header .header-account,
@@ -168,8 +170,6 @@
      -moz-transition: all .5s;
      -o-transition: all .5s;
      transition: all .5s;
-
-     margin-left: -10px;
 }
 
 .site-top-header > .main-header .info-buttons a .account-heading,
@@ -572,5 +572,274 @@
      .sticky-header > .center-nav > .site-nav > .site-nav-item > .site-nav-link {
           font-size: 1.15rem;
           padding: 6px;
+     }
+}
+
+/**
+     Mobile Header
+**/
+.mobile-header {
+     display: none;
+     visibility: hidden;
+}
+
+.sticky-mobile-header {
+     display: none;
+     visibility: hidden;
+}
+
+.mobile-nav-wrapper {
+     display: none;
+     visibility: hidden;
+}
+
+@media screen and (max-width: 1024px) {
+     .site-header, .sticky-header-wrapper.active {
+          display: none;
+          visibility: hidden;
+     }
+
+     .mobile-header {
+          display: flex;
+          visibility: visible;
+          justify-content: center;
+          align-items: center;
+
+          position: relative;
+
+          width: 100%;
+          box-sizing: border-box;
+
+          padding: 30px;
+
+          z-index: 5;
+     }
+
+     .mobile-header > button, .mobile-header > a {
+          background-color: transparent;
+
+          font-size: 2rem;
+          padding: 5px 10px;
+     }
+
+     .mobile-header > button:hover, .mobile-header > a:hover {
+          background-color: transparent;
+     }
+
+     .mobile-header > .account-icon {
+          position: absolute;
+          top: 0;
+          left: 0;
+     }
+
+     .mobile-header > .cart-icon {
+          position: absolute;
+          top: 0;
+          right: 0;
+     }
+
+     .mobile-header > .search-icon {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+     }
+
+     .mobile-header > .navigation-icon {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+     }
+
+     .mobile-nav-wrapper {
+          position: fixed;
+
+          overflow-y: auto;
+          overflow-x: hidden;
+
+          width: 90%;
+
+          z-index: 4;
+
+          display: block;
+          visibility: visible;
+
+          left: -100%;
+     }
+
+     .mobile-nav-wrapper ul {
+          list-style: none;
+          padding: 0;
+     }
+
+     .mobile-nav-wrapper > .nav-wrapper {
+          position: relative;
+
+          width: 100%;
+
+          overflow: visible;
+
+          top: 0;
+     }
+
+     .mobile-nav-wrapper > .nav-wrapper > nav {
+          position: relative;
+          box-sizing: border-box;
+
+          width: 100%;
+
+          padding: 15px;
+     }
+
+     .mobile-nav-wrapper > .nav-wrapper > nav > h1 {
+          margin: 0;
+
+          font-weight: normal;
+          font-size: 1.5rem;
+     }
+
+     .mobile-nav-wrapper > .nav-wrapper > .categories-list > .main-categories {
+          list-style: none;
+          padding: 0;
+          border-bottom: 1px solid #666;
+     }
+
+     .mobile-nav-wrapper .first-level,
+     .mobile-nav-wrapper .show-more {
+          display: block;
+          height: auto;
+
+          cursor: pointer;
+     }
+
+     .mobile-nav-wrapper .show-more {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          gap: 5px;
+
+          font-size: 1.25rem;
+     }
+
+     .mobile-nav-wrapper .first-level > a {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+
+          padding: 5px;
+     }
+
+     .mobile-nav-wrapper .first-level h2,
+     .mobile-nav-wrapper .show-more h2 {
+          margin: 0;
+          font-size: 1.25rem;
+          font-weight: normal;
+     }
+
+     .mobile-nav-wrapper .first-level > a > .icon {
+          height: 28px;
+          width: 28px;
+          line-height: 25px;
+          float: left;
+          margin: 0 8px 0 0;
+     }
+
+     .mobile-nav-wrapper .first-level .cat-children {
+          display: none;
+          visibility: hidden;
+
+          position: absolute;
+
+          top: 0;
+          width: 100%;
+          left: 100%;
+          z-index: 5;
+     }
+     .mobile-nav-wrapper .first-level .cat-children.active {
+          display: block;
+          visibility: visible;
+     }
+
+     .mobile-nav-wrapper .first-level .cat-children .second-level > .sub-children  {
+          display: none;
+          visibility: hidden;
+
+          position: absolute;
+
+          top: 0;
+          width: 100%;
+          left: 100%;
+          z-index: 5;
+     }
+     .mobile-nav-wrapper .first-level .cat-children .second-level > .sub-children.active {
+          display: block;
+          visibility: visible;
+     }
+
+     .mobile-search-wrapper {
+          position: fixed;
+          width: 100%;
+
+          padding: 10px;
+
+          z-index: 6;
+     }
+
+     .sticky-mobile-header {
+          box-sizing: border-box;
+
+          top: 0;
+          position: fixed;
+
+          display: none;
+          visibility: hidden;
+
+          justify-content: space-between;
+          align-items: center;
+
+          padding: 10px 5px;
+          height: 50px;
+
+          width: 100%;
+
+          z-index: 5;
+     }
+
+     .sticky-mobile-header > .logo {
+          height: 100%;
+     }
+
+     .sticky-mobile-header > .logo > a {
+          height: 100%;
+     }
+
+     .sticky-mobile-header > .logo > a > img {
+          height: 100%;
+     }
+
+     .sticky-mobile-header.active {
+          display: flex;
+          visibility: visible;
+     }
+
+     .sticky-mobile-header > button, .sticky-mobile-header > a {
+          background-color: transparent;
+
+          font-size: 2rem;
+          padding: 5px 10px;
+     }
+
+     .sticky-mobile-header > button:hover, .sticky-mobile-header > a:hover {
+          background-color: transparent;
+     }
+}
+
+@media screen and (min-width: 500px) and (max-width: 1024px) {
+     .mobile-search-wrapper > .header-search > .search-bar > .collections-selector {
+          width: 10%;
+     }
+
+     .mobile-search-wrapper > .header-search > .search-bar > .search-submit {
+          max-width: 10%;
      }
 }

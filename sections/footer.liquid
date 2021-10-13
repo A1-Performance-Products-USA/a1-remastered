@@ -3,7 +3,7 @@
 
 <footer class="footer-wrapper">
      <div class="footer-main">
-          <div class="container hb-animate-element bottom-to-top">
+          <div class="container animate__animated animate__slideInUp">
                {% for block in section.blocks %}
                     <footer-dropdown class="footer-block {{ block.type }} dropdown laptop-dropdown" data-dropdown='closed'>
                          {% case block.type %}
@@ -107,6 +107,8 @@ class MobileCollapseFooter extends HTMLElement {
           super();
 
           this.open = false;
+          this.dropdown = false;
+
           this.elements = {
                list: this.querySelector('.footer-list'),
                header: this.querySelector('h1')
@@ -116,7 +118,9 @@ class MobileCollapseFooter extends HTMLElement {
 
           window.addEventListener('resize', this.resize.bind(this));
 
-          this.dropdown = false;
+          this.initDropdown = this.initDropdown || this.initDropdown.bind(this);
+          this.rmDropdown = this.rmDropdown || this.rmDropdown.bind(this);
+          this.resize = this.resize || this.resize.bind(this);
 
           this.toggle = this.toggle || this.toggle.bind(this);
      }
@@ -130,6 +134,8 @@ class MobileCollapseFooter extends HTMLElement {
 
           //Initialize Collapsed
           this.open = false;
+          this.dropdown = true;
+
           this.elements.list.style.display = "none";
           this.elements.list.classList.add('dropdown-list');
 
@@ -138,11 +144,13 @@ class MobileCollapseFooter extends HTMLElement {
 
           this.elements.header.addEventListener('click', this.toggle);
 
-          this.dropdown = true;
+          return;
      }
 
      rmDropdown = () => {
           this.open = true;
+          this.dropdown = false;
+
           this.elements.list.style.display = "flex";
 
           this.elements.header.removeEventListener('click', this.toggle);
@@ -155,14 +163,14 @@ class MobileCollapseFooter extends HTMLElement {
                this.elements.list.classList.remove('dropdown-list');
           }
 
-          this.dropdown = false;
-
           return;
      }
 
      toggle = () => {
           $(this.elements.list).slideToggle();
           this.open = (this.open ? false : true);
+
+          return;
      }
 
      resize = () => {
@@ -176,8 +184,12 @@ class MobileCollapseFooter extends HTMLElement {
 
           if (this.classList.contains("laptop-dropdown") && window.innerWidth > window.screenBreaks.laptop && this.dropdown == true) {
                this.rmDropdown();
+
+               return;
           } else if (this.classList.contains("laptop-dropdown") && window.innerWidth <= window.screenBreaks.laptop && this.dropdown == false) {
                this.initDropdown();
+
+               return;
           }
      }
 }

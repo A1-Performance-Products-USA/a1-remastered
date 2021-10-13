@@ -1,0 +1,24 @@
+{{ 'component-newsletter-signup.css' | asset_url | stylesheet_tag }}
+
+<div class="newsletter-signup-wrapper">
+     {% form 'customer', class: 'contact-form animate__animated animate__slideInUp' %}
+          {% if form.posted_successfully? %}
+               <div class="newsletter-complete">
+                    <i class="mdi {{ settings.news_sign_icon_complete }}"></i>
+                    <span class="newsletter-signup-txt">{{ 'newsletter.success' | t }}</span>
+               </div>
+          {% else %}
+               <div class="newsletter-signup-msg">
+                    <i class="mdi {{ settings.news_sign_icon }}"></i>
+                    <span class="newsletter-signup-txt">{{ 'newsletter.message' | t }}</span>
+               </div>
+               <div class="newsletter-form">
+                    <input type="hidden" name="contact[tags]" value="newsletter">
+
+                    <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'newsletter.placeholder' | t }}" name="contact[email]" id="Email" class="input-group-field" aria-label="{{ 'newsletter.placeholder' | t }}" autocorrect="off" autocapitalize="off" required>
+
+                    <button class="btn" name="commit" type="submit" id="subscribe">{{ 'newsletter.button_label' | t }}</button>
+               </div>
+          {% endif %}
+     {% endform %}
+</div>
