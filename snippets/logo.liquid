@@ -1,0 +1,17 @@
+{% if logo == blank %}
+     {% assign logo = settings.logo %}
+{% endif %}
+
+{% if logoSize == blank %}
+     {% assign logoSize = '300x' %}
+{% endif %}
+
+<div class="logo">
+     {% if settings.logo != blank %}
+          <a href="{{ routes.root_url }}" itemprop="url">
+               <img src="{{ logo | img_url: logoSize }}" alt="{{ shop.name }}" itemprop="logo">
+          </a>
+     {% else %}
+          <a href="{{ routes.root_url }}" itemprop="url">{{ shop.name }}</a>
+     {% endif %}
+</div>

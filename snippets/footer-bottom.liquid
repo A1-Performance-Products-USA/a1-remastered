@@ -1,0 +1,10 @@
+{{ 'footer-bottom.css' | asset_url | stylesheet_tag }}
+
+<div class="footer-bottom">
+     <div class="container hb-animate-element bottom-to-top">
+          <div class="copyright">
+               <small>{{ 'sections.footer.bottom.copyright' | t }} &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. {{ 'sections.footer.bottom.reserved' | t }}</small>
+          </div>
+          {% render 'comp-social-links' %}
+     </div>
+</div>

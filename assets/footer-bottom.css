@@ -1,0 +1,45 @@
+/*
+     Footer Bottom/Copyright
+*/
+.footer-bottom {
+     width: 100%;
+}
+
+.footer-bottom > .container {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+
+     padding: 5px 0;
+
+     font-size: 1.1rem;
+     font-weight: 500;
+     letter-spacing: 1px;
+}
+
+.footer-bottom a {
+     font: inherit;
+     color: inherit
+}
+
+@media only screen and (max-width: 1400px) {
+     .footer-bottom > .container > .copyright {
+          padding-left: 20px;
+     }
+}
+
+@media only screen and (max-width: 480px) {
+     .footer-bottom > .container {
+          justify-content: center;
+          flex-direction: column;
+     }
+
+     .footer-bottom > .container > .copyright {
+          order: 2;
+          text-align: center;
+     }
+
+     .footer-bottom > .container > .copyright {
+          padding: 0;
+     }
+}

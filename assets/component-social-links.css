@@ -1,0 +1,84 @@
+.footer-bottom > .container > .social-icons {
+     display: flex;
+     justify-content: flex-end;
+     align-items: center;
+     align-content: center;
+
+     list-style: none;
+
+     padding: 0;
+}
+
+.social-icons > li {
+     margin: 0 5px 0 0;
+     vertical-align: middle;
+}
+
+.social-icons > li:last-child {
+     margin: none;
+}
+
+.social-icons > li > a {
+     display: inline-block;
+     height: 32px;
+     line-height: 30px;
+     padding: 0;
+     width: 32px;
+     -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+     -khtml-border-radius: 50%;
+     border-radius: 50%;
+     text-align: center;
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.social-icons > li > a > .icon {
+     line-height: 16px;
+     width: 16px;
+     font-size: 14px;
+     color: #fff;
+
+     cursor: pointer;
+
+     display: inline-block;
+}
+
+.social-icons > li > a > .icon::before {
+     display: inline;
+     font-family: icons;
+     speak: none;
+     font-style: normal;
+     font-weight: 400;
+     font-variant: normal;
+     text-transform: none;
+     line-height: 1;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+}
+
+.social-icons > li > a > .fallback-text {
+     clip: rect(0 0 0 0);
+     overflow: hidden;
+     position: absolute;
+     height: 1px;
+     width: 1px;
+}
+
+@media only screen and (max-width: 1400px) {
+     .footer-bottom > .container > .social-icons {
+          padding-right: 20px;
+     }
+}
+
+@media only screen and (max-width: 480px) {
+     .footer-bottom > .container > .social-icons {
+          padding: 0;
+     }
+
+     .footer-bottom > .container > .social-icons {
+          order: 1;
+     }
+}

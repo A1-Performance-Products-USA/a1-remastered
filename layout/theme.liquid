@@ -21,10 +21,12 @@
                {%- if current_tags %}
                     &ndash; tagged "{{ current_tags | join: ', ' }}"
                {% endif -%}
+
                {%- if current_page != 1 %}
                     &ndash; Page
                     {{ current_page }}
                {% endif -%}
+
                {%- unless page_title contains shop.name %}
                     &ndash;
                     {{ shop.name }}
@@ -38,6 +40,7 @@
           {% render 'meta-tags' %}
 
           <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+          <script src="{{ 'jquery.min.js' | asset_url }}" defer="defer"></script>
 
           {{ content_for_header }}
 
@@ -48,6 +51,48 @@
           %}
 
           {% style %}
+               /**
+               * @license
+               * MyFonts Webfont Build ID 4030704, 2021-03-23T15:15:15-0400
+               *
+               * The fonts listed in this notice are subject to the End User License
+               * Agreement(s) entered into by the website owner. All other parties are
+               * explicitly restricted from using the Licensed Webfonts(s).
+               *
+               * You may obtain a valid license at the URLs below.
+               *
+               * Webfont: VipnagorgiallaRg-Bold by Typodermic
+               * URL: https://www.myfonts.com/fonts/typodermic/vipnagorgialla/bold/
+               *
+               * Webfont: VipnagorgiallaRg-BoldItalic by Typodermic
+               * URL: https://www.myfonts.com/fonts/typodermic/vipnagorgialla/bold-italic/
+               *
+               *
+               * Webfonts copyright: (c) 1998-2020 Typodermic Fonts Inc.
+               *
+               * © 2021 MyFonts Inc
+               */
+               @font-face {
+                    font-family: "VipnagorgiallaRg-Bold";
+                    src: url("{{ 'VipnagorgiallaRg-Bold.woff2' | asset_url }}") format('woff2'), url("{{ 'VipnagorgiallaRg-Bold.woff' | asset_url }}") format('woff');
+               }
+               @font-face {
+                    font-family: "VipnagorgiallaRg-BoldItalic";
+                    src: url("{{ 'VipnagorgiallaRg-BoldItalic.woff2' | asset_url }}") format('woff2'), url("{{ 'VipnagorgiallaRg-BoldItalic.woff' | asset_url }}") format('woff');
+               }
+
+               @font-face {
+                    font-family: 'icons';
+                    src: url('{{ "icons.eot" | asset_url }}');
+                    src: url('{{ "icons.eot" | asset_url }}#iefix') format("embedded-opentype"),
+                    url('{{ "icons.woff" | asset_url }}') format("woff"),
+                    url('{{ "icons.ttf" | asset_url }}') format("truetype"),
+                    url('{{ "icons.svg" | asset_url }}#timber-icons') format("svg");
+                    font-weight: normal;
+                    font-style: normal;
+               }
+
+
                {{settings.type_body_font | font_face: font_display: 'swap'}}{{body_font_bold | font_face: font_display: 'swap'}}{{body_font_italic | font_face: font_display: 'swap'}}{{body_font_bold_italic | font_face: font_display: 'swap'}}{{settings.type_header_font | font_face: font_display: 'swap'}}:root {
                     --font-body-family: {{settings.type_body_font.family}}, {{settings.type_body_font.fallback_families}};
                     --font-body-style: {{settings.type_body_font.style}};
@@ -113,9 +158,113 @@
                          font-size: 1.6rem;
                     }
                }
+
+               input {
+                    background-color: {{ settings.entry_bg_color }};
+                    color: {{ settings.entry_txt_color }};
+                    border: 1px solid {{ settings.entry_brdr_color }};
+               }
+
+               a {
+                    color: {{ settings.lnk_color }};
+               }
+
+               a:hover {
+                    color: {{ settings.lnk_hvr_color }};
+               }
+
+               .btn {
+                    background-color: {{ settings.btn_color }};
+                    color: {{ settings.btn_txt_color }};
+               }
+
+               .btn:hover,
+               .btn:active {
+                    background: {{ settings.btn_hvr_color }};
+               }
+
+               .btn::after {
+                    background: {{ settings.btn_hvr_color }};
+               }
+
+               .newsletter-signup-wrapper {
+                    background-color: {{ settings.news_sign_bg_color }};
+                    color: {{ settings.news_sign_txt_color }};
+               }
+
+               .newsletter-signup-txt::before {
+                    content: "{{ settings.news_sign_icon }}";
+               }
+
+               .newsletter-complete > .newsletter-signup-txt::before {
+                    content: "{{ settings.news_sign_icon_complete }}";
+               }
+
+               .newsletter-form {
+                    background-color: {{ settings.entry_bg_color }};
+                    border: 2px solid {{ settings.entry_brdr_color }};
+               }
+
+               .ttloader {
+                    background-color: {{settings.preloader_bg}};
+               }
+
+               .rotating {
+                    background-image: url('{{ "ajax-loader.gif" | asset_url }}');
+               }
+
+               .mobile-header > button, .mobile-header > a, .sticky-mobile-header > button, .sticky-mobile-header > a {
+                    color: {{ settings.btn_text_color }};
+               }
+
+               .mobile-header > button:hover,
+               .mobile-header > a:hover,
+               .sticky-mobile-header > button:hover,
+               .sticky-mobile-header > a:hover,
+               body.open-nav .sticky-mobile-header > .navigation-icon,
+               body.open-nav .mobile-header > .navigation-icon,
+               body.open-search .sticky-mobile-header > .search-icon,
+               body.open-search .mobile-header > .search-icon {
+                    color: {{ settings.btn_hvr_color }};
+               }
+
+               {% if settings.header_bg != blank %}
+                    .site-top-header, .mobile-header, .sticky-mobile-header {
+                         background: url("{{ settings.header_bg | img_url: 'master' }}") center center no-repeat #444444;
+
+                         color: {{ settings.text_clr }};
+                    }
+               {% else %}
+                    .site-top-header {
+                         background-color: {{ settings.header_bg_clr }};
+                    }
+               {% endif %}
+
+               {% if settings.sticky_header_enabled %}
+                    .sticky-header-wrapper {
+                         background-color: {{ settings.sticky_header_bg_color }};
+                    }
+
+                    .sticky-header-wrapper > hr {
+                         background-color: {{ settings.sticky_header_border_color }};
+                         color: {{ settings.sticky_header_border_color }};
+                    }
+               {% endif %}
+
+               body, html {
+                    background-color: {{ settings.page_background_color }};
+               }
+
+               .page-content-wrapper .page-content {
+                    background-color: {{ settings.content_background_color }};
+               }
           {% endstyle %}
 
           {{ 'base.css' | asset_url | stylesheet_tag }}
+
+          {{ 'materialdesignicons.min.css' | asset_url | stylesheet_tag }}
+          {{ 'animate.min.css' | asset_url | stylesheet_tag }}
+          {{ 'section-header.css' | asset_url | stylesheet_tag }}
 
           {%- unless settings.type_body_font.system? -%}
                <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
@@ -135,8 +284,6 @@
           <a class="skip-to-content-link button visually-hidden" href="#MainContent">
                {{ "accessibility.skip_to_text" | t }}
           </a>
-
-          {% section 'announcement-bar' %}
 
           {% section 'header' %}
 
@@ -171,6 +318,12 @@
 
                window.accessibilityStrings = {
                     shareSuccess: `{{ 'general.share.success_message' | t }}`,
+               }
+
+               window.screenBreaks = {
+                    laptop: 1024,
+                    tablet: 768,
+                    mobile: 480
                }
           </script>
 

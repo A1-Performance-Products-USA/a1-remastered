@@ -26,7 +26,25 @@
             "announcement-bar-0"
           ]
         }
-      }
+      },
+      "header": {
+          "type": "header",
+          "settings": {
+               "header_text": "Same Day Shipping!",
+               "nav_menu": "navigation",
+               "account_clr": "#700101",
+               "account_accent_clr": "#ec0000",
+               "cart_clr": "#000073",
+               "cart_accent_clr": "#0058fa",
+               "text_clr": "#fff",
+               "nav_bg_color": "#ec0000",
+               "nav_txt_color": "#fff",
+               "nav_btn_color": "#1a1a1a",
+               "nav_btn_hvr_color": "#c00",
+               "nav_btn_border_color": "#000",
+               "nav_line_color": "#000"
+          }
+     }
     },
     "Craft": {
       "colors_solid_button_labels": "#EFECEC",
