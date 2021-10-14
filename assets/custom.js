@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+$(document).ready(function() {
      /**
       * Fix Site Inner Height
      */
@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
      minHeight = minHeight - $('.newsletter-signup-wrapper').height();
 
-     console.log(minHeight);
-
      $('.site-inner').css('min-height', minHeight);
+
+     console.log(minHeight)
 
      /**
       * Captcha
