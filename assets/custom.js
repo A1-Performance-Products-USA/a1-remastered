@@ -8,9 +8,9 @@ var headerHeight = $('header').height();
 var footerHeight = $('footer').height();
 var minHeight = totalHeight - (headerHeight + footerHeight);
 
-console.log(totalHeight);
-
 minHeight = minHeight - $('.newsletter-signup-wrapper').height();
+
+console.log(minHeight);
 
 $('.site-inner').css('min-height', minHeight);
 
