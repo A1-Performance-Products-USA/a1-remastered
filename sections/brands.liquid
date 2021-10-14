@@ -1,0 +1,232 @@
+{{ 'section-brands.css' | asset_url | stylesheet_tag }}
+
+<div class="page-content-wrapper">
+     {% if page.content != blank %}
+          <div class="page-content">
+               {{ page.content }}
+          </div>
+     {% endif %}
+
+
+     <div class="page-content">
+          <brands-list class="brands-list-wrapper">
+               <h1 class="brands-title">{{ 'brands.title' | t }}</h1>
+               <h2 class="brands-help">{{ 'brands.help' | t }}</h2>
+               <div class="brands-list-nav">
+                    <a class="brands-nav-item" id="letter-a">A</a>
+                    <a class="brands-nav-item" id="letter-b">B</a>
+                    <a class="brands-nav-item" id="letter-c">C</a>
+                    <a class="brands-nav-item" id="letter-d">D</a>
+                    <a class="brands-nav-item" id="letter-e">E</a>
+                    <a class="brands-nav-item" id="letter-f">F</a>
+                    <a class="brands-nav-item" id="letter-g">G</a>
+                    <a class="brands-nav-item" id="letter-h">H</a>
+                    <a class="brands-nav-item" id="letter-i">I</a>
+                    <a class="brands-nav-item" id="letter-j">J</a>
+                    <a class="brands-nav-item" id="letter-k">K</a>
+                    <a class="brands-nav-item" id="letter-l">L</a>
+                    <a class="brands-nav-item" id="letter-m">M</a>
+                    <a class="brands-nav-item" id="letter-n">N</a>
+                    <a class="brands-nav-item" id="letter-o">O</a>
+                    <a class="brands-nav-item" id="letter-p">P</a>
+                    <a class="brands-nav-item" id="letter-q">Q</a>
+                    <a class="brands-nav-item" id="letter-r">R</a>
+                    <a class="brands-nav-item" id="letter-s">S</a>
+                    <a class="brands-nav-item" id="letter-t">T</a>
+                    <a class="brands-nav-item" id="letter-u">U</a>
+                    <a class="brands-nav-item" id="letter-v">V</a>
+                    <a class="brands-nav-item" id="letter-w">W</a>
+                    <a class="brands-nav-item" id="letter-x">X</a>
+                    <a class="brands-nav-item" id="letter-y">Y</a>
+                    <a class="brands-nav-item" id="letter-z">Z</a>
+                    <a class="brands-nav-item" id="letter-1">1</a>
+                    <a class="brands-nav-item" id="letter-2">2</a>
+                    <a class="brands-nav-item" id="letter-3">3</a>
+                    <a class="brands-nav-item" id="letter-all">All</a>
+               </div>
+               <div class="brands-list">
+                    {% for vendor in shop.vendors %}
+                         <div class="brands-list-item letter-{{ vendor | slice: 0 | downcase }}">{{ vendor | link_to_vendor }}</div>
+                    {% endfor %}
+               </div>
+          </brands-list>
+     </div>
+</div>
+
+{% javascript %}
+class BrandsList extends HTMLElement {
+     constructor() {
+          super();
+
+          this.currentLetter = "letter-a";
+
+          this.initialize = this.initialize || this.initialize.bind(this);
+          this.hideAlphabet = this.hideAlphabet || this.hideAlphabet.bind(this);
+          this.changeAlphabet = this.changeAlphabet || this.changeAlphabet.bind(this);
+
+          this.elements = {
+               nav: this.querySelector('.brands-list-nav'),
+               navList: this.querySelectorAll('.brands-nav-item'),
+               list: this.querySelector('.brands-list'),
+               itemList: this.querySelectorAll('.brands-list-item')
+          }
+
+          this.initialize();
+     }
+
+     initialize = () => {
+          this.hideAlphabet();
+
+          $('.brands-list-item').fadeOut();
+
+          this.changeAlphabet('letter-a');
+
+          this.elements.navList.forEach(element => {
+               element.addEventListener('click', (e) => {
+                    console.log(this);
+                    this.changeAlphabet(e.target.getAttribute('id'));
+               });
+          })
+     }
+
+     hideAlphabet = () => {
+          $('.brands-nav-item').each(function() {
+               let letter = $(this).attr('id');
+               if (letter === 'letter-all') return;
+
+               let items = $('.brands-list').find(`.${letter}`);
+
+               if (items.length <= 0) {
+                    $(this).hide();
+               }
+          })
+     }
+
+     changeAlphabet = (id) => {
+          if (id == 'letter-all') {
+               $('.brands-nav-item.active').removeClass('active');
+               $('#letter-all').addClass('active');
+
+               $('.brands-list-item').addClass('active');
+               $('.brands-list-item').fadeIn();
+               return;
+          }
+
+          //Remove currently active nav and item
+          $('.brands-nav-item.active').removeClass('active');
+          $('.brands-list-item.active').fadeOut(0);
+          $('.brands-list-item.active').removeClass('active');
+
+          $(`#${id}`).addClass('active');
+          $(`.${id}`).addClass('active');
+          $(`.${id}`).fadeIn();
+
+          this.currentLetter = id;
+     }
+}
+
+customElements.define('brands-list', BrandsList);
+
+
+{% endjavascript %}
+
+<style>
+     .brands-list-wrapper > .brands-title {
+          color: {{ section.settings.title_text_color }};
+     }
+
+     .brands-list-wrapper > .brands-help {
+          color: {{ section.settings.help_text_color }};
+     }
+
+     .brands-list-wrapper > .brands-list-nav > .brands-nav-item {
+          color: {{ section.settings.nav_txt_color }};
+          background-color: transparent;
+     }
+
+     .brands-list-wrapper > .brands-list-nav > .brands-nav-item.active,
+     .brands-list-wrapper > .brands-list-nav > .brands-nav-item:hover {
+          color: {{ section.settings.nav_txt_hvr_color }};
+          background-color: {{ section.settings.nav_bg_hvr_color}};
+     }
+     .brands-list-wrapper > .brands-list-nav {
+          border: 1px solid {{ section.settings.border_color }};
+     }
+     .brands-list-wrapper > .brands-list > .brands-list-item {
+          border-bottom: 1px solid {{ section.settings.border_color }};
+     }
+     .brands-list-wrapper > .brands-list > .brands-list-item > a {
+          color: {{ section.settings.item_text_color }};
+          background-color: transparent;
+     }
+     .brands-list-wrapper > .brands-list > .brands-list-item > a:hover {
+          color: {{ section.settings.item_text_hvr_color }};
+          background-color: {{ section.settings.item_bg_hvr_color }};
+     }
+</style>
+
+{% schema %}
+{
+     "name": "Brands List",
+     "settings": [
+          {
+               "type": "header",
+               "content": "Color Settings"
+          },
+          {
+               "type": "color",
+               "id": "title_text_color",
+               "label": "Title Text Color",
+               "default": "#111"
+          },
+          {
+               "type": "color",
+               "id": "help_text_color",
+               "label": "Help Text Color",
+               "default": "#666"
+          },
+          {
+               "type": "color",
+               "id": "nav_txt_color",
+               "label": "Nav Text Color",
+               "default": "#666"
+          },
+          {
+               "type": "color",
+               "id": "nav_txt_hvr_color",
+               "label": "Nav Hover Text Color",
+               "default": "#666"
+          },
+          {
+               "type": "color",
+               "id": "nav_bg_hvr_color",
+               "label": "Nav Hover Background Color",
+               "default": "#666"
+          },
+          {
+               "type": "color",
+               "id": "border_color",
+               "label": "Border Color",
+               "default": "#f2f2f2"
+          },
+          {
+               "type": "color",
+               "id": "item_text_color",
+               "label": "Item Text Color",
+               "default": "#666"
+          },
+          {
+               "type": "color",
+               "id": "item_text_hvr_color",
+               "label": "Item Text Hover Color",
+               "default": "#fff"
+          },
+          {
+               "type": "color",
+               "id": "item_bg_hvr_color",
+               "label": "Item Background Color",
+               "default": "#700101"
+          }
+     ]
+}
+{% endschema %}

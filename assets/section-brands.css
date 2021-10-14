@@ -1,0 +1,105 @@
+/**
+     Brands
+**/
+.brands-list-wrapper {
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+
+     font-family: "Open Sans",Helvetica,Arial,sans-serif;
+}
+
+.brands-list-wrapper > .brands-title {
+     text-align: center;
+     font-size: 2.5rem;
+     font-weight: 600;
+
+     margin: 0 0 10px 0;
+}
+
+.brands-list-wrapper > .brands-help {
+     text-align: center;
+     font-size: 1.8rem;
+     font-weight: 600;
+
+     margin: 0 0 15px 0;
+}
+
+.page-content-wrapper .page-content h2.brands-help::after {
+     border-bottom: none;
+}
+
+.brands-list-wrapper > .brands-list-nav {
+     display: flex;
+     justify-content: center;
+     width: 100%;
+}
+
+.brands-list-wrapper > .brands-list-nav > .brands-nav-item {
+     flex: 1 1 100%;
+
+     text-align: center;
+
+     cursor: pointer;
+
+     display: block;
+     box-sizing: border-box;
+     padding: 10px;
+
+     font-size: 1.2rem;
+}
+
+.brands-list-wrapper > .brands-list {
+     display: flex;
+     justify-content: flex-start;
+     flex-wrap: wrap;
+}
+
+.brands-list-wrapper > .brands-list > .brands-list-item {
+     flex: 0 1 33.33%;
+     text-align: left;
+}
+
+.brands-list-wrapper > .brands-list > .brands-list-item > a {
+     padding: 10px 0 10px 10px;
+     display: block;
+     width: 100%;
+     height: 100%;
+
+     font-size: 1.1rem;
+}
+
+@media screen and (max-width: 1150px) {
+     .brands-list-wrapper > .brands-title {
+          font-size: 2rem;
+     }
+
+     .brands-list-wrapper > .brands-help {
+          font-size: 1.5rem;
+     }
+
+     .brands-list-wrapper > .brands-list-nav > .brands-nav-item {
+          font-size: 1rem;
+
+          padding: 5px;
+     }
+
+     .brands-list-wrapper > .brands-list > .brands-list-item {
+          flex: 1 1 50%;
+     }
+}
+
+@media screen and (max-width: 767px) {
+     .brands-list-wrapper > .brands-list-nav {
+          flex-wrap: wrap;
+     }
+
+     .brands-list-wrapper > .brands-list-nav > .brands-nav-item {
+          flex: 1 1 20%;
+     }
+
+     .brands-list-wrapper > .brands-list > .brands-list-item {
+          flex: 1 1 100%;
+     }
+}

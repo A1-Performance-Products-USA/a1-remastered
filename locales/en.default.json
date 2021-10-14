@@ -416,5 +416,9 @@
           "viewing": "Viewing",
           "from": "from",
           "home_link_title": "Home"
+     },
+     "brands": {
+          "title": "Search Our Brands",
+          "help": "Browse all of the top suppliers of performance auto parts below:"
      }
 }

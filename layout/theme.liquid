@@ -281,6 +281,8 @@
      {% endif %}
      template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}">
 
+          {% render 'preloader' %}
+
           <a class="skip-to-content-link button visually-hidden" href="#MainContent">
                {{ "accessibility.skip_to_text" | t }}
           </a>

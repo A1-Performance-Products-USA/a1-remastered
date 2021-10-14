@@ -161,13 +161,13 @@
                     "type": "text",
                     "id": "news_sign_icon",
                     "label": "Icon",
-                    "default": "\f1f0"
+                    "default": "mdi-email-outline"
                },
                {
                     "type": "text",
                     "id": "news_sign_icon_complete",
                     "label": "Icon When Complete",
-                    "default": "\f1f0"
+                    "default": "mdi-checkbox-marked-circle-outline"
                }
           ]
      },
