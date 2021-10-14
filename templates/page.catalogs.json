@@ -1,9 +1,82 @@
 {
-     "sections": {
-          "main": {
-               "type": "catalogs"
+  "sections": {
+    "main": {
+      "type": "catalogs",
+      "blocks": {
+        "169ef9f2-416d-4817-b2b8-287f79791f7c": {
+          "type": "catalog_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/ALL_0e5d74f2-342c-4950-9714-925e4c2bd96a.jpg",
+            "link": ""
           }
-     },
-     "order": ["main"]
+        },
+        "e4aa3004-bc07-4d1b-8dba-ab4671a0c0e3": {
+          "type": "catalog_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/CT_0b260d89-1d30-4956-9e62-21614f233c6d.jpg",
+            "link": ""
+          }
+        },
+        "afb93c00-9b14-4162-92c2-97bf9e5ba815": {
+          "type": "catalog_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/DRAG_b4be25ce-00d3-42c9-b17e-bf21a0aa0227.jpg",
+            "link": ""
+          }
+        },
+        "a6ecc389-96e5-417b-b9fe-1d6b28338ab0": {
+          "type": "catalog_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/ENG_45728b5b-27e6-45c7-b7b6-ad4aa88dc452.jpg",
+            "link": ""
+          }
+        },
+        "45f51033-cd9c-4962-9e88-892f5d3f4427": {
+          "type": "catalog_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/HR_885028d9-812c-4f40-83bf-3334dfd47449.jpg",
+            "link": ""
+          }
+        },
+        "adecceef-eccf-42db-a882-9546bac6dc81": {
+          "type": "catalog_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/LM_69e94d79-2796-48d3-89c9-d7ecc3b9b820.jpg",
+            "link": ""
+          }
+        },
+        "7c601305-2414-428a-9dfc-f73ac17bd9ae": {
+          "type": "catalog_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/OW_e357926d-15b8-4131-84ed-cea479bf10f0.jpg",
+            "link": ""
+          }
+        },
+        "85adaa5b-4cd2-4f82-8490-67561d0c1322": {
+          "type": "catalog_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/TP_cc560367-7e61-4635-81d6-7c46f01010d5.jpg",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "169ef9f2-416d-4817-b2b8-287f79791f7c",
+        "e4aa3004-bc07-4d1b-8dba-ab4671a0c0e3",
+        "afb93c00-9b14-4162-92c2-97bf9e5ba815",
+        "a6ecc389-96e5-417b-b9fe-1d6b28338ab0",
+        "45f51033-cd9c-4962-9e88-892f5d3f4427",
+        "adecceef-eccf-42db-a882-9546bac6dc81",
+        "7c601305-2414-428a-9dfc-f73ac17bd9ae",
+        "85adaa5b-4cd2-4f82-8490-67561d0c1322"
+      ],
+      "settings": {
+        "addclass": "catalogs",
+        "bg": "shopify:\/\/shop_images\/a1usa-homebg-white_46f7fb07-86ff-4bd0-b0aa-95bba6e85343.png"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
 }
-
