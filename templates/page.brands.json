@@ -1,9 +1,21 @@
 {
-     "sections": {
-          "main": {
-               "type": "brands"
-          }
-     },
-     "order": ["main"]
+  "sections": {
+    "main": {
+      "type": "brands",
+      "settings": {
+        "title_text_color": "#111",
+        "help_text_color": "#666",
+        "nav_txt_color": "#666",
+        "nav_txt_hvr_color": "#f7f7f7",
+        "nav_bg_hvr_color": "#111111",
+        "border_color": "#eaeaea",
+        "item_text_color": "#515151",
+        "item_text_hvr_color": "#111111",
+        "item_bg_hvr_color": "#ce0000"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
 }
-
