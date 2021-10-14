@@ -422,6 +422,6 @@
     "help": "Browse all of the top suppliers of performance auto parts below:"
   },
   "catalogs": {
-       "no_catalogs": "Unfortunately, there are no catalogs to be displayed at this time."
+    "no_catalogs": "Unfortunately, there are no catalogs to be displayed at this time."
   }
 }
