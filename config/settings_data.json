@@ -23,7 +23,7 @@
         "settings": {
           "header_text": "Same Day Shipping!",
           "logo_position": "middle-left",
-          "menu": "main-menu",
+          "menu": "navigation",
           "cat-menu": "main-menu",
           "show_line_separator": true,
           "enable_sticky_header": true,
