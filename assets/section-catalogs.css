@@ -1,7 +1,38 @@
 .catalogs-wrapper {
-
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     align-content: center;
+     flex-wrap: wrap;
+     gap: 20px;
 }
 
 .catalogs-wrapper > .catalog-item {
 
+}
+
+.catalogs-wrapper > .no-catalogs {
+     text-align: center;
+}
+
+.catalogs-wrapper > .catalog-item > a {
+     display: block;
+}
+
+.catalogs-wrapper > .catalog-item > a > img {
+     box-shadow: 0 0 20px 0 rgba(255,0,0,0.2);
+
+     -webkit-transition: all .5s;
+     -moz-transition: all .5s;
+     -o-transition: all .5s;
+     transition: all .5s;
+}
+
+.catalogs-wrapper > .catalog-item > a:hover > img {
+     box-shadow: 0 0 20px 0 rgba(255,0,0,1);
+
+     -webkit-transition: all .5s;
+     -moz-transition: all .5s;
+     -o-transition: all .5s;
+     transition: all .5s;
 }

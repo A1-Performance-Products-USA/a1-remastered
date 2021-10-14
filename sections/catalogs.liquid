@@ -7,23 +7,27 @@
           </div>
      {% endif %}
 
-     {% if section.blocks.size > 0 %}
-          <div class="page-content">
+     <div class="page-content">
+          {% if section.blocks.size > 0 %}
+                    <div class="catalogs-wrapper">
+                         {% for block in section.blocks %}
+                              <div class="catalog-item">
+                                   <a href="{{ block.settings.link }}" target="_blank">
+                                        <img src="{{ block.settings.image | img_url: '310x' }}" loading="lazy">
+                                   </a>
+                              </div>
+                         {% endfor %}
+                    </div>
+          {% else %}
                <div class="catalogs-wrapper">
-                    {% for block in section.blocks %}
-                         <div class="catalog-item">
-                              <a href="{{ block.settings.link }}" target="_blank">
-                                   <img src="{{ block.settings.image | img_url: '310x' }}" loading="lazy">
-                              </a>
-                         </div>
-                    {% endfor %}
+                    <h3 class="no-catalogs">{{ 'catalogs.no_catalogs' | t }}</h3>
                </div>
-          </div>
-     {% endif %}
+          {% endif %}
+     </div>
 </div>
 
 <style>
-     .catalog-wrapper {
+     .catalogs-wrapper {
           background: url('{{ section.settings.bg | img_url: "master" }}') center no-repeat transparent;
      }
 </style>
