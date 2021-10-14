@@ -10,6 +10,8 @@
     "news_sign_icon": "mdi-email-outline",
     "news_sign_icon_complete": "mdi-checkbox-marked-circle-outline",
     "display_preloader": false,
+    "type_header_font": "muli_n4",
+    "type_body_font": "muli_n4",
     "social_twitter_link": "https:\/\/twitter.com\/shopify",
     "social_facebook_link": "https:\/\/www.facebook.com\/shopify",
     "favicon": "shopify:\/\/shop_images\/a1-alone.png",
