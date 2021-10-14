@@ -352,7 +352,7 @@
                          var footerHeight = $('footer').height();
                          var minHeight = totalHeight - (headerHeight + footerHeight);
 
-                         minHeight = minHeight - $('.newsletter-signup-wrapper').height();
+                         minHeight = (($('.newsletter-signup-wrapper').length != 0) ? minHeight - $('.newsletter-signup-wrapper').height() : minHeight);
 
                          $('.site-inner').css('min-height', minHeight);
 
