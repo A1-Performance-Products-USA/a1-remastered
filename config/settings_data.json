@@ -7,9 +7,9 @@
     "sticky_header_border_color": "#ec0000",
     "sticky_logo_mobile": "shopify:\/\/shop_images\/a1-alone.png",
     "show_newsletter_signup": true,
-    "news_sign_icon": "\\f1f0",
-    "news_sign_icon_complete": "\\f1f0",
-    "display_preloader": true,
+    "news_sign_icon": "mdi-email-outline",
+    "news_sign_icon_complete": "mdi-checkbox-marked-circle-outline",
+    "display_preloader": false,
     "social_twitter_link": "https:\/\/twitter.com\/shopify",
     "social_facebook_link": "https:\/\/www.facebook.com\/shopify",
     "favicon": "shopify:\/\/shop_images\/a1-alone.png",
@@ -22,17 +22,22 @@
         "type": "header",
         "settings": {
           "header_text": "Same Day Shipping!",
+          "logo_position": "middle-left",
+          "menu": "main-menu",
+          "cat-menu": "main-menu",
+          "show_line_separator": true,
+          "enable_sticky_header": true,
           "account_clr": "#700101",
           "account_accent_clr": "#ec0000",
           "cart_clr": "#000073",
           "cart_accent_clr": "#0058fa",
-          "text_clr": "#fff",
+          "text_clr": "#ffffff",
           "nav_bg_color": "#ec0000",
-          "nav_txt_color": "#fff",
+          "nav_txt_color": "#ffffff",
           "nav_btn_color": "#1a1a1a",
-          "nav_btn_hvr_color": "#c00",
-          "nav_btn_border_color": "#000",
-          "nav_line_color": "#000"
+          "nav_btn_hvr_color": "#cc0000",
+          "nav_btn_border_color": "#000000",
+          "nav_line_color": "#000000"
         }
       },
       "footer": {
@@ -83,11 +88,11 @@
         ],
         "settings": {
           "main_bg_color": "#191919",
-          "main_txt_color": "#fff",
-          "btm_bg_color": "#111",
-          "btm_txt_color": "#fff",
+          "main_txt_color": "#ffffff",
+          "btm_bg_color": "#111111",
+          "btm_txt_color": "#ffffff",
           "btm_social_color": "#3c3c3f",
-          "btm_social_hvr_color": "#CC0000"
+          "btm_social_hvr_color": "#cc0000"
         }
       }
     },
