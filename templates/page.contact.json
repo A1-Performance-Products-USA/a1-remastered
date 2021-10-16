@@ -1,18 +1,19 @@
 {
-     "wrapper": "div.page-content-wrapper",
-     "sections": {
-          "main": {
-               "type": "main-page"
-          },
-          "contact": {
-               "type": "contact",
-               "settings": {
-                    "heading": ""
-               }
-          }
-     },
-     "order": [
-          "main",
-          "contact"
-     ]
+  "wrapper": "div.page-content-wrapper",
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+      }
+    },
+    "contact": {
+      "type": "contact",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "contact"
+  ]
 }
