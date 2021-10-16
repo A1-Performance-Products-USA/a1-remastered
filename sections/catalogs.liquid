@@ -1,30 +1,20 @@
 {{ 'section-catalogs.css' | asset_url | stylesheet_tag }}
 
-<div class="page-content-wrapper">
-     {% if page.content != blank %}
-          <div class="page-content">
-               {{ page.content }}
-          </div>
-     {% endif %}
-
-     <div class="page-content">
-          {% if section.blocks.size > 0 %}
-                    <div class="catalogs-wrapper">
-                         {% for block in section.blocks %}
-                              <div class="catalog-item">
-                                   <a href="{{ block.settings.link }}" target="_blank">
-                                        <img src="{{ block.settings.image | img_url: '310x' }}" loading="lazy">
-                                   </a>
-                              </div>
-                         {% endfor %}
-                    </div>
-          {% else %}
-               <div class="catalogs-wrapper">
-                    <h3 class="no-catalogs">{{ 'catalogs.no_catalogs' | t }}</h3>
+{% if section.blocks.size > 0 %}
+     <div class="catalogs-wrapper">
+          {% for block in section.blocks %}
+               <div class="catalog-item">
+                    <a href="{{ block.settings.link }}" target="_blank">
+                         <img src="{{ block.settings.image | img_url: '310x' }}" loading="lazy">
+                    </a>
                </div>
-          {% endif %}
+          {% endfor %}
      </div>
-</div>
+{% else %}
+     <div class="catalogs-wrapper">
+          <h3 class="no-catalogs">{{ 'catalogs.no_catalogs' | t }}</h3>
+     </div>
+{% endif %}
 
 <style>
      .catalogs-wrapper {
@@ -35,6 +25,7 @@
 {% schema %}
      {
           "name": "Catalogs list",
+          "class": "page-content catalogs-section",
           "max_blocks": 20,
           "settings": [
                {

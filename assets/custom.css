@@ -42,7 +42,7 @@ input:not([type='checkbox']):hover, input:not([type='checkbox']):active, input:n
      outline: 0;
 }
 
-input:not([type='checkbox']) {
+input:not([type='checkbox']), textarea {
      background-color: #fff;
      color: #000;
      border: 1px solid #e5e5e5;
@@ -54,16 +54,18 @@ input:not([type='checkbox']) {
      padding: 10px;
 
      box-sizing: border-box;
+
+     box-shadow: none;
 }
 
-form input:focus {
+form input:focus, form textarea:focus {
      border: 1px solid #000;
-     border-radius: 5px;
+     border-radius: 10px;
 }
 
-form input:focus:invalid {
+form input:focus:invalid, form textarea:focus:invalid {
      border: 1px solid #e20303;
-     border-radius: 5px;
+     border-radius: 10px;
 }
 
 button {
@@ -255,6 +257,7 @@ body .page-wrapper::after {
      display: flex;
      flex-direction: column;
      justify-content: center;
+     align-items: center;
      gap: 25px;
 
      width: 100%;

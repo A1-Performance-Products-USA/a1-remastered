@@ -1,57 +1,46 @@
 {{ 'section-brands.css' | asset_url | stylesheet_tag }}
 
-<div class="page-content-wrapper">
-     {% if page.content != blank %}
-          <div class="page-content">
-               {{ page.content }}
-          </div>
-     {% endif %}
-
-
-     <div class="page-content">
-          <brands-list class="brands-list-wrapper">
-               <h1 class="brands-title">{{ 'brands.title' | t }}</h1>
-               <h2 class="brands-help">{{ 'brands.help' | t }}</h2>
-               <div class="brands-list-nav">
-                    <a class="brands-nav-item" id="letter-a">A</a>
-                    <a class="brands-nav-item" id="letter-b">B</a>
-                    <a class="brands-nav-item" id="letter-c">C</a>
-                    <a class="brands-nav-item" id="letter-d">D</a>
-                    <a class="brands-nav-item" id="letter-e">E</a>
-                    <a class="brands-nav-item" id="letter-f">F</a>
-                    <a class="brands-nav-item" id="letter-g">G</a>
-                    <a class="brands-nav-item" id="letter-h">H</a>
-                    <a class="brands-nav-item" id="letter-i">I</a>
-                    <a class="brands-nav-item" id="letter-j">J</a>
-                    <a class="brands-nav-item" id="letter-k">K</a>
-                    <a class="brands-nav-item" id="letter-l">L</a>
-                    <a class="brands-nav-item" id="letter-m">M</a>
-                    <a class="brands-nav-item" id="letter-n">N</a>
-                    <a class="brands-nav-item" id="letter-o">O</a>
-                    <a class="brands-nav-item" id="letter-p">P</a>
-                    <a class="brands-nav-item" id="letter-q">Q</a>
-                    <a class="brands-nav-item" id="letter-r">R</a>
-                    <a class="brands-nav-item" id="letter-s">S</a>
-                    <a class="brands-nav-item" id="letter-t">T</a>
-                    <a class="brands-nav-item" id="letter-u">U</a>
-                    <a class="brands-nav-item" id="letter-v">V</a>
-                    <a class="brands-nav-item" id="letter-w">W</a>
-                    <a class="brands-nav-item" id="letter-x">X</a>
-                    <a class="brands-nav-item" id="letter-y">Y</a>
-                    <a class="brands-nav-item" id="letter-z">Z</a>
-                    <a class="brands-nav-item" id="letter-1">1</a>
-                    <a class="brands-nav-item" id="letter-2">2</a>
-                    <a class="brands-nav-item" id="letter-3">3</a>
-                    <a class="brands-nav-item" id="letter-all">All</a>
-               </div>
-               <div class="brands-list">
-                    {% for vendor in shop.vendors %}
-                         <div class="brands-list-item letter-{{ vendor | slice: 0 | downcase }}">{{ vendor | link_to_vendor }}</div>
-                    {% endfor %}
-               </div>
-          </brands-list>
+<brands-list class="brands-list-wrapper">
+     <h1 class="brands-title">{{ 'brands.title' | t }}</h1>
+     <h2 class="brands-help">{{ 'brands.help' | t }}</h2>
+     <div class="brands-list-nav">
+          <a class="brands-nav-item" id="letter-a">A</a>
+          <a class="brands-nav-item" id="letter-b">B</a>
+          <a class="brands-nav-item" id="letter-c">C</a>
+          <a class="brands-nav-item" id="letter-d">D</a>
+          <a class="brands-nav-item" id="letter-e">E</a>
+          <a class="brands-nav-item" id="letter-f">F</a>
+          <a class="brands-nav-item" id="letter-g">G</a>
+          <a class="brands-nav-item" id="letter-h">H</a>
+          <a class="brands-nav-item" id="letter-i">I</a>
+          <a class="brands-nav-item" id="letter-j">J</a>
+          <a class="brands-nav-item" id="letter-k">K</a>
+          <a class="brands-nav-item" id="letter-l">L</a>
+          <a class="brands-nav-item" id="letter-m">M</a>
+          <a class="brands-nav-item" id="letter-n">N</a>
+          <a class="brands-nav-item" id="letter-o">O</a>
+          <a class="brands-nav-item" id="letter-p">P</a>
+          <a class="brands-nav-item" id="letter-q">Q</a>
+          <a class="brands-nav-item" id="letter-r">R</a>
+          <a class="brands-nav-item" id="letter-s">S</a>
+          <a class="brands-nav-item" id="letter-t">T</a>
+          <a class="brands-nav-item" id="letter-u">U</a>
+          <a class="brands-nav-item" id="letter-v">V</a>
+          <a class="brands-nav-item" id="letter-w">W</a>
+          <a class="brands-nav-item" id="letter-x">X</a>
+          <a class="brands-nav-item" id="letter-y">Y</a>
+          <a class="brands-nav-item" id="letter-z">Z</a>
+          <a class="brands-nav-item" id="letter-1">1</a>
+          <a class="brands-nav-item" id="letter-2">2</a>
+          <a class="brands-nav-item" id="letter-3">3</a>
+          <a class="brands-nav-item" id="letter-all">All</a>
      </div>
-</div>
+     <div class="brands-list">
+          {% for vendor in shop.vendors %}
+               <div class="brands-list-item letter-{{ vendor | slice: 0 | downcase }}">{{ vendor | link_to_vendor }}</div>
+          {% endfor %}
+     </div>
+</brands-list>
 
 {% javascript %}
 class BrandsList extends HTMLElement {
@@ -168,6 +157,7 @@ customElements.define('brands-list', BrandsList);
 {% schema %}
 {
      "name": "Brands List",
+     "class": "page-content brands-section",
      "settings": [
           {
                "type": "header",
