@@ -199,4 +199,14 @@
      .contact-info .icon-bg {
           font-size: 1.5rem;
      }
+
+     .page-content-wrapper .page-content .contact-header > h2.contact-title {
+          text-align: center;
+     }
+
+     .page-content-wrapper .page-content .contact-header > h2.contact-title::after {
+          left: 50%;
+          transform: translateX(-50%);
+          width: 50%;
+     }
 }
