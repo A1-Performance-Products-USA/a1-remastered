@@ -190,4 +190,8 @@
      .contact-section .contact-info .info-text {
           font-size: 1rem;
      }
+
+     .contact-info .icon-bg {
+          font-size: 1.5rem;
+     }
 }
