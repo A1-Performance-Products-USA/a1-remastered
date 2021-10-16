@@ -186,4 +186,8 @@
      .contact-section .contact-page-form .contact__button > button {
           margin: 0;
      }
+
+     .contact-section .contact-info .info-text {
+          font-size: 1rem;
+     }
 }
