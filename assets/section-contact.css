@@ -177,6 +177,8 @@
 .contact-section .contact-page-form .form-success {
      display: flex;
      align-items: center;
+     gap: 15px;
+     justify-content: center;
 }
 
 .contact-section .contact-page-form .form-success > i {
