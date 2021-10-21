@@ -43,7 +43,9 @@
      text-align: center;
      margin: 0 0 5px 0;
 
-     font-size: 1.1rem;
+     font-size: 1.2rem;
+
+     letter-spacing: 0px;
 }
 
 .register-wrapper > .register-pane > form {
