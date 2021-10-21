@@ -1,0 +1,119 @@
+/*
+     Login
+*/
+.account-access-wrapper {
+     display: flex;
+     justify-content: center;
+     width: 100%;
+
+     gap: 20px;
+
+     align-content: flex-start;
+     align-items: flex-start;
+}
+
+.account-access-wrapper .btn {
+     font-size: 1.28rem;
+     font-weight: normal;
+     border-radius: 30px;
+}
+
+.login-wrapper h3 {
+     margin: 0;
+     font-size: 18px;
+     line-height: 20px;
+     font-weight: 600;
+     margin-bottom: 8px;
+}
+
+@keyframes fadeIn {
+     0% {
+       opacity:0;
+     }
+     100% {
+       opacity:1;
+     }
+}
+@keyframes fadeOut {
+     0% {
+       opacity:1;
+     }
+     100% {
+       opacity:0;
+     }
+}
+
+#login > form,
+#register > form,
+#forgot > form {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+
+     font-size: 1.1rem;
+}
+
+#login {
+     display: none;
+     animation: fadeOut ease .4s;
+     -webkit-animation: fadeOut ease .4s;
+     -moz-animation: fadeOut ease .4s;
+     -o-animation: fadeOut ease .4s;
+     -ms-animation: fadeOut ease .4s;
+}
+
+#login.active {
+     display: block;
+     animation: fadeIn ease .4s;
+     -webkit-animation: fadeIn ease .4s;
+     -moz-animation: fadeIn ease .4s;
+     -o-animation: fadeIn ease .4s;
+     -ms-animation: fadeIn ease .4s;
+}
+
+#forgot {
+     display: none;
+     animation: fadeOut ease .4s;
+     -webkit-animation: fadeOut ease .4s;
+     -moz-animation: fadeOut ease .4s;
+     -o-animation: fadeOut ease .4s;
+     -ms-animation: fadeOut ease .4s;
+}
+
+#forgot.active {
+     display: block;
+     animation: fadeIn ease .4s;
+     -webkit-animation: fadeIn ease .4s;
+     -moz-animation: fadeIn ease .4s;
+     -o-animation: fadeIn ease .4s;
+     -ms-animation: fadeIn ease .4s;
+}
+
+.account-access-wrapper p, .account-access-wrapper span{
+     font-size: 1.2rem;
+     line-height: 1.1;
+}
+
+.form-submit-center {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 10px;
+}
+
+#forgot-btn:hover {
+     color: #111;
+     cursor: pointer;
+}
+
+.account-access-wrapper > .btn {
+     width: auto;
+}
+
+@media screen and (max-width: 1024px) {
+     .account-access-wrapper {
+          flex-wrap: wrap;
+     }
+}
+

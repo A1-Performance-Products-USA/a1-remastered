@@ -1,0 +1,112 @@
+{{ 'section-login.css' | asset_url | stylesheet_tag }}
+
+<div class="page-content-wrapper">
+     <div class="account-access-wrapper">
+          <div class="page-content login-wrapper">
+               <h2>{{ 'customer.login_page.return_customer' | t }}</h2>
+               <div id="login" class="active">
+                    {% form 'customer_login', novalidate: 'novalidate' %}
+                         {{ form.errors | default_errors }}
+
+                         <label for="CustomerEmail" class="hidden">{{ 'customer.login_page.email' | t }}</label>
+                         <input type="email" name="customer[email]" id="CustomerEmail" autocomplete="email" autocorrect="off" autocapitalize="off" {% if form.errors contains 'form' %} aria-invalid="true" {% endif %} placeholder="{{ 'customer.login_page.email' | t }}"/>
+
+                         {%- if form.password_needed -%}
+                              <label for="CustomerPassword" class="hidden">{{ 'customer.login_page.password' | t }}</label>
+                              <input type="password" value="" name="customer[password]" id="CustomerPassword" autocomplete="current-password" {% if form.errors contains 'form' %} aria-invalid="true" {% endif %} placeholder="{{ 'customer.login_page.password' | t }}" />
+
+                              <a id="forgot-btn">{{ 'customer.login_page.forgot_password' | t }}</a>
+                         {%- endif -%}
+
+                         <div class="form-submit-center">
+                              <button type="submit" class="btn">{{ 'customer.login_page.sign_in' | t }}</button>
+                         </div>
+                    {% endform %}
+               </div>
+               <div id="forgot">
+                    <h3>{{ 'customer.login_page.reset_password' | t }}</h3>
+                    {% form 'recover_customer_password' %}
+                         {{ form.errors | default_errors }}
+
+                         <span>{{ 'customer.login_page.reset_note' | t }}</span>
+
+                         <label for="RecoverEmail" class="hidden">{{ 'customer.login_page.email' | t }}</label>
+                         <input type="email" value="" name="email" id="RecoverEmail" autocorrect="off" autocapitalize="off" autocomplete="email" {% if form.errors %} aria-invalid="true" aria-describedby="RecoverEmail-email-error" autofocus {% endif %} placeholder="{{ 'customer.login_page.email' | t }}"/>
+
+                         <div class="form-submit-center">
+                              <button type="submit" class="btn">{{ 'customer.login_page.reset' | t }}</button>
+                              <a id="forgot-close" class="btn">{{ 'customer.login_page.cancel' | t }}</a>
+                         </div>
+                    {% endform %}
+               </div>
+          </div>
+          <div class="page-content register-wrapper">
+               <div id="register">
+                    <h2>{{ 'customer.login_page.new_customer' | t }}</h2>
+                    <p>
+                         {{ 'customer.login_page.new_customer_message' | t }}
+                    </p>
+
+                    <div class="form-submit-center">
+                         <a class="btn register-button" href="{{ routes.account_register_url }}">{{ 'customer.login_page.register' | t }}</a>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+
+{% javascript %}
+/*
+     $(document).ready(function() {
+          $('#forgot').hide();
+
+          $('#forgot-btn').on('click', function() {
+               $('#login').fadeOut(0);
+               $('#forgot').fadeIn("slow");
+          })
+
+          $('#forgot-close').on('click', function() {
+               $('#forgot').fadeOut(0);
+               $('#login').fadeIn("slow");
+          })
+     })
+*/
+
+function toggleForgot() {
+     var forgot = document.querySelector('#forgot');
+     var login = document.querySelector('#login');
+
+     if (forgot.classList.contains('active')) {
+          forgot.classList.remove('active');
+
+          login.classList.add('active');
+     } else {
+          forgot.classList.add('active');
+
+          login.classList.remove('active');
+     }
+}
+
+document.querySelector('#forgot-btn').addEventListener('click', toggleForgot);
+document.querySelector('#forgot-close').addEventListener('click', toggleForgot);
+
+{% endjavascript %}
+
+{% schema %}
+{
+     "name": "Account Login",
+     "class": "login-section",
+     "settings": [
+
+     ],
+     "blocks": [
+
+     ],
+     "presets": [
+          {
+               "name": "Account Login",
+               "category": "Text"
+          }
+     ]
+}
+{% endschema %}
