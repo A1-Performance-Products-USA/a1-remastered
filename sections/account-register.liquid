@@ -1,4 +1,69 @@
-<div class='hello'></div>
+{{ 'section-register.css' | asset_url | stylesheet_tag }}
+
+<div class="page-content-wrapper">
+     <div class="register-wrapper">
+          <div class="page-content register-pane">
+               <h2>{{ 'customer.register.title' | t }}</h2>
+               <p>{{ 'customer.register.new_customer_message_short' | t }}</p>
+               {% form 'create_customer' %}
+
+                    {% if form.errors != blank %}
+                         <ul>
+                              {%- for field in form.errors -%}
+                                   <li>
+                                        {%- if field == 'form' -%}
+                                        {{ form.errors.messages[field] }}
+                                        {%- else -%}
+                                        <a href="#RegisterForm-{{ field }}">
+                                             {{ form.errors.translated_fields[field] | capitalize }}
+                                             {{ form.errors.messages[field] }}
+                                        </a>
+                                        {%- endif -%}
+                                   </li>
+                              {%- endfor -%}
+                         </ul>
+                    {% endif %}
+
+                    <div class="field">
+                         <label for="first_name" class="hidden">{{ 'customer.register.first_name' | t }}</label>
+                         <input type="text" value="" name="customer[first_name]" size="30" placeholder="{{ 'customer.register.first_name' | t }}" required/>
+                    </div>
+
+                    <div class="field">
+                         <label for="last_name" class="hidden">{{ 'customer.register.last_name' | t }}</label>
+                         <input type="text" value="" name="customer[last_name]" size="30" placeholder="{{ 'customer.register.last_name' | t }}" required/>
+                    </div>
+
+                    <div class="field">
+                         <label for="email" class="hidden">{{ 'customer.register.email' | t }}</label>
+                         <input type="email" value="" name="customer[email]" size="30" placeholder="{{ 'customer.register.email' | t }}" required/>
+                    </div>
+
+                    <div class="field">
+                         <label for="password" class="hidden">{{ 'customer.register.password' | t }}</label>
+                         <input type="password" value="" name="customer[password]" size="30" placeholder="{{ 'customer.register.password' | t }}" required/>
+                    </div>
+
+                    <div class="field">
+                         <label for="password_confirmation" class="hidden">{{ 'customer.register.confirm_password' | t }}</label>
+                         <input type="password" value="" name="customer[password_confirmation]" size="16" placeholder="{{ 'customer.register.confirm_password' | t }}" required/>
+                    </div>
+
+                    <div class="checkbox">
+                         <input type="checkbox" name="terms" required />
+                         <label for="terms">{{ 'customer.register.terms_agreement' | t }} <a href="/pages/terms-of-service">{{ 'customer.register.terms_of_service' | t }}</a> & <a href="/pages/privacy-policy">{{ 'customer.register.privacy_policy' | t }}</a>.</label>
+                    </div>
+
+                    <div class="form-submit-center">
+                         <button type="submit" class="btn">{{ 'customer.register.submit' | t }}</button>
+                    </div>
+
+                    <a class="goto-login" href="{{ routes.account_login_url }}">{{ 'customer.register.already_account' | t }}</a>
+
+               {% endform %}
+          </div>
+     </div>
+</div>
 
 {% schema %}
 {

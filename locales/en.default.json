@@ -344,7 +344,6 @@
                "return_customer": "Returning Customers",
                "new_customer": "New Customers",
                "new_customer_message": "If you would like to register, click the button below. Registering gives you the ability to view previous orders, store addresses, and view product downloads. It also signs you up to receive sales flyers, special offers, giveaways, and upcoming events.",
-               "new_customer_message_short": "Registering gives you the ability to view previous orders, store addresses, and view product downloads. It also signs you up to receive sales flyers, special offers, giveaways, and upcoming events.",
                "reset": "Reset",
                "register": "Register"
           },
@@ -393,7 +392,13 @@
                "last_name": "Last name",
                "email": "Email",
                "password": "Password",
-               "submit": "Create"
+               "confirm_password": "Confirm Password",
+               "submit": "Create",
+               "new_customer_message_short": "Registering gives you the ability to view previous orders, store addresses, and view product downloads. It also signs you up to receive sales flyers, special offers, giveaways, and upcoming events.",
+               "terms_agreement": "I have read and agree to the",
+               "terms_of_service": "Terms of Service",
+               "privacy_policy": "Privacy Policy",
+               "already_account": "Already have an account?"
           },
           "reset_password": {
                "title": "Reset account password",

@@ -26,6 +26,14 @@
      margin-bottom: 8px;
 }
 
+.page-content-wrapper .page-content.login-wrapper h2::after {
+    width: 38%;
+}
+
+.page-content-wrapper .page-content.register-wrapper h2::after {
+    width: 28%;
+}
+
 @keyframes fadeIn {
      0% {
        opacity:0;
