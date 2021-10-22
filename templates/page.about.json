@@ -1,0 +1,17 @@
+{
+     "wrapper": "div.page-content-wrapper",
+     "sections": {
+          "main": {
+               "type": "main-page",
+               "settings": {}
+          },
+          "about": {
+               "type": "about-us",
+               "settings": {
+
+               }
+          }
+     },
+     "order": ["main", "about"]
+}
+

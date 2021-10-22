@@ -409,7 +409,7 @@
           },
           "layout": {
                "register": "Register",
-               "greeting": "Hello"
+               "greeting": "Hello,"
           }
      },
      "gift_cards": {

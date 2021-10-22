@@ -1,0 +1,41 @@
+{{ 'section-about-us.css' | asset_url | stylesheet_tag }}
+
+<div class="about-header">
+     <h1 class="about-title">
+          {{ store.name | upcase }}
+     </h1>
+     <h2 class="about-slogan">
+
+     </h2>
+     <div class="about-breadcrumb">
+
+     </div>
+</div>
+
+<div class="about-us">
+     <div class="about-logo">
+
+     </div>
+     <div class="page-content about-information">
+
+     </div>
+</div>
+
+<div class="page-content about-stats">
+
+</div>
+
+{% schema %}
+     {
+          "name": "About Us",
+          "class": "about-section",
+          "settings": [
+
+          ],
+          "presets": [
+               {
+                    "name": "About Us"
+               }
+          ]
+     }
+{% endschema %}
