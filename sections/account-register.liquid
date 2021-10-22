@@ -6,24 +6,6 @@
                <h2>{{ 'customer.register.title' | t }}</h2>
                <p>{{ 'customer.register.new_customer_message_short' | t }}</p>
                {% form 'create_customer' %}
-
-                    {% if form.errors != blank %}
-                         <ul>
-                              {%- for field in form.errors -%}
-                                   <li>
-                                        {%- if field == 'form' -%}
-                                        {{ form.errors.messages[field] }}
-                                        {%- else -%}
-                                        <a href="#RegisterForm-{{ field }}">
-                                             {{ form.errors.translated_fields[field] | capitalize }}
-                                             {{ form.errors.messages[field] }}
-                                        </a>
-                                        {%- endif -%}
-                                   </li>
-                              {%- endfor -%}
-                         </ul>
-                    {% endif %}
-
                     <div class="field">
                          <label for="RegisterForm-FirstName" class="hidden">{{ 'customer.register.first_name' | t }}</label>
                          <input type="text" name="customer[first_name]" id="RegisterForm-FirstName" {% if form.first_name %}value="{{ form.first_name }}" {% endif %} autocomplete="given-name" placeholder="{{ 'customer.register.first_name' | t }}" required/>

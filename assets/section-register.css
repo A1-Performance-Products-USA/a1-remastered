@@ -71,6 +71,11 @@
      flex-direction: column;
 }
 
+.form__message {
+     font-size: 1rem;
+     padding-left: 10px;
+}
+
 @media screen and (max-width: 1024px) {
      .register-wrapper > .register-pane {
           max-width: 100%;
