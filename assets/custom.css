@@ -328,6 +328,14 @@ body .page-wrapper::after {
      width: 100px;
 }
 
+.form-submit-center {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 10px;
+}
+
 /**
      Customer
 **/
@@ -747,5 +755,5 @@ form > .errors > ul {
      margin: 0 auto;
 }
 .shopify-challenge__container.page-content > h2 {
-     padding-bottom: 5px;
+     padding-bottom: 10px;
 }
