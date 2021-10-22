@@ -2,10 +2,10 @@
 
 <div class="about-header">
      <h1 class="about-title">
-          {{ store.name | upcase }}
+          {{ shop.name | upcase }}
      </h1>
      <h2 class="about-slogan">
-
+          {{ 'about.slogan' | t  | upcase }}
      </h2>
      <div class="about-breadcrumb">
 
@@ -13,28 +13,95 @@
 </div>
 
 <div class="about-us">
-     <div class="about-logo">
-
-     </div>
+     {%- if section.settings.show_about_img -%}
+          <div class="about-logo">
+               <img src="{{ section.settings.about_img | img_url }}" loading='lazy'>
+          </div>
+     {%- endif -%}
      <div class="page-content about-information">
-
+          <h2>{{ 'about.title' | t }}</h2>
+          <p>{{ section.settings.about_description }}</p>
      </div>
 </div>
 
-<div class="page-content about-stats">
-
-</div>
+{%- if section.blocks != blank -%}
+     <div class="page-content about-stats">
+          {%- for block in section.blocks -%}
+               <div class="stat">
+                    <span class="stat-number count-up" data-value="{{ block.settings.number }}">
+                         {{ block.settings.number }}{%- if block.settings.show_plus -%}{{ 'about.plus' | t }}{%- endif -%}
+                    </span>
+                    <span class="stat-title">
+                         {{ block.settings.title }}
+                    </span>
+               </div>
+          {%- endfor -%}
+     </div>
+{%- endif -%}
 
 {% schema %}
      {
           "name": "About Us",
           "class": "about-section",
           "settings": [
-
+               {
+                    "type": "image_picker",
+                    "id": "header_bg",
+                    "label": "Header Background"
+               },
+               {
+                    "type": "checkbox",
+                    "id": "show_about_img",
+                    "label": "Show About Image?",
+                    "default": true
+               },
+               {
+                    "type": "image_picker",
+                    "id": "about_img",
+                    "label": "About Image"
+               },
+               {
+                    "type": "richtext",
+                    "id": "about_description",
+                    "label": "Description"
+               },
+               {
+                    "type": "color",
+                    "id": "overlay_color",
+                    "label": "Header Overlay Color",
+                    "default": "#fff"
+               }
+          ],
+          "blocks": [
+               {
+                    "type": "about_statistic",
+                    "name": "Statistic",
+                    "settings": [
+                         {
+                              "type": "text",
+                              "id": "title",
+                              "label": "Title"
+                         },
+                         {
+                              "type": "text",
+                              "id": "number",
+                              "label": "Number"
+                         },
+                         {
+                              "type": "checkbox",
+                              "id": "show_plus",
+                              "label": "Show Plus?",
+                              "default": true
+                         }
+                    ]
+               }
           ],
           "presets": [
                {
-                    "name": "About Us"
+                    "name": "About Us",
+                    "blocks": [
+
+                    ]
                }
           ]
      }

@@ -438,6 +438,11 @@
      },
      "catalogs": {
           "no_catalogs": "Unfortunately, there are no catalogs to be displayed at this time."
+     },
+     "about": {
+          "title": "About Us",
+          "slogan": "your trusted one stop shop for automotive performance",
+          "plus": "+"
      }
 }
 

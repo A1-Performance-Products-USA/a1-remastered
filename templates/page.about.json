@@ -1,17 +1,55 @@
 {
-     "wrapper": "div.page-content-wrapper",
-     "sections": {
-          "main": {
-               "type": "main-page",
-               "settings": {}
-          },
-          "about": {
-               "type": "about-us",
-               "settings": {
-
-               }
+  "wrapper": "div.page-content-wrapper",
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+      }
+    },
+    "about": {
+      "type": "about-us",
+      "blocks": {
+        "b6b9eba6-d7bd-4ebe-bd5c-632ee6ac2fc7": {
+          "type": "about_statistic",
+          "settings": {
+            "title": "Brands",
+            "number": "600",
+            "show_plus": true
           }
-     },
-     "order": ["main", "about"]
+        },
+        "f292495c-889a-4b7f-8ac9-1711c9df67a8": {
+          "type": "about_statistic",
+          "settings": {
+            "title": "Products",
+            "number": "108,000",
+            "show_plus": true
+          }
+        },
+        "1afb47ed-cc2f-465f-97e1-c281f97e96d7": {
+          "type": "about_statistic",
+          "settings": {
+            "title": "Customized Catalogs",
+            "number": "8",
+            "show_plus": false
+          }
+        }
+      },
+      "block_order": [
+        "b6b9eba6-d7bd-4ebe-bd5c-632ee6ac2fc7",
+        "f292495c-889a-4b7f-8ac9-1711c9df67a8",
+        "1afb47ed-cc2f-465f-97e1-c281f97e96d7"
+      ],
+      "settings": {
+        "header_bg": "shopify:\/\/shop_images\/about.jpg",
+        "show_about_img": true,
+        "about_img": "shopify:\/\/shop_images\/logo-dark_ad57ce21-aa6a-48b3-955b-d00d61326e24.png",
+        "about_description": "<p>Welcome to A1 Performance Products USA.<\/p><p>A1 Performance Products is committed to providing our customers with the right equipment at the best possible price!<\/p><p>We offer 671 brands and counting of the highest quality aftermarket performance parts for your ride! Brands like Holley, Edelbrock, MSD, K&N, Aeromotive, and Wilwood. Parts for Truck, Hot Rod, Late Model Muscle, Drag Race, Circle Track, and the Engine Builder in you! If you need it to go fast, we have it!<\/p><p>When it comes to getting you the parts you need FAST, we have over 20 years of experience as performance enthusiasts ourselves. We demand the best and so should you! Let our experience help you get the performance you need!<\/p><p>Call today, we’re always glad to help.<br\/><\/p>",
+        "overlay_color": "#535353"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "about"
+  ]
 }
-
