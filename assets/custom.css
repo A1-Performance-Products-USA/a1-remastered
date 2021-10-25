@@ -122,13 +122,6 @@ select {
      position: relative;
 }
 
-.container {
-     width: 100%;
-     max-width: 1400px;
-
-     margin: auto;
-}
-
 body.open-nav,
 body.open-search {
      overflow: hidden;
@@ -269,7 +262,7 @@ body .page-wrapper::after {
 
 .page-content-wrapper .page-content {
      width: 99%;
-     padding: 30px;
+     padding: 2.5rem;
 
      border-radius: 30px;
 

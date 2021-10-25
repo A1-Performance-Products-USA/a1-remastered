@@ -1,0 +1,124 @@
+.about-us .site-inner.container {
+     max-width: 100%;
+}
+
+.about-section {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 2.5rem;
+
+     width: 100%;
+}
+
+.about-section .about-us,
+.about-section .about-stats {
+     width: 100%;
+     max-width: var(--page-width);
+
+     margin: auto 0;
+}
+
+.about-section .about-header {
+     width: 100%;
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     gap: 1rem;
+
+     padding: 4rem 0;
+}
+.about-section .about-header > * {
+     margin: 0;
+     color: inherit;
+     font-family: "VipnagorgiallaRg-Bold";
+     line-height: 1;
+}
+
+.about-section .about-header > .about-title {
+     font-size: 5rem;
+}
+
+.about-section .about-header > .about-slogan {
+     font-size: 2rem;
+}
+
+.about-section .about-header > .about-breadcrumb {
+     font-family: var(--font-body-family);
+     font-size: 1.8rem;
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     align-content: center;
+     gap: .5rem
+}
+
+.about-section .about-header > .about-breadcrumb > a {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: .5rem;
+}
+
+.about-section .about-header > .about-breadcrumb > a:not(:hover) {
+     color: inherit;
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.about-section .about-header > .about-breadcrumb i {
+     font-size: 2rem;
+}
+
+.about-section .about-us {
+     display: flex;
+     align-content: center;
+}
+
+.about-section .about-us > .about-logo {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+
+     flex-basis: 30%;
+}
+
+.about-section .about-us > .about-information > p {
+     letter-spacing: 0.03rem;
+     font-size: 1.2rem;
+     margin: 0.8rem 0;
+}
+
+.about-section .about-stats {
+     display: flex;
+     justify-content: center;
+     align-content: center;
+     gap: 0px;
+}
+
+.about-section .about-stats > .stat {
+     flex: 1 1 100%;
+
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 1rem;
+}
+
+.about-section .about-stats > .stat > .stat-number {
+     font-size: 4rem;
+     font-weight: bold;
+}
+
+.about-section .about-stats > .stat > .stat-title {
+     font-size: 1.42857em;
+}
+
+.about-section .about-stats > .stat:not(:last-child) {
+     border-right: 1px solid rgb(var(--color-base-accent-2));
+}

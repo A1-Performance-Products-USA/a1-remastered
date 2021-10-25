@@ -8,7 +8,12 @@
           {{ 'about.slogan' | t  | upcase }}
      </h2>
      <div class="about-breadcrumb">
-
+          <a href="{{ routes.root_url }}">
+               <i class="mdi mdi-home"></i>
+               <span>{{ 'breadcrumb.home_link_title' | t | upcase }}</span>
+          </a>
+          <i class="mdi mdi-chevron-right"></i>
+          <span>{{ 'about.title' | t | upcase }}</span>
      </div>
 </div>
 
@@ -38,6 +43,17 @@
           {%- endfor -%}
      </div>
 {%- endif -%}
+
+<style>
+     .about-header {
+          background: url('{{ section.settings.header_bg | img_url: "master" }}') bottom 79% left no-repeat transparent;
+          background-size: cover;
+          background-blend-mode: multiply;
+          background-color: {{ section.settings.overlay_color }};
+
+          color: {{ section.settings.header_txt_color }};
+     }
+</style>
 
 {% schema %}
      {
@@ -69,6 +85,12 @@
                     "type": "color",
                     "id": "overlay_color",
                     "label": "Header Overlay Color",
+                    "default": "#fff"
+               },
+               {
+                    "type": "color",
+                    "id": "header_txt_color",
+                    "label": "Header Text Color",
                     "default": "#fff"
                }
           ],

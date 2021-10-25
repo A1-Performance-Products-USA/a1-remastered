@@ -413,6 +413,10 @@
             "label": "t:settings_schema.layout.settings.page_width.options__1.label"
           },
           {
+            "value": "1400",
+            "label": "1400px"
+          },
+          {
             "value": "1600",
             "label": "t:settings_schema.layout.settings.page_width.options__2.label"
           }
