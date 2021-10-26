@@ -32,14 +32,14 @@
 {%- if section.blocks != blank -%}
      <div class="page-content about-stats">
           {%- for block in section.blocks -%}
-               <div class="stat">
-                    <span class="stat-number count-up" data-value="{{ block.settings.number }}">
-                         {{ block.settings.number }}{%- if block.settings.show_plus -%}{{ 'about.plus' | t }}{%- endif -%}
+               <about-counter class="stat" data-count="{{ block.settings.number }}" data-plus="{{ block.settings.show_plus }}">
+                    <span class="stat-number">
+                         0
                     </span>
                     <span class="stat-title">
                          {{ block.settings.title }}
                     </span>
-               </div>
+               </about-counter>
           {%- endfor -%}
      </div>
 {%- endif -%}
@@ -54,6 +54,58 @@
           color: {{ section.settings.header_txt_color }};
      }
 </style>
+
+{% javascript %}
+     class AboutCounter extends HTMLElement {
+          constructor() {
+               super();
+
+               this.initialized = false;
+
+               this.init = this.init || this.init.bind(this);
+               this.animate = this.animate || this.animate.bind(this);
+               this.onScroll = this.onScroll || this.onScroll.bind(this);
+               this.value = +this.dataset.count || 0;
+               this.showPlus = this.dataset.plus;
+
+               this.numElement = this.querySelector('.stat-number');
+
+               if (this.isInView()) {
+                    this.init();
+               } else {
+                    document.addEventListener('scroll', this.onScroll);
+               }
+          }
+
+          onScroll = () => {
+               if (!this.isInView() || this.initialized) return;
+
+               this.init();
+          }
+
+          animate = () => {
+               const data = +this.numElement.innerText.replace(',', '');
+
+               const time = this.value / 100;
+               if (data < this.value) {
+                    this.numElement.innerText = formatNumber(Math.ceil(data + time));
+                    setTimeout(this.animate, 1);
+               } else {
+                    this.numElement.innerText = formatNumber(this.value) + ((this.showPlus === 'true') ? '+' : '');
+               }
+          }
+
+          init = () => {
+               if (!this.isInView() || this.initialized) return;
+
+               this.initialized = true;
+               this.animate();
+               document.removeEventListener('scroll', this.onScroll);
+          }
+     }
+
+     customElements.define('about-counter', AboutCounter);
+{% endjavascript %}
 
 {% schema %}
      {
