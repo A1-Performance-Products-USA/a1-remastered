@@ -261,7 +261,7 @@ body .page-wrapper::after {
 }
 
 .page-content-wrapper .page-content {
-     width: 99%;
+     width: 100%;
      padding: 2.5rem;
 
      border-radius: 30px;

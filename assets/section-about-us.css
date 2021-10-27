@@ -15,8 +15,6 @@
 .about-section .about-stats {
      width: 100%;
      max-width: var(--page-width);
-
-     margin: auto 0;
 }
 
 .about-section .about-header {
@@ -35,6 +33,7 @@
      color: inherit;
      font-family: "VipnagorgiallaRg-Bold";
      line-height: 1;
+     text-align: center;
 }
 
 .about-section .about-header > .about-title {
@@ -121,4 +120,10 @@
 
 .about-section .about-stats > .stat:not(:last-child) {
      border-right: 1px solid rgb(var(--color-base-accent-2));
+}
+
+@media screen and (max-width: 1440px) {
+     .about-us .site-inner.container {
+          padding: 0;
+     }
 }
