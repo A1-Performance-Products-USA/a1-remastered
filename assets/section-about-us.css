@@ -91,16 +91,17 @@
      letter-spacing: 0.03rem;
      font-size: 1.2rem;
      margin: 0.8rem 0;
+     line-height: 1.2;
 }
 
-.about-section .about-stats {
+.about-section .about-stats > .page-content {
      display: flex;
      justify-content: center;
      align-content: center;
      gap: 0px;
 }
 
-.about-section .about-stats > .stat {
+.about-section .about-stats .stat {
      flex: 1 1 100%;
 
      display: flex;
@@ -109,21 +110,144 @@
      gap: 1rem;
 }
 
-.about-section .about-stats > .stat > .stat-number {
+.about-section .about-stats .stat > .stat-number {
      font-size: 4rem;
      font-weight: bold;
+     text-align: center;
 }
 
-.about-section .about-stats > .stat > .stat-title {
+.about-section .about-stats .stat > .stat-title {
      font-size: 1.42857em;
+     text-align: center;
 }
 
-.about-section .about-stats > .stat:not(:last-child) {
+.about-section .about-stats .stat:not(:last-child) {
      border-right: 1px solid rgb(var(--color-base-accent-2));
 }
 
 @media screen and (max-width: 1440px) {
      .about-us .site-inner.container {
           padding: 0;
+     }
+
+     .about-section > .about-us,
+     .about-section > .about-stats {
+          padding: 0 15px;
+     }
+     .about-section .about-header > .about-title {
+          font-size: 4.5rem;
+     }
+
+     .about-section .about-header > .about-slogan {
+          font-size: 1.85rem;
+     }
+
+     .about-section .about-header > .about-breadcrumb {
+          font-size: 1.4rem;
+     }
+
+     .about-section .about-header > .about-breadcrumb i {
+          font-size: 1.9rem;
+     }
+}
+
+@media screen and (max-width: 1220px) {
+     .about-section .about-header > .about-title {
+          font-size: 4rem;
+     }
+
+     .about-section .about-header > .about-slogan {
+          font-size: 1.75rem;
+     }
+
+     .about-section .about-header > .about-breadcrumb {
+          font-size: 1.5rem;
+     }
+
+     .about-section .about-header > .about-breadcrumb i {
+          font-size: 2rem;
+     }
+}
+
+@media screen and (max-width: 1024px) {
+     .about-section .about-header > .about-title {
+          font-size: 3.8rem;
+     }
+
+     .about-section .about-header > .about-slogan {
+          font-size: 1.75rem;
+     }
+
+     .about-section .about-header > .about-breadcrumb {
+          font-size: 1.5rem;
+     }
+
+     .about-section .about-header > .about-breadcrumb i {
+          font-size: 2rem;
+     }
+}
+
+@media screen and (max-width: 768px) {
+     .about-section .about-header > .about-title {
+          font-size: 3.25rem;
+     }
+
+     .about-section .about-header > .about-slogan {
+          font-size: 1.25rem;
+     }
+
+     .about-section .about-header > .about-breadcrumb {
+          font-size: 1rem;
+     }
+
+     .about-section .about-header > .about-breadcrumb i {
+          font-size: 1.5rem;
+     }
+
+     .about-section .about-stats .stat {
+          padding: 15px;
+     }
+}
+
+@media screen and (max-width: 767px) {
+     .about-section .about-stats .stat > .stat-number {
+          font-size: 3rem;
+     }
+
+     .about-section .about-stats .stat > .stat-title {
+          font-size: 1rem;
+     }
+     .about-section .about-us > .about-information > p {
+          font-size: 1rem;
+     }
+}
+
+@media screen and (max-width: 500px) {
+     .about-section .about-header > .about-title {
+          font-size: 2.5rem;
+     }
+
+     .about-section .about-header > .about-slogan {
+          font-size: 1.1rem;
+     }
+
+     .about-section .about-header > .about-breadcrumb {
+          font-size: 1rem;
+     }
+
+     .about-section .about-header > .about-breadcrumb i {
+          font-size: 1.5rem;
+     }
+
+     .about-section .about-stats > .page-content {
+          flex-wrap: wrap;
+     }
+     .about-section .about-stats > .page-content > *:not(:last-child) {
+          border-right: none;
+          border-bottom: 1px solid #C00;
+     }
+     .about-section .about-stats .stat {
+          padding: 30px;
+          margin: 0 30px;
      }
 }

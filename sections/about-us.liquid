@@ -30,17 +30,19 @@
 </div>
 
 {%- if section.blocks != blank -%}
-     <div class="page-content about-stats">
-          {%- for block in section.blocks -%}
-               <about-counter class="stat" data-count="{{ block.settings.number }}" data-plus="{{ block.settings.show_plus }}">
-                    <span class="stat-number">
-                         0
-                    </span>
-                    <span class="stat-title">
-                         {{ block.settings.title }}
-                    </span>
-               </about-counter>
-          {%- endfor -%}
+     <div class="about-stats">
+          <div class="page-content">
+               {%- for block in section.blocks -%}
+                    <about-counter class="stat" data-count="{{ block.settings.number }}" data-plus="{{ block.settings.show_plus }}">
+                         <span class="stat-number">
+                              0
+                         </span>
+                         <span class="stat-title">
+                              {{ block.settings.title }}
+                         </span>
+                    </about-counter>
+               {%- endfor -%}
+          </div>
      </div>
 {%- endif -%}
 
