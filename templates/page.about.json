@@ -21,7 +21,7 @@
           "type": "about_statistic",
           "settings": {
             "title": "Products",
-            "number": "108,000",
+            "number": "108000",
             "show_plus": true
           }
         },
@@ -41,10 +41,11 @@
       ],
       "settings": {
         "header_bg": "shopify:\/\/shop_images\/about.jpg",
-        "show_about_img": true,
+        "show_about_img": false,
         "about_img": "shopify:\/\/shop_images\/logo-dark_ad57ce21-aa6a-48b3-955b-d00d61326e24.png",
         "about_description": "<p>Welcome to A1 Performance Products USA.<\/p><p>A1 Performance Products is committed to providing our customers with the right equipment at the best possible price!<\/p><p>We offer 671 brands and counting of the highest quality aftermarket performance parts for your ride! Brands like Holley, Edelbrock, MSD, K&N, Aeromotive, and Wilwood. Parts for Truck, Hot Rod, Late Model Muscle, Drag Race, Circle Track, and the Engine Builder in you! If you need it to go fast, we have it!<\/p><p>When it comes to getting you the parts you need FAST, we have over 20 years of experience as performance enthusiasts ourselves. We demand the best and so should you! Let our experience help you get the performance you need!<\/p><p>Call today, we’re always glad to help.<br\/><\/p>",
-        "overlay_color": "#535353"
+        "overlay_color": "#535353",
+        "header_txt_color": "#fff"
       }
     }
   },
