@@ -14,7 +14,6 @@
      font: 600 13px/28px Muli,Helvetica,sans-serif;
      font-size: 13px;
      line-height: 28px;
-     color: #ccc;
      -webkit-transition: all .3s ease-in-out;
      -moz-transition: all .3s ease-in-out;
      -ms-transition: all .3s ease-in-out;
@@ -22,8 +21,8 @@
      transition: all .3s ease-in-out;
 }
 
-.footer-wrapper a:hover {
-     color: #fff;
+.footer-wrapper a:not(:hover):not(.active) {
+     color: #ccc;
 }
 
 /*

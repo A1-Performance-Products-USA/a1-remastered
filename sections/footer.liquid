@@ -37,8 +37,8 @@
                                         <ul class="footer-list">
                                              <li>
                                                   {% for link in linklists[block.settings.list].links %}
-                                                       <li class="{% if link.active %}active{% endif %}">
-                                                            <a href="{{ link.url }}">
+                                                       <li>
+                                                            <a href="{{ link.url }}" class="{% if link.active %}active{% endif %}">
                                                                  {{ link.title }}
                                                             </a>
                                                        </li>
@@ -51,16 +51,16 @@
                                    <ul class="footer-list">
                                         {% if customer %}
                                              {% for link in linklists[block.settings.loggedin_list].links %}
-                                                  <li class="{% if link.active %}active{% endif %}">
-                                                       <a href="{{ link.url }}">
+                                                  <li>
+                                                       <a href="{{ link.url }}" class="{% if link.active %}active{% endif %}">
                                                             {{ link.title }}
                                                        </a>
                                                   </li>
                                              {% endfor %}
                                         {% else %}
                                              {% for link in linklists[block.settings.loggedout_list].links %}
-                                                  <li class="{% if link.active %}active{% endif %}">
-                                                       <a href="{{ link.url }}">
+                                                  <li>
+                                                       <a href="{{ link.url }}" class="{% if link.active %}active{% endif %}">
                                                             {{ link.title }}
                                                        </a>
                                                   </li>

@@ -166,11 +166,11 @@
                     border: 1px solid {{ settings.entry_brdr_color }};
                }
 
-               a {
+               a:not(:hover) {
                     color: {{ settings.lnk_color }};
                }
 
-               a:hover {
+               a:hover, a.active {
                     color: {{ settings.lnk_hvr_color }};
                }
 
