@@ -8,10 +8,6 @@
                return;
           }
 
-          if ($('.mobile-search-wrapper').data('toggle') == '1') {
-               return;
-          }
-
           if ($('.sticky-mobile-header').hasClass('active')) {
                var paddingAddition = 10 * 2;
                var topHeight = ($('.sticky-mobile-header.active').height() + paddingAddition);
