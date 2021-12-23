@@ -292,7 +292,8 @@
                "title": "Account",
                "details": "Account details",
                "view_addresses": "View addresses",
-               "return": "Return to Account details"
+               "return": "Return to Account details",
+               "account_nav_help": "Choose an option below to manage your account, view order details, see your wishlist, and more."
           },
           "account_fallback": "Account",
           "activate_account": {
@@ -409,7 +410,8 @@
           },
           "layout": {
                "register": "Register",
-               "greeting": "Hello,"
+               "greeting": "Hello,",
+               "dashboard": "My {{ store_name }} Account"
           }
      },
      "gift_cards": {
