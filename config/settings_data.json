@@ -9,13 +9,15 @@
     "show_newsletter_signup": true,
     "news_sign_icon": "mdi-email-outline",
     "news_sign_icon_complete": "mdi-checkbox-marked-circle-outline",
-    "display_preloader": false,
+    "display_preloader": true,
     "colors_accent_2": "#e20303",
     "type_header_font": "sans-serif",
     "type_body_font": "sans-serif",
     "page_width": "1400",
     "social_twitter_link": "https:\/\/twitter.com\/shopify",
     "social_facebook_link": "https:\/\/www.facebook.com\/shopify",
+    "predictive_search_enabled": true,
+    "predictive_search_show_vendor": true,
     "favicon": "shopify:\/\/shop_images\/a1-alone.png",
     "type_header_family": "Google+Muli",
     "type_banner-slide_family": "Google+Muli",
@@ -97,6 +99,149 @@
           "btm_txt_color": "#ffffff",
           "btm_social_color": "#3c3c3f",
           "btm_social_hvr_color": "#cc0000"
+        }
+      },
+      "account-login": {
+        "type": "account-login",
+        "settings": {
+        }
+      },
+      "account-nav": {
+        "type": "account-nav",
+        "blocks": {
+          "f5061da0-dc70-4e75-8bc9-4964c430c8c0": {
+            "type": "account_link",
+            "settings": {
+              "title": "Addresses",
+              "link_page": "",
+              "icon": "mdi-home-map-marker"
+            }
+          },
+          "56554f3f-fb0f-4a2a-ac45-812f83de8d16": {
+            "type": "account_link",
+            "settings": {
+              "title": "Orders",
+              "link_page": "",
+              "icon": "mdi-inbox-arrow-up"
+            }
+          },
+          "88f9ef5d-2996-4f06-b4a2-5cd64dbc2919": {
+            "type": "account_link",
+            "settings": {
+              "title": "Cart",
+              "link_page": "",
+              "icon": "mdi-cart"
+            }
+          },
+          "e2f0db89-b52a-4a1d-aca7-67fa35f1fa6f": {
+            "type": "account_link",
+            "settings": {
+              "title": "Compare",
+              "link_page": "",
+              "icon": "mdi-compare"
+            }
+          },
+          "59338ebe-9ffb-465b-ba18-64df9adebeec": {
+            "type": "account_link",
+            "settings": {
+              "title": "Wishlist",
+              "link_page": "",
+              "icon": "mdi-format-list-numbers"
+            }
+          },
+          "073bc235-6ff0-4ad4-a908-54af2a8cbbca": {
+            "type": "account_link",
+            "settings": {
+              "title": "Sign Out",
+              "link_page": "",
+              "icon": "mdi-exit-to-app"
+            }
+          }
+        },
+        "block_order": [
+          "f5061da0-dc70-4e75-8bc9-4964c430c8c0",
+          "56554f3f-fb0f-4a2a-ac45-812f83de8d16",
+          "88f9ef5d-2996-4f06-b4a2-5cd64dbc2919",
+          "e2f0db89-b52a-4a1d-aca7-67fa35f1fa6f",
+          "59338ebe-9ffb-465b-ba18-64df9adebeec",
+          "073bc235-6ff0-4ad4-a908-54af2a8cbbca"
+        ],
+        "settings": {
+          "title": "Account Menu",
+          "titleIcon": "mdi-account",
+          "header_link_clr": "#111111",
+          "header_link_hvr_clr": "#cc0000",
+          "header_icon_clr": "#ffffff",
+          "header_icon_hvr_clr": "#ffffff",
+          "nav_link_clr": "#444444",
+          "nav_link_hvr_clr": "#cc0000"
+        }
+      },
+      "account-dashboard": {
+        "type": "account-dashboard",
+        "blocks": {
+          "164e058d-4c2b-445b-8814-e3fa5c3caf13": {
+            "type": "account_link",
+            "settings": {
+              "title": "Addresses",
+              "link_page": "",
+              "icon": "mdi-home-map-marker"
+            }
+          },
+          "8c007bfb-4f53-4551-9735-fa8d64c95a04": {
+            "type": "account_link",
+            "settings": {
+              "title": "Orders",
+              "link_page": "",
+              "icon": "mdi-inbox-arrow-up"
+            }
+          },
+          "fa5692cb-c71e-42f2-8cbc-9069e205c52a": {
+            "type": "account_link",
+            "settings": {
+              "title": "Cart",
+              "link_page": "",
+              "icon": "mdi-cart"
+            }
+          },
+          "c0d5e1da-f331-4441-a95e-e67cba66b5d4": {
+            "type": "account_link",
+            "settings": {
+              "title": "Compare",
+              "link_page": "",
+              "icon": "mdi-compare"
+            }
+          },
+          "ae3ae70b-e766-48f8-8e32-825606b602ac": {
+            "type": "account_link",
+            "settings": {
+              "title": "Wishlist",
+              "link_page": "",
+              "icon": "mdi-format-list-numbers"
+            }
+          },
+          "74f69f4c-a5a7-4761-b913-bcdd2855f4f4": {
+            "type": "account_link",
+            "settings": {
+              "title": "Sign Out",
+              "link_page": "",
+              "icon": "mdi-exit-to-app"
+            }
+          }
+        },
+        "block_order": [
+          "164e058d-4c2b-445b-8814-e3fa5c3caf13",
+          "8c007bfb-4f53-4551-9735-fa8d64c95a04",
+          "fa5692cb-c71e-42f2-8cbc-9069e205c52a",
+          "c0d5e1da-f331-4441-a95e-e67cba66b5d4",
+          "ae3ae70b-e766-48f8-8e32-825606b602ac",
+          "74f69f4c-a5a7-4761-b913-bcdd2855f4f4"
+        ],
+        "settings": {
+          "txt_clr": "#191919",
+          "txt_hvr_clr": "#cc0000",
+          "icon_clr": "#ffffff",
+          "icon_hvr_clr": "#ffffff"
         }
       }
     },
