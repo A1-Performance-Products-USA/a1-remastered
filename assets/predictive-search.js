@@ -180,8 +180,13 @@ class PredictiveSearch extends HTMLElement {
      }
 
      getResultsMaxHeight() {
-          this.resultsMaxHeight = window.innerHeight - document.getElementById('main-header').getBoundingClientRect().height;
-          return this.resultsMaxHeight;
+          if ($(window).width() > LaptopScreenBreak) {
+               this.resultsMaxHeight = window.innerHeight - document.getElementById('main-header').getBoundingClientRect().height;
+               return this.resultsMaxHeight;
+          } else {
+               this.resultsMaxHeight = window.innerHeight - document.getElementById('Search-In-Modal').getBoundingClientRect().bottom;
+               return this.resultsMaxHeight;
+          }
      }
 
      open() {
