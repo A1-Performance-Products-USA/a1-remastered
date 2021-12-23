@@ -23,6 +23,16 @@
      width: 1.6rem;
 }
 
+@media screen and (max-width: 1024px) {
+     .search__input.field__input {
+          padding-right: 5rem;
+          height: unset;
+          padding: 1.1rem .5rem 0 1rem;
+          font-size: 16px;
+          line-height: 2;
+     }
+}
+
 /* Remove extra spacing for search inputs in Safari */
 input::-webkit-search-decoration {
      -webkit-appearance: none;
