@@ -1,0 +1,17 @@
+<script src="{{ 'component-header-sticky.js' | asset_url }}" defer="defer"></script>
+
+{{ 'component-header-sticky.css' | asset_url | stylesheet_tag }}
+
+
+<div class="sticky-header-wrapper animate__animated animate__slideInDown">
+     <div class="sticky-header container">
+          <div class="left-sticky">
+               {% render 'logo', logoSize: '165x49' %}
+          </div>
+          <div class="center-nav">
+               <!-- Navigation is Inserted Here Via jQuery -->
+          </div>
+          <!-- Search is Inserted Here Via jQuery -->
+     </div>
+     <hr />
+</div>
