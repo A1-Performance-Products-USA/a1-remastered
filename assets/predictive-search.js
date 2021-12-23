@@ -55,6 +55,12 @@ class PredictiveSearch extends HTMLElement {
 
      onFocusOut() {
           setTimeout(() => {
+               if ($(window).width() < LaptopScreenBreak) {
+                    if (!searchTerm.length) return;
+
+                    if (this.getAttribute('results') === 'true') return;
+               }
+
                if (!this.contains(document.activeElement)) this.close();
           })
      }
