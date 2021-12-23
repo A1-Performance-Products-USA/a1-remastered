@@ -370,6 +370,11 @@
      .site-top-header > .main-header > .header-right {
           max-width: 33%;
      }
+
+     .site-top-header > .main-header .header-account,
+     .site-top-header > .main-header .header-cart {
+          min-width: unset;
+     }
 }
 
 /*
@@ -412,7 +417,7 @@
      position: relative;
      transform: skew(-20deg);
      margin: 1px 3px 1px 1px;
-     padding: 0;
+     padding: 0 .1rem;
 }
 
 .header-nav > .site-nav > .site-nav-item > .site-nav-link,

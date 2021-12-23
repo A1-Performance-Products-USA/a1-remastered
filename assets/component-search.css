@@ -1,13 +1,45 @@
+.header-search {
+     margin-bottom: 1rem;
+}
+
 .search__input.field__input {
-  padding-right: 5rem;
+     padding-right: 5rem;
+     height: unset;
+     padding: 1.1rem .5rem 0 1rem;
+     font-size: 1.2rem;
+     line-height: 2;
+}
+.search__label.field__label:focus {
+     font-size: .8rem;
+}
+.search__label.field__label {
+     left: 1rem;
+     top: .9rem;
+     font-size: 1.5rem;
 }
 
 .search__button .icon {
-  height: 1.8rem;
-  width: 1.8rem;
+     height: 1.6rem;
+     width: 1.6rem;
 }
 
 /* Remove extra spacing for search inputs in Safari */
 input::-webkit-search-decoration {
-  -webkit-appearance: none;
+     -webkit-appearance: none;
+}
+
+.search__button.field__button {
+     height: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+
+.search.search-modal__form {
+     position: relative;
+}
+
+.predictive-search.predictive-search--header {
+     border-radius: 10px;
 }
