@@ -1978,16 +1978,6 @@ details[open] .modal-overlay::after {
     }
 }
 
-@media screen and (min-width: 990px) {
-    .search-modal__form {
-        max-width: 47.8rem;
-    }
-    .search-modal__close-button {
-        position: initial;
-        margin-left: 0.5rem;
-    }
-}
-
 
 /* Header menu drawer */
 
