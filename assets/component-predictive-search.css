@@ -41,6 +41,7 @@
 predictive-search[open] .predictive-search, 
 predictive-search[loading] .predictive-search {
   display: block;
+  overflow: auto;
 }
 
 .predictive-search__heading {

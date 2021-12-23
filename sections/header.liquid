@@ -27,7 +27,7 @@
      </symbol>
 </svg>
 
-<header class="main-header" data-section-id="{{ section.id }}" data-section-type="header">
+<header class="main-header" id="main-header" data-section-id="{{ section.id }}" data-section-type="header">
      <div class="site-header">
           <div class="site-top-header">
                <div class="main-header container">
@@ -60,11 +60,13 @@
                <hr/>
           </nav>
      </div>
-</header>
 
-{% if settings.sticky_header_enabled %}
-     {% include 'header-sticky' %}
-{% endif %}
+     {% include 'header-mobile' %}
+
+     {% if settings.sticky_header_enabled %}
+          {% include 'header-sticky' %}
+     {% endif %}
+</header>
 
 
 <style>

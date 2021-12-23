@@ -1,0 +1,37 @@
+{{ 'component-header-mobile.css' | asset_url | stylesheet_tag }}
+
+<div class="mobile-header">
+     {% render 'logo', logoSize: '200x' %}
+
+     <a class="account-icon btn" href="{{ routes.account_url }}">
+          <i class="mdi mdi-account"></i>
+     </a>
+
+     <a class="cart-icon btn" href="{{ routes.cart_url }}">
+          <i class="mdi mdi-cart"></i>
+     </a>
+
+     <button class="search-icon btn">
+          <i class="mdi mdi-magnify"></i>
+     </button>
+
+     <button class="navigation-icon btn">
+          <i class="mdi mdi-menu"></i>
+     </button>
+</div>
+
+{% if settings.sticky_header_enabled %}
+     <div class="sticky-mobile-header animate__animated animate__slideInDown">
+          <button class="navigation-icon btn">
+               <i class="mdi mdi-menu"></i>
+          </button>
+
+          {% render 'logo', logo: settings.sticky_logo_mobile, logoSize: 'small' %}
+
+          {% assign logo = blank %}
+
+          <button class="search-icon btn">
+               <i class="mdi mdi-magnify"></i>
+          </button>
+     </div>
+{% endif %}
