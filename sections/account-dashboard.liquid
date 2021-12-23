@@ -1,0 +1,103 @@
+{{ 'section-account-dashboard.css' | asset_url | stylesheet_tag }}
+
+<div class="account-dashboard">
+     <h2>{{ 'customer.layout.dashboard' | t: store_name: shop.name }}</h2>
+     <div class="dashboard">
+          {% for block in section.blocks %}
+               <div class="dashboard-item">
+                    <a href="{{ block.settings.link_page }}">
+                         <span class="icon">
+                              <i class="mdi {{ block.settings.icon }}"></i>
+                         </span>
+                         <span class="title">{{ block.settings.title }}</span>
+                    </a>
+               </div>
+          {% endfor %}
+     </div>
+</div>
+
+<style>
+     .account-dashboard > .dashboard > .dashboard-item > a > .icon {
+          background-color: {{ section.settings.txt_clr }};
+          color: {{ section.settings.icon_clr }};
+          -webkit-transition: all .3s ease-in-out;
+          -moz-transition: all .3s ease-in-out;
+          -ms-transition: all .3s ease-in-out;
+          -o-transition: all .3s ease-in-out;
+          transition: all .3s ease-in-out;
+     }
+
+     .account-dashboard > .dashboard > .dashboard-item > a:hover > .icon {
+          background-color: {{ section.settings.txt_hvr_clr }};
+          color: {{ section.settings.icon_hvr_clr }};
+     }
+
+     .account-dashboard > .dashboard > .dashboard-item > a > .title {
+          color: {{ section.settings.txt_clr }};
+          -webkit-transition: all .3s ease-in-out;
+          -moz-transition: all .3s ease-in-out;
+          -ms-transition: all .3s ease-in-out;
+          -o-transition: all .3s ease-in-out;
+          transition: all .3s ease-in-out;
+     }
+
+     .account-dashboard > .dashboard > .dashboard-item > a:hover > .title {
+          color: {{ section.settings.txt_hvr_clr }};
+     }
+</style>
+
+{% schema %}
+{
+     "name": "Account Dashboard",
+     "class": "account-content page-content",
+     "settings": [
+          {
+               "type": "color",
+               "id": "txt_clr",
+               "label": "Text Color",
+               "default": "#191919"
+          },
+          {
+               "type": "color",
+               "id": "txt_hvr_clr",
+               "label": "Text Hover Color",
+               "default": "#C00"
+          },
+          {
+               "type": "color",
+               "id": "icon_clr",
+               "label": "Icon Color",
+               "default": "#ffffff"
+          },
+          {
+               "type": "color",
+               "id": "icon_hvr_clr",
+               "label": "Icon Hover Color",
+               "default": "#ffffff"
+          }
+     ],
+     "blocks": [
+          {
+               "type": "account_link",
+               "name": "Account Link",
+               "settings": [
+                    {
+                         "type": "text",
+                         "id": "title",
+                         "label": "Link Title"
+                    },
+                    {
+                         "type": "url",
+                         "id": "link_page",
+                         "label": "Link Page"
+                    },
+                    {
+                         "type": "text",
+                         "id": "icon",
+                         "label": "Icon"
+                    }
+               ]
+          }
+     ]
+}
+{% endschema %}

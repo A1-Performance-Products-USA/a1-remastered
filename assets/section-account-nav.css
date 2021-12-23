@@ -1,0 +1,97 @@
+/*
+     Account Navigation
+*/
+.account-nav {
+     display: flex;
+     flex-direction: column;
+}
+.account-nav > .nav-header {
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     gap: 10px;
+
+     border-bottom: 1px solid #e5e5e5;
+}
+.account-nav > .nav-header > .title {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+
+     gap: 10px;
+}
+
+.account-nav > .nav-header > .title > h1 {
+     margin: 0;
+     padding: 0;
+     font-size: 2.2rem;
+     font-weight: bold;
+}
+
+@media screen and (max-width: 1300px) {
+     .account-nav > .nav-header > .title > h1 {
+          font-size: 2rem;
+     }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+     .account-nav > .nav-header > .title > h1 {
+          font-size: 1.75rem;
+     }
+}
+
+@media screen and (max-width: 768px) {
+     .account-wrapper {
+          flex-wrap: wrap;
+     }
+     .account-wrapper > .account-nav-wrapper {
+          order: 2;
+          width: 100%;
+     }
+}
+
+.account-nav > .nav-header > .title > .icon {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border-radius: 50%;
+     width: 40px;
+     height: 40px;
+     font-size: 24px;
+     text-align: center;
+     margin: 0;
+}
+
+.account-nav > .nav-header > p {
+     font-size: 1.2rem;
+     margin: 0;
+     padding: 0 0 15px 0;
+     text-align: left;
+     letter-spacing: .5px;
+}
+
+.account-nav > .nav-list {
+     list-style: none;
+     padding: 0;
+     margin: 0;
+
+     font-size: 1.4rem;
+     display: block;
+}
+
+.account-nav > .nav-list > li {
+     border-bottom: 1px solid #e5e5e5;
+}
+
+.account-nav > .nav-list > li > a {
+     padding: 10px 0;
+     display: flex;
+     align-items: center;
+     gap: 10px;
+
+     font-weight: bold;
+}
+
+.account-nav > .nav-list > li > a > i {
+     font-size: 1.75rem;
+}
