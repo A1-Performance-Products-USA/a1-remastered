@@ -1,5 +1,29 @@
 {% if settings.display_preloader %}
-     <link rel="stylesheet" href="{{ 'component-loading-overlay.css' | asset_url }}" media="print" onload="this.media='all'">
+     <style>
+          /**
+               Pre-loader
+          **/
+          .ttloader {
+               height: 100%;
+               left: 0;
+               position: fixed;
+               top: 0;
+               width: 100%;
+               z-index: 999999;
+          }
+          .rotating {
+               background-position: center center;
+               background-repeat: no-repeat;
+               bottom: 0;
+               height: auto;
+               left: 0;
+               margin: auto;
+               position: absolute;
+               right: 0;
+               top: 0;
+               width: 100%;
+          }
+     </style>
 
      <div class="ttloader">
           <span class="rotating"></span>
