@@ -29,8 +29,14 @@
 /*
      Header Logo
 */
+.site-top-header > .main-header > .header-left {
+     width: 25%;
+     max-width: 25%;
+}
+
 .site-top-header > .main-header > .header-left > .logo {
      display: block;
+     width: 100%;
 }
 
 .site-top-header > .main-header > .header-left > .logo > a {
@@ -49,13 +55,17 @@
 
 .site-top-header > .main-header .header-text {
      line-height: 1.4;
-     font-size: 2.3rem;
+     font-size: 2.2rem;
      font-family: "VipnagorgiallaRg-Bold";
      font-weight: 100;
      color: #fff;
      margin: 0;
 
      text-align: center;
+}
+
+.site-top-header > .main-header .header-phone .header-text {
+     font-size: 3rem;
 }
 
 /*
@@ -67,12 +77,14 @@
      justify-content: space-between;
 
      height: 100%;
+     width: 25%;
+     max-width: 25%;
 }
 
 .site-top-header > .main-header > .header-right .header-btn-icon {
      float: none;
-     width: 40px;
-     height: 40px;
+     width: 36px;
+     height: 36px;
      display: inline-block;
      font: 600 14px/20px Muli,Helvetica,sans-serif;
      padding: 0;
@@ -102,8 +114,8 @@
 .site-top-header > .main-header > .header-right .header-btn-icon > i {
      display: block;
 
-     width: 40px;
-     height: 40px;
+     width: 36px;
+     height: 36px;
 
      transition: .3s ease-in-out;
 
@@ -114,10 +126,10 @@
      display: block;
      font-size: 24px;
      left: 0;
-     height: 40px;
-     width: 40px;
+     height: 36px;
+     width: 36px;
      top: 0;
-     line-height: 40px;
+     line-height: 36px;
      bottom: 0;
 }
 
@@ -157,7 +169,7 @@
      display: flex;
      align-items: center;
      justify-content: center;
-     padding: 10px;
+     padding: 10px 5px;
 
      animation: slide-up 1s ease-in 0.2s 1 slide-up;
      -webkit-animation: slide-up 1s ease-in 0.2s 1 slide-up;
@@ -214,12 +226,10 @@
 
 .site-top-header > .main-header .header-account {
      border-radius: 0 0 0 5px;
-     min-width: 180px;
 }
 
 .site-top-header > .main-header .header-cart {
      border-radius: 0 0 5px 0;
-     min-width: 180px;
 }
 
 /*
