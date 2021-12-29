@@ -51,6 +51,10 @@
           "captcha": {
                "title": "Are you a robot?",
                "submit": "Submit"
+          },
+          "filter": {
+               "clear_all": "Clear All",
+               "shop_by": "Shop By"
           }
      },
      "newsletter": {

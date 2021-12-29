@@ -1,14 +1,13 @@
 {
-  "sections": {
-    "banner": {
-      "type": "main-collection-banner"
-    },
-    "product-grid": {
-      "type": "main-collection-product-grid"
-    }
-  },
-  "order": [
-    "banner",
-    "product-grid"
-  ]
+     "wrapper": "div.page-content-wrapper.product-list",
+     "sections": {
+          "product-filter": {
+               "type": "main-collection-filter"
+          },
+          "product-grid": {
+               "type": "main-collection-product-grid"
+          }
+     },
+     "order": ["product-filter", "product-grid"]
 }
+

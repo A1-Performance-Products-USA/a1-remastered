@@ -235,10 +235,6 @@ body .page-wrapper::after {
      z-index: 5;
 }
 
-/***
-     MAIN PAGE CONTENT
-***/
-
 /**
      Page Content
 **/
@@ -258,6 +254,7 @@ body .page-wrapper::after {
      margin-bottom: 30px;
 
      line-height: 1;
+     padding: 0 6px;
 }
 
 .page-content-wrapper .page-content {

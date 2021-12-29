@@ -1,3 +1,7 @@
+.about-us .page-content-wrapper {
+     padding: 0;
+}
+
 .about-us .site-inner.container {
      max-width: 100%;
 }

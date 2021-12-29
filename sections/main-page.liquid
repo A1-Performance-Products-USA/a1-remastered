@@ -3,11 +3,12 @@
 
      <noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
 
-     <h2 class="main-title">
-          {{ page.title | escape }}
-     </h2>
-     <div class="main-content">
-          {{ page.content }}
+     <div class="page-content-wrapper">
+          <div class="page-content">
+               <div class="main-content">
+                    {{ page.content }}
+               </div>
+          </div>
      </div>
 {% else %}
      <style>
