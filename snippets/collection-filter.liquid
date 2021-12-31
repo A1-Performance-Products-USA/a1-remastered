@@ -1,0 +1,180 @@
+{{ 'component-facets.css' | asset_url | stylesheet_tag }}
+{{ 'component-collection-filter.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+          assign sort_by = results.sort_by | default: results.default_sort_by
+          assign total_active_values = 0
+          assign price_range_active = false
+     if results.url
+          assign results_url = results.url
+     else 
+          assign terms = results.terms | escape
+          assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+     endif
+-%}
+
+
+<div class="filter-wrapper page-content facets-container">
+     <facet-filters-form class="facets small-hide">
+          <form id="FacetFiltersForm" class="">
+               {%- if results.terms -%}
+                    <input type="hidden" name="q" value="{{ results.terms | escape }}">
+                    <input name="options[prefix]" type="hidden" value="last">
+               {%- endif -%}
+
+               {% if results.current_vendor or results.current_type %}
+                    <input type="hidden" name="q" value="{{ results.current_vendor }}{{ results.current_type }}">
+               {% endif %}
+               
+               <div id="FacetsWrapperDesktop" class="filter-option-wrapper">               
+                    {%- for filter in results.filters -%}
+                         {%- unless filter.values.size <= 1 -%}
+                              {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
+                              {% case filter.type %}
+                                   {% when 'list' %}
+                                        {% if filter.label == "Price Range" %}
+                                        {%- liquid
+                                             assign price_range_active = true
+                                             assign price_range_values = filter.values
+                                             assign price_range_active_values = filter.active_values
+                                        -%}
+                                        {% else %}
+                                             <div class="filter-option js-filter" data-index="{{ forloop.index }}">
+                                                  <div class="filter-title">
+                                                       <span>{{ 'products.facets.shop_by' | t }} {{ filter.label | escape }}</span>
+                                                       {% if filter.active_values.size > 0 %}
+                                                            <facet-remove>
+                                                                 <a href="{{ filter.url_to_remove }}" class="facets__reset">
+                                                                      <i class="mdi mdi-close-circle" aria-hidden="true"></i>
+                                                                 </a>
+                                                            </facet-remove>
+                                                       {% endif %}
+                                                  </div>
+                                                  <ul class="filter-items">
+                                                       {%- for value in filter.values -%}
+                                                            <li class="list-menu__item facets__item">
+                                                                 <label for="Filter-{{ filter.label | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}">
+                                                                      <input type="radio"
+                                                                           name="{{ value.param_name }}"
+                                                                           value="{{ value.value }}"
+                                                                           id="Filter-{{ filter.label | escape }}-{{ forloop.index }}"
+                                                                           {% if value.active %}checked{% endif %}
+                                                                           {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                                                                      > 
+                                        
+                                                                      {{ value.label | escape }} ({{ value.count }})
+                                                                 </label>
+                                                            </li>
+                                                       {% endfor %}
+                                                  </ul>
+                                             </div>
+                                        {% endif %}
+                                   {% when 'price_range' %}
+                                        {% liquid
+                                             assign currencies_using_comma_decimals = 'ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND' | split: ','
+                                             assign uses_comma_decimals = false
+                                             if currencies_using_comma_decimals contains cart.currency.iso_code
+                                             assign uses_comma_decimals = true
+                                             endif
+                                        %}
+                                        <div class="filter-option js-filter" data-index="{{ forloop.index }}">
+                                             <div class="filter-title">
+                                                  <span>{{ 'products.facets.shop_by' | t }} {{ filter.label | escape }}</span>
+                                                  {% if filter.active_values.size > 0 or price_range_active_values.size > 0 %}
+                                                       {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+                                                       {% liquid
+                                                            assign queryParams = contentForQuerystring | split:'"pageurl":"' | last | split:'"' | first | split:'.myshopify.com' | last | replace:'\/','/' | replace:'%20',' ' | replace:'\u0026','&' | split: '?' | last | split: '&'
+          
+                                                            assign newParams = ''
+                                                            assign count = 0
+          
+                                                            for string in queryParams
+                                                                 unless string contains 'filter.p.m.prod_info.price_range' or string contains 'filter.v.price.gte' or string contains 'filter.v.price.lte'
+                                                                      if count == 0
+                                                                           assign newParams = newParams | append: '?' | append: string
+                                                                      else 
+                                                                           assign newParams = newParams | append: '&' | append: string
+                                                                      endif
+                                                                      assign count = count | plus: 1
+                                                                 endunless
+                                                            endfor
+                                                       %}
+                                                       <facet-remove>
+                                                            <a href="{{ collection.url }}{{ newParams }}" class="facets__reset">
+                                                                 <i class="mdi mdi-close-circle" aria-hidden="true"></i>
+                                                            </a>
+                                                       </facet-remove>
+                                                  {% endif %}
+                                             </div>
+
+                                             {% if price_range_active %}
+                                                  <price-tags class="price-tags">
+                                                       <ul class="filter-items price-range">
+                                                            {%- for v in price_range_values -%}
+                                                                 <li class="list-menu__item facets__item" data-index="{{ v.value | remove: ' ' | remove: '$' | split: 'to' | first }}">
+                                                                      <label for="Filter-{{ v.value | remove: ' ' | remove: '$' }}-{{ forloop.index }}" class="facet-checkbox{% if v.count == 0 and v.active == false %} facet-checkbox--disabled{% endif %}">
+                                                                           <input type="radio"
+                                                                           name="{{ v.param_name }}"
+                                                                           value="{{ v.value }}"
+                                                                           id="Filter-{{ v.value | remove: ' ' | remove: '$' }}-{{ forloop.index }}"
+                                                                           {% if v.active %}checked{% endif %}
+                                                                           {% if v.count == 0 and v.active == false %}disabled{% endif %}
+                                                                           >
+                                             
+                                                                           {{ v.label | escape }} ({{ v.count }})
+                                                                      </label>
+                                                                 </li>
+                                                            {% endfor %}
+                                                       </ul>
+                                                  </price-tags>
+                                             {% endif %}
+                                             <price-range class="facets__price">
+                                                  <span class="field-currency">{{ cart.currency.symbol }}</span>
+                                                  <div class="field">
+                                                       <input class="field__input price-filter"
+                                                            name="{{ filter.min_value.param_name }}"
+                                                            id="Filter-{{ filter.label | escape }}-GTE"
+                                                            {%- if filter.min_value.value -%}
+                                                            {%- if uses_comma_decimals -%}value="{{ filter.min_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                                                            {%- endif -%}
+                                                            type="number"
+                                                            placeholder="0"
+                                                            min="0"
+                                                            {%- if uses_comma_decimals -%}max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"{% endif %}
+                                                       >
+                                                       <label class="field__label" for="Filter-{{ filter.label | escape }}-GTE">{{ 'products.facets.from' | t }}</label>
+                                                  </div>
+                                                  <span class="field-currency">{{ cart.currency.symbol }}</span>
+                                                  <div class="field">
+                                                       <input class="field__input price-filter"
+                                                            name="{{ filter.max_value.param_name }}"
+                                                            id="Filter-{{ filter.label | escape }}-LTE"
+                                                            {%- if filter.max_value.value -%}{%- if uses_comma_decimals -%}value="{{ filter.max_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                                                            {%- endif -%}
+                                                            type="number"
+                                                            min="0"
+                                                            {%- if uses_comma_decimals -%}
+                                                            placeholder="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                                                            max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                                                            {%- else -%}
+                                                            placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                                            max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                                            {% endif %}
+                                                       >
+                                                       <label class="field__label" for="Filter-{{ filter.label | escape }}-LTE">{{ 'products.facets.to' | t }}</label>
+                                                  </div>
+                                             </price-range>
+                                        </div>
+                              {% endcase %}
+                         {%- endunless -%}
+                    {%- endfor -%}
+
+                    <noscript>
+                         <button type="submit" class="facets__button-no-js button button--tertiary">{{ 'products.facets.filter_button' | t }}</button>
+                    </noscript>
+               </div>
+          </form>
+     </facet-filters-form>
+</div>

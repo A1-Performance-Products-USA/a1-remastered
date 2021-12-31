@@ -747,3 +747,15 @@ form > .errors > ul {
 .shopify-challenge__container.page-content > h2 {
      padding-bottom: 10px;
 }
+
+.predictive-search__loading-state {
+     display: none;
+}
+
+.product-list {
+     display: flex;
+     align-content: center;
+     flex-direction: row;
+     justify-content: flex-start;
+     align-items: stretch;
+}
