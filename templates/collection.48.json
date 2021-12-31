@@ -1,0 +1,22 @@
+{
+     "sections": {
+          "product-grid": {
+               "type": "main-collection-product-grid",
+               "settings": {
+                    "products_per_page": 48,
+                    "image_ratio": "adapt",
+                    "show_secondary_image": false,
+                    "add_image_padding": false,
+                    "show_image_outline": true,
+                    "show_vendor": false,
+                    "show_rating": false,
+                    "enable_sorting": true,
+                    "enable_filtering": true,
+                    "shop_by_price_list": "Less than $25, $25 to $50, $50 to $100, $100 to $500, More than $500",
+                    "enable_show": true
+               }
+          }
+     },
+     "order": ["product-grid"]
+}
+
