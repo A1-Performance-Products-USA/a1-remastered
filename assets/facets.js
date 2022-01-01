@@ -261,3 +261,35 @@ class PriceTags extends HTMLElement {
 }
 
 customElements.define('price-tags', PriceTags);
+
+class CategoryDropdown extends HTMLElement {
+     constructor() {
+          super();
+          
+          this.querySelector('.cat-title').addEventListener('click', this.clickAction.bind(this))
+     }
+
+     clickAction(event, target) {
+          if (!event && !target) return;
+          
+          const childTarget = (event) ? event.currentTarget.dataset.child : target.dataset.child;
+
+          if (!this.classList.contains('extended')) {
+               this.querySelector('.cat-title .cat-menu-expand').innerHTML = '-';
+          } else {
+               this.querySelector('.cat-title .cat-menu-expand').innerHTML = '+';
+          }
+
+          console.log(childTarget)
+
+          $(this.querySelector('#' + childTarget)).slideToggle(400, () => {
+               if (!this.classList.contains('extended')) {
+                    this.classList.add('extended');
+               } else {
+                    this.classList.remove('extended');
+               }
+          });
+     }
+}
+
+customElements.define('category-dropdown', CategoryDropdown);

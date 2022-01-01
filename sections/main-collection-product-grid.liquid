@@ -24,7 +24,7 @@
 <div class="page-content-wrapper product-list">
      {% if section.settings.enable_filtering %}
           <div class="main-filter">
-               {% render 'collection-filter', results: collection, shop_by_price_list: section.settings.shop_by_price_list %}
+               {% render 'collection-filter', results: collection, shop_by_price_list: section.settings.shop_by_price_list, enable_category: section.settings.enable_category, category_title: section.settings.category_title, category_list: section.settings.category_list %}
           </div>
      {% endif %}
 
@@ -274,6 +274,23 @@
                "id": "enable_show",
                "default": true,
                "label": "Enable showing?"
+          },
+          {
+               "type": "checkbox",
+               "id": "enable_category",
+               "label": "Enable category?",
+               "default":true
+          },
+          {
+               "type": "link_list",
+               "id": "category_list",
+               "label": "Category Linklist"
+          },
+          {
+               "type": "text",
+               "id": "category_title",
+               "label": "Category Heading",
+               "default": "Categories"
           }
      ]
 }

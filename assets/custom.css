@@ -757,5 +757,5 @@ form > .errors > ul {
      align-content: center;
      flex-direction: row;
      justify-content: flex-start;
-     align-items: stretch;
+     align-items: flex-start;
 }

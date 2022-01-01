@@ -7,6 +7,7 @@
           assign sort_by = results.sort_by | default: results.default_sort_by
           assign total_active_values = 0
           assign price_range_active = false
+          assign has_filters = false
      if results.url
           assign results_url = results.url
      else 
@@ -32,6 +33,7 @@
                     {%- for filter in results.filters -%}
                          {%- unless filter.values.size <= 1 -%}
                               {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
+                              {%- assign has_filters = true -%}
                               {% case filter.type %}
                                    {% when 'list' %}
                                         {% if filter.label == "Price Range" %}
@@ -109,63 +111,65 @@
                                                   {% endif %}
                                              </div>
 
-                                             {% if price_range_active %}
-                                                  <price-tags class="price-tags">
-                                                       <ul class="filter-items price-range">
-                                                            {%- for v in price_range_values -%}
-                                                                 <li class="list-menu__item facets__item" data-index="{{ v.value | remove: ' ' | remove: '$' | split: 'to' | first }}">
-                                                                      <label for="Filter-{{ v.value | remove: ' ' | remove: '$' }}-{{ forloop.index }}" class="facet-checkbox{% if v.count == 0 and v.active == false %} facet-checkbox--disabled{% endif %}">
-                                                                           <input type="radio"
-                                                                           name="{{ v.param_name }}"
-                                                                           value="{{ v.value }}"
-                                                                           id="Filter-{{ v.value | remove: ' ' | remove: '$' }}-{{ forloop.index }}"
-                                                                           {% if v.active %}checked{% endif %}
-                                                                           {% if v.count == 0 and v.active == false %}disabled{% endif %}
-                                                                           >
-                                             
-                                                                           {{ v.label | escape }} ({{ v.count }})
-                                                                      </label>
-                                                                 </li>
-                                                            {% endfor %}
-                                                       </ul>
-                                                  </price-tags>
-                                             {% endif %}
-                                             <price-range class="facets__price">
-                                                  <span class="field-currency">{{ cart.currency.symbol }}</span>
-                                                  <div class="field">
-                                                       <input class="field__input price-filter"
-                                                            name="{{ filter.min_value.param_name }}"
-                                                            id="Filter-{{ filter.label | escape }}-GTE"
-                                                            {%- if filter.min_value.value -%}
-                                                            {%- if uses_comma_decimals -%}value="{{ filter.min_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
-                                                            {%- endif -%}
-                                                            type="number"
-                                                            placeholder="0"
-                                                            min="0"
-                                                            {%- if uses_comma_decimals -%}max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"{% endif %}
-                                                       >
-                                                       <label class="field__label" for="Filter-{{ filter.label | escape }}-GTE">{{ 'products.facets.from' | t }}</label>
-                                                  </div>
-                                                  <span class="field-currency">{{ cart.currency.symbol }}</span>
-                                                  <div class="field">
-                                                       <input class="field__input price-filter"
-                                                            name="{{ filter.max_value.param_name }}"
-                                                            id="Filter-{{ filter.label | escape }}-LTE"
-                                                            {%- if filter.max_value.value -%}{%- if uses_comma_decimals -%}value="{{ filter.max_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
-                                                            {%- endif -%}
-                                                            type="number"
-                                                            min="0"
-                                                            {%- if uses_comma_decimals -%}
-                                                            placeholder="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
-                                                            max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
-                                                            {%- else -%}
-                                                            placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                                                            max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                                                            {% endif %}
-                                                       >
-                                                       <label class="field__label" for="Filter-{{ filter.label | escape }}-LTE">{{ 'products.facets.to' | t }}</label>
-                                                  </div>
-                                             </price-range>
+                                             <div class="price-filters">
+                                                  {% if price_range_active %}
+                                                       <price-tags class="price-tags">
+                                                            <ul class="filter-items price-range">
+                                                                 {%- for v in price_range_values -%}
+                                                                      <li class="list-menu__item facets__item" data-index="{{ v.value | remove: ' ' | remove: '$' | split: 'to' | first }}">
+                                                                           <label for="Filter-{{ v.value | remove: ' ' | remove: '$' }}-{{ forloop.index }}" class="facet-checkbox{% if v.count == 0 and v.active == false %} facet-checkbox--disabled{% endif %}">
+                                                                                <input type="radio"
+                                                                                name="{{ v.param_name }}"
+                                                                                value="{{ v.value }}"
+                                                                                id="Filter-{{ v.value | remove: ' ' | remove: '$' }}-{{ forloop.index }}"
+                                                                                {% if v.active %}checked{% endif %}
+                                                                                {% if v.count == 0 and v.active == false %}disabled{% endif %}
+                                                                                >
+                                                  
+                                                                                {{ v.label | escape }} ({{ v.count }})
+                                                                           </label>
+                                                                      </li>
+                                                                 {% endfor %}
+                                                            </ul>
+                                                       </price-tags>
+                                                  {% endif %}
+                                                  <price-range class="facets__price">
+                                                       <span class="field-currency">{{ cart.currency.symbol }}</span>
+                                                       <div class="field">
+                                                            <input class="field__input price-filter"
+                                                                 name="{{ filter.min_value.param_name }}"
+                                                                 id="Filter-{{ filter.label | escape }}-GTE"
+                                                                 {%- if filter.min_value.value -%}
+                                                                 {%- if uses_comma_decimals -%}value="{{ filter.min_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                                                                 {%- endif -%}
+                                                                 type="number"
+                                                                 placeholder="0"
+                                                                 min="0"
+                                                                 {%- if uses_comma_decimals -%}max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"{% endif %}
+                                                            >
+                                                            <label class="field__label" for="Filter-{{ filter.label | escape }}-GTE">{{ 'products.facets.from' | t }}</label>
+                                                       </div>
+                                                       <span class="field-currency">{{ cart.currency.symbol }}</span>
+                                                       <div class="field">
+                                                            <input class="field__input price-filter"
+                                                                 name="{{ filter.max_value.param_name }}"
+                                                                 id="Filter-{{ filter.label | escape }}-LTE"
+                                                                 {%- if filter.max_value.value -%}{%- if uses_comma_decimals -%}value="{{ filter.max_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                                                                 {%- endif -%}
+                                                                 type="number"
+                                                                 min="0"
+                                                                 {%- if uses_comma_decimals -%}
+                                                                 placeholder="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                                                                 max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                                                                 {%- else -%}
+                                                                 placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                                                 max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                                                 {% endif %}
+                                                            >
+                                                            <label class="field__label" for="Filter-{{ filter.label | escape }}-LTE">{{ 'products.facets.to' | t }}</label>
+                                                       </div>
+                                                  </price-range>
+                                             </div>
                                         </div>
                               {% endcase %}
                          {%- endunless -%}
@@ -174,6 +178,63 @@
                     <noscript>
                          <button type="submit" class="facets__button-no-js button button--tertiary">{{ 'products.facets.filter_button' | t }}</button>
                     </noscript>
+
+                    
+                         {% if section.settings.enable_category and linklists[category_list].links.size > 0 %}
+                              <div class="filter-option">
+                                   <div class="filter-title">
+                                        <span>{{ category_title }}</span>
+                                   </div>
+                                   <ul class="filter-items parent-cat">
+                                        {% for link in linklists[category_list].links %}
+                                             {% assign child_list_handle = link.title | split: '[' | first | handleize %}
+                                             {% if link and link.links != blank %}
+                                                  <li>
+                                                       <category-dropdown class="cat-item cat-parent first">
+                                                            <div class="cat-title" data-child="{{ child_list_handle }}">
+                                                                 <a href="javascript:void(0);" class="category-link cat-sc-toggle {% if link.active or link.child_active %}disabled{% endif %}">
+                                                                      {{ link.title | split: '[' | first | escape }}
+                                                                 </a>
+                                                                 <span class="cat-menu-expand">+</span>
+                                                            </div>
+                                                            {% assign inner_link = link.title | split: '[' | first | handleize %}
+                                                            <ul id="{{ child_list_handle }}" class="children-cat cat-sc-toggle-content" style="display:none">
+                                                                 {% for child_link in link.links %}
+                                                                      {% assign child_list_handle = child_link.title | split: '[' | first1 | handleize %}
+                                                                      {% if child_link and child_link.links != blank %}
+                                                                      <li>
+                                                                           <category-dropdown class="cat-item cat-parent first1">
+                                                                                <div class="cat-title" data-child="{{ child_list_handle }}">
+                                                                                     <a href="javascript:void(0);"
+                                                                                          class="category-link cat-sc-toggle {% if link.active or child_link.active or child_link.child_active %}disabled{% endif %}">
+                                                                                          {{ child_link.title | split: '[' | first | escape }} 
+                                                                                     </a>
+                                                                                     <span class="cat-menu-expand">+</span>
+                                                                                </div>
+                                                                                {% assign inner_link = link.title | split: '[' | first | handleize %}
+                                                                                <ul id="{{ child_list_handle }}" class="children-cat cat-sc-toggle-content" style="display:none">
+                                                                                     {% for child_link in child_link.links %}
+                                                                                     <li><a class="category-link {% if child_link.active %}disabled active{% endif %}" href="{{ child_link.url }}">{{ child_link.title | split: '[' | first | escape }} </a></li>
+                                                                                     {% endfor %}
+                                                                                </ul>
+                                                                           </category-dropdown>
+                                                                      </li>
+                                                                      {% else %}
+                                                                           <li class="cat-item cat-parent"><a href="{{ child_link.url }}">{{ child_link.title | split: '[' | first | escape }} </a></li>
+                                                                      {% endif %}
+                                                                 {% endfor %}
+                                                            </ul>
+                                                       </category-dropdown>
+                                                  </li>
+                                             {% else %}
+                                                  <li class="cat-item cat-parent">
+                                                       <i></i><a href="{{ link.url }}">{{ link.title | split: '[' | first | escape }} </a>
+                                                  </li>
+                                             {% endif %}
+                                        {% endfor %}
+                                   </ul>
+                              </div>
+                         {% endif %}
                </div>
           </form>
      </facet-filters-form>
