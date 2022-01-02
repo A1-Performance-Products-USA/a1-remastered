@@ -4,16 +4,22 @@
       "type": "main-collection-product-grid",
       "settings": {
         "products_per_page": 12,
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "show_secondary_image": false,
-        "add_image_padding": false,
-        "show_image_outline": true,
-        "show_vendor": false,
-        "show_rating": false,
+        "add_image_padding": true,
+        "show_image_outline": false,
+        "show_vendor": true,
+        "show_partnumber": true,
+        "show_availability": false,
+        "show_availability_limit": 3,
+        "show_quantity": true,
+        "action_icon_only": false,
         "enable_sorting": true,
         "enable_filtering": true,
-        "shop_by_price_list": "Less than $25, $25 to $50, $50 to $100, $100 to $500, More than $500",
-        "enable_show": true
+        "enable_show": true,
+        "enable_category": true,
+        "category_list": "main-menu",
+        "category_title": "Categories"
       }
     }
   },

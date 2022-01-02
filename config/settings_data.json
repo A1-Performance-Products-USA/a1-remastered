@@ -10,7 +10,7 @@
     "news_sign_icon": "mdi-email-outline",
     "news_sign_icon_complete": "mdi-checkbox-marked-circle-outline",
     "display_preloader": false,
-    "colors_accent_2": "#e20303",
+    "colors_accent_2": "#cc0000",
     "colors_background_1": "#f7f7f7",
     "type_header_font": "sans-serif",
     "type_body_font": "sans-serif",
