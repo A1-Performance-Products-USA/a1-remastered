@@ -77,7 +77,15 @@ class FacetFiltersForm extends HTMLElement {
      }
 
      static renderProductGridContainer(html) {
-          document.getElementById('ProductGridContainer').innerHTML = new DOMParser().parseFromString(html, 'text/html').getElementById('ProductGridContainer').innerHTML;
+          if (!document.querySelector('predictive-search-page')) {
+               document.getElementById('ProductGridContainer').innerHTML = new DOMParser().parseFromString(html, 'text/html').getElementById('ProductGridContainer').innerHTML;
+          } else {
+               document.querySelector('.sort-wrapper').innerHTML = new DOMParser().parseFromString(html, 'text/html').querySelector('.sort-wrapper').innerHTML
+
+               document.querySelector('.collection').innerHTML = new DOMParser().parseFromString(html, 'text/html').querySelector('.collection').innerHTML
+
+               document.getElementById('ProductGridContainer').querySelector('.collection').classList.remove('loading')
+          }
      }
 
      static renderProductCount(html) {
@@ -98,22 +106,12 @@ class FacetFiltersForm extends HTMLElement {
 
           const facetDetailsElements = parsedHTML.querySelectorAll('#FacetFiltersForm .js-filter');
 
-          const matchesIndex = (element) => {
-               const jsFilter = event ? event.target.closest('.js-filter') : undefined;
-               return jsFilter ? element.dataset.index === jsFilter.dataset.index : false;
-          }
-
-          const facetsToRender = Array.from(facetDetailsElements).filter(element => !matchesIndex(element));
-          const titleToRender = Array.from(facetDetailsElements).find(matchesIndex);
-
-          facetsToRender.forEach((element) => {
-               document.querySelector(`.js-filter[data-index="${element.dataset.index}"]`).innerHTML = element.innerHTML;
-          });
+          document.querySelector('#FacetsWrapperDesktop').innerHTML = parsedHTML.querySelector('#FacetsWrapperDesktop').innerHTML
 
           FacetFiltersForm.renderActiveFacets(parsedHTML);
           FacetFiltersForm.renderAdditionalElements(parsedHTML);
 
-          if (titleToRender) FacetFiltersForm.renderFilter(titleToRender, event.target.closest('.js-filter'));
+          //if (titleToRender) FacetFiltersForm.renderFilter(titleToRender, event.target.closest('.js-filter'));
      }
 
      static renderActiveFacets(html) {

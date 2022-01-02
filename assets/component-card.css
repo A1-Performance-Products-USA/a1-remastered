@@ -358,7 +358,9 @@
 
 .card-bottom .add-cart-btn {
      width: 100%;
-     margin: 0.01rem;
+     display: flex;
+     justify-content: center;
+     align-items: center;
 }
 
 .card-bottom .action_buttons {
@@ -466,6 +468,13 @@
 
 .card.card--product {
      position: relative;
+}
+
+.add-cart-btn .loading {
+     display: none;
+}
+.add-cart-btn.loading .loading {
+     display: inline-block;
 }
 
 @media screen and (min-width: 990px) {

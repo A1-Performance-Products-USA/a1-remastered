@@ -27,7 +27,7 @@
                <span>{{ collection.title }} ({{ collection.all_products_count | times: 100 | money_without_currency | remove: '.00' }})</span>
           </div>
           <div class="breadcrumb-right">
-               <a href="/" title="{{ 'breadcrumbs.home_link_title' | t }}">
+               <a href="/" title="{{ 'breadcrumb.home_link_title' | t }}">
                     <i class="mdi mdi-home-outline"></i>
                </a>
 
@@ -48,7 +48,7 @@
                <span>{{ blog.title }}</span>
           </div>
           <div class="breadcrumb-right">
-               <a href="/" title="{{ 'breadcrumbs.home_link_title' | t }}">
+               <a href="/" title="{{ 'breadcrumb.home_link_title' | t }}">
                     <i class="mdi mdi-home-outline"></i>
                </a>
 
@@ -90,7 +90,18 @@
           </div>
      {% else %}
           <div class="breadcrumb-left">
-               <span>{{ page_title }}</span>
+               <span>
+                    {% if template contains 'search' and search != blank and search.performed %}
+                         {% assign results = search.results_count | times: 100 | money_without_currency | remove: '.00' %}
+                         {% assign terms = search.terms | escape | url_decode %}
+                         {{ 'general.search.page_title' | t: results: results, terms: terms }}
+                    {% else %}
+                         {{ page_title }}
+                         {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+                         {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+                         {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+                    {% endif %}
+               </span>
           </div>
           <div class="breadcrumb-right">
                <a href="/" title="{{ 'breadcrumbs.home_link_title' | t }}">
@@ -98,7 +109,13 @@
                </a>
 
                <span aria-hidden="true" class="breadcrumb_sep">&gt;</span>
-               <span>{{ page_title }}</span>
+               <span>
+                    {% if template contains 'search' and search != blank and search.performed %}
+                         {{ 'general.search.search' | t }}
+                    {% else %}
+                         {{ page_title }}
+                    {% endif %}
+               </span>
           </div>
      {% endif %}
 </div>

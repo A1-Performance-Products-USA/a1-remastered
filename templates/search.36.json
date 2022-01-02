@@ -3,7 +3,7 @@
           "main": {
                "type": "main-search",
                "settings": {
-                    "products_per_page": 12,
+                    "products_per_page": 36,
                     "image_ratio": "square",
                     "show_secondary_image": false,
                     "add_image_padding": true,

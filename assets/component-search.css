@@ -53,3 +53,7 @@ input::-webkit-search-decoration {
 .predictive-search.predictive-search--header {
      border-radius: 10px;
 }
+
+.search__input.field__input:focus {
+     box-shadow: none;
+}

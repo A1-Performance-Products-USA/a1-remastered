@@ -1,14 +1,3 @@
-class AddToCartHelper {
-     static async addToCart(data) {
-          const added = await fetch("/cart/add", {
-               method: "POST",
-               body: data
-          })
-
-          return added;
-     }
-}
-
 class AddToCart extends HTMLElement {
      constructor() {
           super();
@@ -17,21 +6,57 @@ class AddToCart extends HTMLElement {
           this.button = this.querySelector('button');
 
           this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
+          this.cartNotification = document.querySelector('cart-notification');
      }
-
-
 
      onSubmitHandler(e) {
           //Prevent submission
           e.preventDefault();
 
+          if (this.button.classList.contains('loading')) return;
+
+          this.handleErrorMessage();
+          this.cartNotification.setActiveElement(document.activeElement);
+
+          this.button.setAttribute('aria-disabled', true);
+          this.button.classList.add('loading');
+          this.querySelector('.loading-overlay__spinner').classList.remove('hidden');
+
           //send request for cart addition
-          AddToCartHelper.addToCart(new URLSearchParams(new FormData(this.form)));
+          fetch(`${routes.cart_add_url}`, config)
+          .then((response) => response.json())
+          .then((response) => {
+               if (response.status) {
+                    this.handleErrorMessage(response.description);
+                    return;
+               }
+
+               this.cartNotification.renderContents(response);
+          })
+          .catch((e) => {
+               console.error(e);
+          })
+          .finally(() => {
+               this.button.classList.remove('loading');
+               this.button.removeAttribute('aria-disabled');
+               this.querySelector('.loading-overlay__spinner').classList.add('hidden');
+          });
 
           //create info for card popup
           //place info for card popup into the div element
           //show the cart popup
           //remove cart popup after x time.
+     }
+
+     handleErrorMessage(errorMessage = false) {
+          this.errorMessageWrapper = this.errorMessageWrapper || this.querySelector('.product-form__error-message-wrapper');
+          this.errorMessage = this.errorMessage || this.errorMessageWrapper.querySelector('.product-form__error-message');
+
+          this.errorMessageWrapper.toggleAttribute('hidden', !errorMessage);
+
+          if (errorMessage) {
+               this.errorMessage.textContent = errorMessage;
+          }
      }
 }
 

@@ -155,6 +155,11 @@
                     </facet-remove>
                </div>
 
+               <div class="product-form__error-message-wrapper" role="alert" hidden="true">
+                    <i class="mdi mdi-sync-alert"></i>
+                    <span class="product-form__error-message"></span>
+               </div>
+
                {%- if collection.products.size == 0 -%}
                <div class="collection">
                     <div class="loading-overlay gradient">

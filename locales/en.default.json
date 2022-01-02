@@ -36,7 +36,8 @@
                "previous": "Previous page"
           },
           "search": {
-               "search": "Search"
+               "search": "Search",
+               "page_title": "Search: {{ results }} results found for \"{{ terms }}\""
           },
           "cart": {
                "view": "View my cart ( {{ count }})",
@@ -185,19 +186,20 @@
      },
      "templates": {
           "search": {
-               "no_results": "No results found for “ {{ terms }}”. Check the spelling or use a different word or phrase.",
+               "no_results": "No results found for “{{ terms }}”. Check the spelling or use a different word or phrase.",
                "page": "Page",
                "products": "Products",
                "results_with_count": {
-                    "one": "{{ count }}result",
-                    "other": "{{ count }}results"
+                    "one": "{{ count }} result",
+                    "other": "{{ count }} results"
                },
                "results_with_count_and_term": {
-                    "one": "{{ count }}result found for “ {{ terms }}”",
-                    "other": "{{ count }}results found for “ {{ terms }}”"
+                    "one": "{{ count }} result found for “ {{ terms }}”",
+                    "other": "{{ count }} results found for “ {{ terms }}”"
                },
                "title": "Search results",
-               "search_for": "Search for “ {{ terms }}”"
+               "search_for": "Search for “ {{ terms }}”",
+               "search_start": "Search a Product Above"
           },
           "cart": {
                "cart": "Cart"
