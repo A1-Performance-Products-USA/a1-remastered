@@ -528,4 +528,8 @@
      .add-cart-btn:not(.icon-only) > i {
           display: none;
      }
+     .out_stock .qty-box-set,
+     .out_stock .add-cart-btn {
+          display: none;
+     }
 }
