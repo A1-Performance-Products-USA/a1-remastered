@@ -516,11 +516,11 @@
 @media screen and (max-width: 768px) {
      .qty-box-set .quantity {
           padding: .4rem .7rem;
-          font-size: .8rem;
+          font-size: 1rem;
      }
      .qty-box-set .qtyboxbtn {
-          font-size: .8rem;
-          padding: .6rem .5rem;
+          font-size: 1rem;
+          padding: .6rem .65rem;
      }
      .card-bottom .add-cart-btn > .add_cart {
           font-size: 1rem;

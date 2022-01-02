@@ -104,3 +104,9 @@
 #product-count-wrapper.loading .loading-overlay__spinner {
      display: flex;
 }
+
+@media screen and (max-width: 480px) {
+     .facet-filters__field {
+          font-size: 1.2rem
+     }
+}
