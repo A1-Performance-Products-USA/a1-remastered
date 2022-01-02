@@ -273,6 +273,11 @@ input.price-filter + .field__label {
      display: none;
 }
 
+.title-remove {
+     display: flex;
+     align-items: center;
+}
+
 @media screen and (max-width: 1024px) {
      .main-filter {
           display: none;
