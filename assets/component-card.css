@@ -212,9 +212,8 @@
      z-index: 1;
 }
 
-.card-wrapper .full-unstyled-link:hover {
-     outline: .2rem solid rgba(var(--color-foreground),.5);
-     outline-offset: 0.3rem;
+.card-wrapper:hover {
+     box-shadow: 0 0 .2rem 0 rgb(var(--color-base-accent-2));
 }
 
 .card-wrapper .full-unstyled-link:focus-visible {

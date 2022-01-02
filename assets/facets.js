@@ -272,6 +272,66 @@ class FilterOption extends HTMLElement {
           let maxHeight = parseInt(this.offsetHeight) + 15;
 
           this.style.maxHeight = this.offsetHeight + 'px';
+
+          this.label = this.querySelector('.dropdown-label');
+          
+          if (this.querySelector('.price-filters')) {
+               this.price = true;
+               this.priceFilters = Array.from(this.querySelectorAll('.price-filters'));
+          } else {
+               this.price = false;
+               this.filterItems = Array.from(this.querySelectorAll('.filter-items'));
+          }
+
+          if (window.innerWidth <= LaptopScreenBreak) {
+               this.label.querySelector('i').classList.remove('mdi-menu-up');
+               this.label.querySelector('i').classList.add('mdi-menu-down');
+
+               this.classList.remove('open');
+               this.classList.add('closed');
+
+               if (this.price) {
+                    this.priceFilters.forEach((element) => {
+                         $(element).hide();
+                    });
+               } else {
+                    this.filterItems.forEach((element) => {
+                         $(element).hide();
+                    });
+               }
+          }
+
+          this.label.addEventListener('click', this.toggle.bind(this));
+     }
+
+     changeOpenStatus() {
+          if (this.classList.contains('open')) {
+               this.classList.remove('open');
+               this.classList.add('closed');
+
+               this.label.querySelector('i').classList.remove('mdi-menu-up');
+               this.label.querySelector('i').classList.add('mdi-menu-down');
+          } else {
+               this.classList.remove('closed');
+               this.classList.add('open');
+
+               this.label.querySelector('i').classList.remove('mdi-menu-down');
+               this.label.querySelector('i').classList.add('mdi-menu-up');
+          }
+     }
+
+     toggle(e) {
+          e.preventDefault();
+
+          if (this.price) {
+               $(this.priceFilters).slideToggle(400, () => {
+                    this.changeOpenStatus();
+               });
+          } else {
+               $(this.filterItems).slideToggle(400, () => {
+                    this.changeOpenStatus();
+               });
+          }
      }
 }
 

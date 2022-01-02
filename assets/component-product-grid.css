@@ -41,3 +41,19 @@
 .collection--empty .title-wrapper > .title--secondary > .link-underlined {
      text-decoration: underline;
 }
+
+@media screen and (max-width: 1440px) {
+     .product-grid-item {
+          width: calc( (100% - 18px) / 3 );
+     }
+}
+@media screen and (max-width: 1024px) {
+     .product-grid-item {
+          width: calc( (100% - 18px) / 3 );
+     }
+}
+@media screen and (max-width: 768px) {
+     .product-grid-item {
+          width: calc( (100% - 18px) / 2 );
+     }
+}

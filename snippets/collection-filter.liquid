@@ -1,8 +1,6 @@
 {{ 'component-facets.css' | asset_url | stylesheet_tag }}
 {{ 'component-collection-filter.css' | asset_url | stylesheet_tag }}
 
-<script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
-
 {%- liquid
      assign price_range_active = false
      assign has_filters = false
@@ -10,8 +8,8 @@
 -%}
 
 
-<div class="filter-wrapper page-content facets-container">
-     <facet-filters-form class="facets small-hide">
+<div class="filter-wrapper {% if class %}{{ class }}{% else %}page-content{% endif %} facets-container">
+     <facet-filters-form class="facets">
           <form id="FacetFiltersForm" class="">
                {%- if results.terms -%}
                     <input type="hidden" name="q" value="{{ results.terms | escape }}">
@@ -36,16 +34,21 @@
                                              assign price_range_active_values = filter.active_values
                                         -%}
                                         {% else %}
-                                             <filter-option class="filter-option js-filter" data-index="{{ forloop.index }}">
+                                             <filter-option class="filter-option open js-filter" data-index="{{ forloop.index }}" style="display: flex;">
                                                   <div class="filter-title">
-                                                       <span>{{ 'products.facets.shop_by' | t }} {{ filter.label | escape }}</span>
-                                                       {% if filter.active_values.size > 0 %}
-                                                            <facet-remove>
-                                                                 <a href="{{ filter.url_to_remove }}" class="facets__reset">
-                                                                      <i class="mdi mdi-close-circle" aria-hidden="true"></i>
-                                                                 </a>
-                                                            </facet-remove>
-                                                       {% endif %}
+                                                       <div class="title-remove">
+                                                            {% if filter.active_values.size > 0 %}
+                                                                 <facet-remove>
+                                                                      <a href="{{ filter.url_to_remove }}" class="facets__reset">
+                                                                           <i class="mdi mdi-close-circle" aria-hidden="true"></i>
+                                                                      </a>
+                                                                 </facet-remove>
+                                                            {% endif %}
+                                                            <span>{{ 'products.facets.shop_by' | t }} {{ filter.label | escape }}</span>
+                                                       </div>
+                                                       <button class="dropdown-label">
+                                                            <i class="dropdown-label mdi mdi-menu-up"></i>
+                                                       </button>
                                                   </div>
                                                   <ul class="filter-items">
                                                        {%- for value in filter.values -%}
@@ -64,7 +67,7 @@
                                                             </li>
                                                        {% endfor %}
                                                   </ul>
-                                             </filter-option>
+                                             </filter-option open>
                                         {% endif %}
                                    {% when 'price_range' %}
                                         {% liquid
@@ -74,31 +77,36 @@
                                              assign uses_comma_decimals = true
                                              endif
                                         %}
-                                        <filter-option class="filter-option js-filter" data-index="{{ forloop.index }}">
+                                        <filter-option class="filter-option open js-filter" data-index="{{ forloop.index }}" style="display: flex;">
                                              <div class="filter-title">
-                                                  <span>{{ 'products.facets.shop_by' | t }} {{ filter.label | escape }}</span>
-                                                  {% if filter.active_values.size > 0 or price_range_active_values.size > 0 %}
-                                                       {% liquid
-                                                            assign price_reset_params = ''
-                                                            assign count = 0
-          
-                                                            for string in queryParams
-                                                                 unless string contains 'filter.p.m.prod_info.price_range' or string contains 'filter.v.price.gte' or string contains 'filter.v.price.lte'
-                                                                      if count == 0
-                                                                           assign price_reset_params = price_reset_params | append: '?' | append: string
-                                                                      else 
-                                                                           assign price_reset_params = price_reset_params | append: '&' | append: string
-                                                                      endif
-                                                                      assign count = count | plus: 1
-                                                                 endunless
-                                                            endfor
-                                                       %}
-                                                       <facet-remove>
-                                                            <a href="{{ results.url }}{{ price_reset_params }}" class="facets__reset">
-                                                                 <i class="mdi mdi-close-circle" aria-hidden="true"></i>
-                                                            </a>
-                                                       </facet-remove>
-                                                  {% endif %}
+                                                  <div class="title-remove">
+                                                       {% if filter.active_values.size > 0 or price_range_active_values.size > 0 %}
+                                                            {% liquid
+                                                                 assign price_reset_params = ''
+                                                                 assign count = 0
+               
+                                                                 for string in queryParams
+                                                                      unless string contains 'filter.p.m.prod_info.price_range' or string contains 'filter.v.price.gte' or string contains 'filter.v.price.lte'
+                                                                           if count == 0
+                                                                                assign price_reset_params = price_reset_params | append: '?' | append: string
+                                                                           else 
+                                                                                assign price_reset_params = price_reset_params | append: '&' | append: string
+                                                                           endif
+                                                                           assign count = count | plus: 1
+                                                                      endunless
+                                                                 endfor
+                                                            %}
+                                                            <facet-remove>
+                                                                 <a href="{{ results.url }}{{ price_reset_params }}" class="facets__reset">
+                                                                      <i class="mdi mdi-close-circle" aria-hidden="true"></i>
+                                                                 </a>
+                                                            </facet-remove>
+                                                       {% endif %}
+                                                       <span>{{ 'products.facets.shop_by' | t }} {{ filter.label | escape }}</span>
+                                                  </div>
+                                                  <button class="dropdown-label">
+                                                       <i class="dropdown-label mdi mdi-menu-up"></i>
+                                                  </button>
                                              </div>
 
                                              <div class="price-filters">
@@ -160,7 +168,7 @@
                                                        </div>
                                                   </price-range>
                                              </div>
-                                        </filter-option>
+                                        </filter-option open>
                               {% endcase %}
                          {%- endunless -%}
                     {%- endfor -%}
@@ -172,9 +180,12 @@
                     
                     {% if section.settings.enable_category and linklists[category_list].links.size > 0 %}
                          {% unless has_filters %}
-                              <filter-option class="filter-option">
+                              <filter-option open class="filter-option open" style="display: flex;">
                                    <div class="filter-title">
                                         <span>{{ category_title }}</span>
+                                        <button class="dropdown-label">
+                                             <i class="dropdown-label mdi mdi-menu-up"></i>
+                                        </button>
                                    </div>
                                    <ul class="filter-items parent-cat">
                                         {% for link in linklists[category_list].links %}
@@ -222,7 +233,7 @@
                                              {% endif %}
                                         {% endfor %}
                                    </ul>
-                              </filter-option>
+                              </filter-option open>
                          {% endunless %}
                     {% endif %}
                </div>
