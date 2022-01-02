@@ -439,7 +439,7 @@
 
 .qty-box-set .qtyboxbtn {
      font-size: 1rem;
-     padding: .5rem .8rem;
+     padding: .5rem .75rem;
 }
 
 .qty-box-set .qtyboxbtn.disabled {
@@ -510,5 +510,22 @@
      .card-wrapper:hover .card--soft {
           background-color: transparent;
           transition: background-color var(--duration-long) ease;
+     }
+}
+
+@media screen and (max-width: 768px) {
+     .qty-box-set .quantity {
+          padding: .4rem .7rem;
+          font-size: .8rem;
+     }
+     .qty-box-set .qtyboxbtn {
+          font-size: .8rem;
+          padding: .6rem .5rem;
+     }
+     .card-bottom .add-cart-btn > .add_cart {
+          font-size: 1rem;
+     }
+     .add-cart-btn:not(.icon-only) > i {
+          display: none;
      }
 }
