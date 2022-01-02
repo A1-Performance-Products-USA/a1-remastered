@@ -40,6 +40,7 @@
 
      .mobile-header > button, .mobile-header > a {
           background-color: transparent;
+          border: 1px solid transparent;
 
           font-size: 2rem;
           padding: 5px 10px;
@@ -47,6 +48,7 @@
 
      .mobile-header > button:hover, .mobile-header > a:hover {
           background-color: transparent;
+          border: 1px solid transparent;
      }
 
      .mobile-header > .account-icon {
