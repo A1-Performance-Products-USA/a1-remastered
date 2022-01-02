@@ -297,14 +297,10 @@
 }
 
 .card-bottom .vendor {
-     width: auto;
      position: relative;
      z-index: 2;
-}
-
-.card-bottom .vendor > a {
-     display: block;
-     width: 100%;
+     width: auto;
+     display: inline-block;
 }
 
 .card-bottom .add_tocart {
