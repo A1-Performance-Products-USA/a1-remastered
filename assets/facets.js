@@ -271,7 +271,7 @@ class FilterOption extends HTMLElement {
           
           let maxHeight = parseInt(this.offsetHeight) + 15;
 
-          this.style.maxHeight = this.offsetHeight + 'px';
+          this.style.maxHeight = maxHeight + 'px';
 
           this.label = this.querySelector('.dropdown-label');
           

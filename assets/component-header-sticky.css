@@ -12,6 +12,8 @@
      left: 0;
 
      z-index: 4;
+
+     overflow: hidden;
 }
 
 .sticky-header-wrapper.active {
@@ -39,6 +41,11 @@
      .sticky-header-wrapper > .sticky-header {
           padding: 5px 20px;
      }
+}
+
+.sticky-mobile-header .btn {
+     background: transparent;
+     border: 1px solid transparent;
 }
 
 /*
