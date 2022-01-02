@@ -1,3 +1,5 @@
+<script src="{{ 'component-card.js' | asset_url }}" defer="defer"></script>
+
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
 {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
@@ -201,7 +203,9 @@
                                              show_image_outline: section.settings.show_image_outline,
                                              show_partnumber: section.settings.show_partnumber,
                                              show_availability: section.settings.show_availability,
-                                             show_availability_limit: section.settings.show_availability_limit
+                                             show_availability_limit: section.settings.show_availability_limit,
+                                             show_quantity: section.settings.show_quantity,
+                                             action_icon_only: section.settings.action_icon_only
                                         %}
                                    </li>
                               {%- endfor -%}
@@ -288,7 +292,7 @@
                "type": "checkbox",
                "id": "show_availability",
                "default": true,
-               "label": "Show quantity left?"
+               "label": "Show availability left?"
           },
           {
                "type": "range",
@@ -298,6 +302,18 @@
                "step": 1,
                "default": 3,
                "label": "Maximum quantity for show"
+          },
+          {
+               "type": "checkbox",
+               "id": "show_quantity",
+               "default": true,
+               "label": "Show quantity box?"
+          },
+          {
+               "type": "checkbox",
+               "id": "action_icon_only",
+               "default": true,
+               "label": "Actions icons only?"
           },
           {
                "type": "header",

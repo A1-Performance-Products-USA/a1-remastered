@@ -14,6 +14,8 @@
      {% render 'product-card', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 
+{% assign quantity = product_card_product.selected_or_first_available_variant.inventory_quantity %}
+
 <div class="card-wrapper">
      <div class="card-information">
           <div class="card-information__wrapper">
@@ -37,28 +39,35 @@
                     </div>
 
                     {% render 'price', product: product_card_product, price_class: 'price--center' %}
-
+                    
                     <div class="card-add_to_cart">
-                         {% if product_card_product.available %}
-                              <div class="pro_btn add_tocart">
-                                   <form action="/cart/add" method="post"
-                                        class="variants clearfix cart-form-{{ product_card_product.id }}">
-                                        <input type="hidden" name="id" value="{{ product_card_product.variants[0].id }}" />
-                                        <a class="add-cart-btn btn" title="{{ 'products.product.add_to_cart' | t }}">
-                                             <span class="add_cart">{{ 'products.product.add_to_cart' | t }}</span>
-                                        </a>
-                                   </form>
-                              </div>
-                         {% else %}
-                              <div class="pro_btn add_tocart btn-soldout">
-                                   <a class="add-cart-btn btn add-to-cart-disable" title="{{ 'products.product.sold_out' | t }}">
-                                        <span class="add_cart">{{ 'products.product.sold_out' | t }}</span>
-                                   </a>
-                              </div>
-                         {% endif %}
+                         <add-to-cart class="pro_btn add_tocart {% unless product_card_product.available %}out_stock{% endunless %}">
+                              <form action="/cart/add" method="post"
+                                   class="add-cart-form clearfix cart-form-{{ product_card_product.id }}">
+                                   <input type="hidden" name="id" value="{{ product_card_product.variants[0].id }}" />
+
+                                   {% if show_quantity %}
+                                        <quantity-box-set class="qty-box-set">
+                                             <div class="dec btn qtyminus qtyboxbtn"><i class="mdi mdi-minus"></i></div>
+                                             <input type="number" name="quantity" value="1" min="1" max="{{ quantity }}" class="quantity" size="1">
+                                             <div class="inc btn qtyplus qtyboxbtn"><i class="mdi mdi-plus"></i></div>
+                                        </quantity-box-set>    
+                                   {% endif %}
+                                   <div class="action_buttons">
+                                        <button class="add-cart-btn btn {% if action_icon_only %}icon-only{% endif %} {% unless product_card_product.available %}disabled{% endunless %}" title="{{ 'products.product.add_to_cart' | t }}">
+                                             {% if product_card_product.available %}
+                                                  <i class="mdi mdi-cart"></i>
+                                                  <span class="add_cart">{{ 'products.product.add_to_cart' | t }}</span>
+                                             {% else %}
+                                                  <i class="mdi mdi-cart-off"></i>
+                                                  <span class="add_cart">{{ 'products.product.sold_out' | t }}</span>
+                                             {% endif %}
+                                        </button>
+                                   </div>
+                              </form>
+                         </add-to-cart>
 
                          {%- if show_availability -%}
-                              {% assign quantity = product_card_product.selected_or_first_available_variant.inventory_quantity %}
                               <div class="availability">
                                    {% if product_card_product.available %}
                                         {% if show_availability_limit == 0 %}
@@ -79,6 +88,13 @@
      </div>
 
      <div class="card card--product{% if product_card_product.featured_media == nil %} card--text-only card--soft{% endif %}{% if product_card_product.featured_media != nil and show_image_outline %} card--outline{% endif %}" tabindex="-1">
+          {% unless product_card_product.available %}
+               <div class="product-notify">
+                    <div class="sold-out">
+                         <span>{{ 'products.product.sold_out' | t }}</span>
+                    </div>
+               </div>
+          {% endunless %}
           <a href="{{ product_card_product.url | default: '#' }}" class="full-unstyled-link">
                <div class="card__inner">
                     {%- if product_card_product.featured_media -%}
@@ -91,30 +107,18 @@
                          -%}
 
                          <div{% if add_image_padding %} class="card__media-full-spacer" {% endif %}>
-                              <div class="media media--transparent media--{{ media_size }} media--hover-effect"
-                              {% if media_size == 'adapt' and product_card_product.featured_media %}
-                              style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;"
-                              {% endif %}>
-                                   <img srcset="{%- if product_card_product.featured_media.width >= 165 -%}{{ product_card_product.featured_media | img_url: '165x' }} 165w,{%- endif -%}
-                                   {%- if product_card_product.featured_media.width >= 360 -%}{{ product_card_product.featured_media | img_url: '360x' }} 360w,{%- endif -%}
-                                   {%- if product_card_product.featured_media.width >= 533 -%}{{ product_card_product.featured_media | img_url: '533x' }} 533w,{%- endif -%}
-                                   {%- if product_card_product.featured_media.width >= 720 -%}{{ product_card_product.featured_media | img_url: '720x' }} 720w,{%- endif -%}
-                                   {%- if product_card_product.featured_media.width >= 940 -%}{{ product_card_product.featured_media | img_url: '940x' }} 940w,{%- endif -%}
-                                   {%- if product_card_product.featured_media.width >= 1066 -%}{{ product_card_product.featured_media | img_url: '1066x' }} 1066w,{%- endif -%}
-                                   {{ product_card_product.featured_media | img_url: 'master' }} {{ product_card_product.featured_media.width }}w"
+                              <div class="media media--transparent media--{{ media_size }} media--hover-effect">
+                                   <img 
                                    src="{{ product_card_product.featured_media | img_url: '533x' }}"
-                                   sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                                    alt="{{ product_card_product.featured_media.alt | escape }}" loading="lazy"
-                                   class="motion-reduce" width="{{ product_card_product.featured_media.width }}"
+                                   class="motion-reduce" 
+                                   width="{{ product_card_product.featured_media.width }}"
                                    height="{{ product_card_product.featured_media.height }}">
                               </div>
                          </div>
                     {%- else -%}
                          <div{% if add_image_padding %} class="card__media-full-spacer" {% endif %}>
-                              <div class="media media--transparent media--{{ media_size }} media--hover-effect"
-                              {% if media_size == 'adapt' and product_card_product.featured_media %}
-                              style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;"
-                              {% endif %}>
+                              <div class="media media--transparent media--{{ media_size }} media--hover-effect">
                                    <img 
                                    src="{{ 'product_placeholder.png' | asset_img_url: 'master' }}"
                                    alt="{{ product_card_product.featured_media.alt | escape }}" loading="lazy"

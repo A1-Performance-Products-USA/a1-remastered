@@ -17,7 +17,6 @@ body, html {
      color: #000;
 
      font-size: 12px;
-     font-family: Muli, Helvetica, sans-serif;
 
      box-sizing: border-box;
 }
@@ -169,7 +168,6 @@ body .page-wrapper::after {
      touch-action: manipulation;
      -ms-touch-action: manipulation;
 
-     border: none;
      cursor: pointer;
      display: inline-block;
      font-weight: 600;
@@ -194,7 +192,7 @@ body .page-wrapper::after {
      -o-transition: all .3s ease-in-out;
      transition: all .3s ease-in-out;
      transition-property: all;
-     transition-property: color, background-color;
+     transition-property: color, background-color, border;
      -webkit-user-select: none;
      -moz-user-select: none;
      -ms-user-select: none;
@@ -204,6 +202,14 @@ body .page-wrapper::after {
      -moz-border-radius: 10px;
      -khtml-border-radius: 10px;
      border-radius: 10px;
+}
+
+.btn.disabled {
+     opacity: .6;
+     color: #fff !important;
+     background: #262629 !important;
+     cursor: default;
+     border: 1px solid #262629 !important;
 }
 
 .btn::after {

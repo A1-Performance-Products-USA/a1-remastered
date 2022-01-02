@@ -172,11 +172,13 @@
 
                a:hover, a.active {
                     color: {{ settings.lnk_hvr_color }};
+                    cursor: pointer;
                }
 
                .btn {
                     background-color: {{ settings.btn_color }};
                     color: {{ settings.btn_txt_color }};
+                    border: 1px solid {{ settings.btn_color }};
                }
 
                a.btn {
@@ -186,6 +188,7 @@
                .btn:hover,
                .btn:active {
                     background: {{ settings.btn_hvr_color }};
+                    border: 1px solid {{ settings.btn_hvr_color }};
                }
 
                .btn::after {

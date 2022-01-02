@@ -196,14 +196,14 @@
                                                                            <category-dropdown class="cat-item cat-parent first1">
                                                                                 <div class="cat-title" data-child="{{ child_list_handle }}">
                                                                                      <a href="javascript:void(0);"
-                                                                                          class="category-link cat-sc-toggle {% if link.active or child_link.active or child_link.child_active %}disabled{% endif %}">
+                                                                                          class="category-link cat-sc-toggle child-parent {% if link.active or child_link.active or child_link.child_active %}disabled{% endif %}">
                                                                                           {{ child_link.title | split: '[' | first | escape }} 
                                                                                      </a>
                                                                                      <span class="cat-menu-expand">+</span>
                                                                                 </div>
                                                                                 <ul id="{{ child_list_handle }}" class="children-cat cat-sc-toggle-content" style="display:none">
                                                                                      {% for child_link in child_link.links %}
-                                                                                     <li><a class="category-link {% if child_link.active %}disabled active{% endif %}" href="{{ child_link.url }}">{{ child_link.title | split: '[' | first | escape }} </a></li>
+                                                                                     <li><a class="category-link clickable{% if child_link.active %}disabled active{% endif %}" href="{{ child_link.url }}">{{ child_link.title | split: '[' | first | escape }} </a></li>
                                                                                      {% endfor %}
                                                                                 </ul>
                                                                            </category-dropdown>

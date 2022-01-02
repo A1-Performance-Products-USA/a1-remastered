@@ -110,11 +110,6 @@
      gap: 10px;
 }
 
-#forgot-btn:hover {
-     color: #111;
-     cursor: pointer;
-}
-
 .account-access-wrapper > .btn {
      width: auto;
 }

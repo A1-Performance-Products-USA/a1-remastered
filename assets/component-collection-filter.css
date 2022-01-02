@@ -253,6 +253,14 @@ input.price-filter + .field__label {
      cursor: default;
 }
 
+.category-link.child-parent {
+     font-size: 1.1rem;
+}
+
+.category-link.clickable {
+     font-size: 1.05rem;
+}
+
 .filter-option {
      height: 100%;
 }
