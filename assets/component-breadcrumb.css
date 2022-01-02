@@ -14,7 +14,7 @@
 }
 
 .breadcrumb > * {
-     max-width: 50%;
+     max-width: 60%;
 }
 
 .breadcrumb > .breadcrumb-left {
@@ -49,4 +49,20 @@
 
 .breadcrumb > .breadcrumb-right > .title {
      margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+     .breadcrumb {
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+     }
+
+     .breadcrumb > * {
+          max-width: 100%;
+     }
+
+     .breadcrumb > * > * {
+          text-align: center;
+     }
 }
