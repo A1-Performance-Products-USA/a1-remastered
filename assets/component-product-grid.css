@@ -14,3 +14,30 @@
 .product-grid-item {
      width: calc( (100% - 24px) / 4 );
 }
+
+.collection--empty .title-wrapper {
+     padding: 0;
+     margin: 2rem 0;
+
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+}
+
+.collection--empty .title-wrapper > i::before {
+     font-size: 10rem;
+}
+
+.collection--empty .title-wrapper > .title--primary {
+     font-size: 2rem;
+     margin-bottom: 1rem;
+     font-weight: bold;
+}
+
+.collection--empty .title-wrapper > .title--secondary {
+     font-size: 1.8rem;
+}
+
+.collection--empty .title-wrapper > .title--secondary > .link-underlined {
+     text-decoration: underline;
+}

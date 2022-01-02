@@ -4,13 +4,25 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 
+{%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+
 {%- liquid
-     if results.url
-          assign results_url = results.url
-     else 
-          assign terms = results.terms | escape
-          assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
-     endif
+     assign queryParams = contentForQuerystring | split: '"pageurl":"' | last | split: '"' | first | split: '.myshopify.com' | last | replace: '\/', '/' | replace: '%20', ' ' | replace: '\u0026', '&' | split: '?' | last | split: '&'
+     assign total_active_values = 0
+
+     assign results_url = ''
+     assign count = 0
+
+     for string in queryParams
+          if string contains 'view' or string contains 'sort_by' or string contains 'q='
+               if count == 0
+                    assign results_url = results_url | append: '?' | append: string
+               else 
+                    assign results_url = results_url | append: '&' | append: string
+               endif
+               assign count = count | plus: 1
+          endif
+     endfor
 -%}
 
 {% unless product_per_page %}
@@ -24,7 +36,7 @@
 <div class="page-content-wrapper product-list">
      {% if section.settings.enable_filtering %}
           <div class="main-filter">
-               {% render 'collection-filter', results: collection, shop_by_price_list: section.settings.shop_by_price_list, enable_category: section.settings.enable_category, category_title: section.settings.category_title, category_list: section.settings.category_list %}
+               {% render 'collection-filter', results: collection, shop_by_price_list: section.settings.shop_by_price_list, enable_category: section.settings.enable_category, category_title: section.settings.category_title, category_list: section.settings.category_list, queryParams: queryParams %}
           </div>
      {% endif %}
 
@@ -68,7 +80,6 @@
                               </div>
                          {%- endif -%}
                          {%- if section.settings.enable_show -%}
-                              {% assign current_page_size = paginate.page_size %}
                               <div class="facet-filters sorting caption">
                                    <div class="facet-filters__field">
                                         <label for="Show">{{ 'products.facets.show_by_label' | t }}</label>
@@ -127,7 +138,7 @@
                          {% endif %}
                     {%- endfor -%}
                     <facet-remove>
-                         <a href="{{ results_url }}" class="active-facets__button active-facets__button--light">
+                         <a href="{{ collection.url }}{{ results_url }}" class="active-facets__button active-facets__button--light">
                               <span class="active-facets__button-inner button button--tertiary">
                                    {{ 'products.facets.clear_all' | t }}
                                    {% render 'icon-close-small' %}
@@ -146,8 +157,28 @@
                               </svg>
                          </div>
                     </div>
-                    <ul id="product-grid" class="product-grid" data-id="{{ section.id }}">
-                    </ul>
+                    <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
+                         <div class="loading-overlay gradient"></div>
+                         <div class="title-wrapper center">
+                              <i class="mdi mdi-search-web mdi-48px"></i>
+                              <span class="title title--primary">
+                                   {%- liquid
+                                        for f in collection.filters
+                                             assign total_active_values = total_active_values | plus: f.active_values.size
+                                        endfor
+                                   -%}
+
+                                   {{ 'sections.collection_template.empty' | t }}
+                              </span>
+                              <span class="title title--secondary">                                   
+                                   {% if total_active_values > 0 %}
+                                        {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "link-underlined" }}
+                                   {% else %}
+                                        {{ 'sections.collection_template.empty_collection_html' | t: link: routes.root_url, class: "link-underlined" }}
+                                   {% endif %}
+                              </span>
+                         </div>
+                    </div>
                </div>
                {%- else -%}
                     <div class="collection">
@@ -168,7 +199,9 @@
                                              add_image_padding: section.settings.add_image_padding,
                                              show_vendor: section.settings.show_vendor,
                                              show_image_outline: section.settings.show_image_outline,
-                                             show_rating: section.settings.show_rating
+                                             show_partnumber: section.settings.show_partnumber,
+                                             show_availability: section.settings.show_availability,
+                                             show_availability_limit: section.settings.show_availability_limit
                                         %}
                                    </li>
                               {%- endfor -%}
@@ -247,10 +280,24 @@
           },
           {
                "type": "checkbox",
-               "id": "show_rating",
-               "default": false,
-               "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
-               "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+               "id": "show_partnumber",
+               "default": true,
+               "label": "Show part number?"
+          },
+          {
+               "type": "checkbox",
+               "id": "show_availability",
+               "default": true,
+               "label": "Show quantity left?"
+          },
+          {
+               "type": "range",
+               "id": "show_availability_limit",
+               "min": 0,
+               "max": 100,
+               "step": 1,
+               "default": 3,
+               "label": "Maximum quantity for show"
           },
           {
                "type": "header",

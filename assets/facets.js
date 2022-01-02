@@ -129,7 +129,7 @@ class FacetFiltersForm extends HTMLElement {
      }
 
      static renderAdditionalElements(html) {
-          const mobileElementSelectors = ['.sorting'];
+          const mobileElementSelectors = ['.sort-options'];
 
           mobileElementSelectors.forEach((selector) => {
                if (!html.querySelector(selector)) return;
@@ -149,6 +149,7 @@ class FacetFiltersForm extends HTMLElement {
           const optionSource = source.querySelector('.filter-items');
 
           if (optionTarget && optionSource) {
+               console.log('here')
                target.querySelector('.filter-items').outerHTML = source.querySelector('.filter-items').outerHTML;
                
                if (target.querySelector('.filter-items').classList.contains('price-range') && target.querySelector('.price-tags')) {
@@ -158,7 +159,9 @@ class FacetFiltersForm extends HTMLElement {
      }
 
      static updateURLHash(searchParams) {
-          history.pushState({ searchParams }, '', `${window.location.pathname}${searchParams && '?'.concat(searchParams)}`);
+          history.pushState({
+               searchParams
+          }, '', `${window.location.pathname}${searchParams && '?'.concat(searchParams)}`);
      }
 
      static getSections() {
@@ -262,6 +265,18 @@ class PriceTags extends HTMLElement {
 
 customElements.define('price-tags', PriceTags);
 
+class FilterOption extends HTMLElement {
+     constructor() {
+          super();
+          
+          let maxHeight = parseInt(this.offsetHeight) + 15;
+
+          this.style.maxHeight = this.offsetHeight + 'px';
+     }
+}
+
+customElements.define('filter-option', FilterOption);
+
 class CategoryDropdown extends HTMLElement {
      constructor() {
           super();
@@ -279,8 +294,6 @@ class CategoryDropdown extends HTMLElement {
           } else {
                this.querySelector('.cat-title .cat-menu-expand').innerHTML = '+';
           }
-
-          console.log(childTarget)
 
           $(this.querySelector('#' + childTarget)).slideToggle(400, () => {
                if (!this.classList.contains('extended')) {

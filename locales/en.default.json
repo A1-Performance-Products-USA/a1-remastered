@@ -78,7 +78,8 @@
           "previous_slide": "Slide left",
           "loading": "Loading...",
           "total_reviews": "total reviews",
-          "star_reviews_info": "{{ rating_value }}out of  {{ rating_max }}stars"
+          "star_reviews_info": "{{ rating_value }}out of  {{ rating_max }}stars",
+          "part_number": "Part Number"
      },
      "blogs": {
           "article": {
@@ -107,6 +108,7 @@
      "products": {
           "product": {
                "add_to_cart": "Add to cart",
+               "availability": "Only {{ quantity }} Left In-Stock!",
                "description": "Description",
                "on_sale": "Sale",
                "product_variants": "Product variants",
@@ -277,7 +279,8 @@
           "collection_template": {
                "empty": "No products found",
                "title": "Collection",
-               "use_fewer_filters_html": "Use fewer filters or <a class=\" {{ class }}\" href=\" {{ link }}\">clear all<\/a>"
+               "use_fewer_filters_html": "Use different filters or <a class=\" {{ class }}\" href=\" {{ link }}\">clear all<\/a>",
+               "empty_collection_html": "Select a new category or go <a class=\"{{ class }}\" href=\"{{ link }}\">home<\/a>"
           },
           "video": {
                "load_video": "Load video:  {{ description }}"
