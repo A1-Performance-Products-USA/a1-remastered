@@ -54,7 +54,7 @@
 }
 @media screen and (max-width: 768px) {
      .product-grid-item {
-          width: calc( (100% - 18px) / 2 );
+          width: calc( (100% - 12px) / 2 );
      }
 
      .sort-wrapper {
@@ -65,11 +65,14 @@
 }
 @media screen and (max-width: 480px) {
      .product-grid-item {
-          width: calc( (100% - 18px) / 1 );
+          width: calc( (100% - 0px) / 1 );
      }
      .sort-options {
           flex-direction: column;
           align-items: flex-start;
           gap: 1rem;
+     }
+     .sorting .select__select {
+          padding-left: .25rem;
      }
 }
