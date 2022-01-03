@@ -1,8 +1,13 @@
 class AddToCart extends HTMLElement {
      constructor() {
           super();
-          
+
+          this.init();
+     }
+
+     init() {
           this.form = this.querySelector('form');
+          this.form.querySelector('[name=id]').disabled = false;
           this.button = this.querySelector('button');
 
           this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
@@ -13,14 +18,24 @@ class AddToCart extends HTMLElement {
           //Prevent submission
           e.preventDefault();
 
+          if (!this.form || !this.button || !this.cartNotification) this.init();
+
           if (this.button.classList.contains('loading')) return;
 
-          this.handleErrorMessage();
+          this.handleErrorMessage(false);
           this.cartNotification.setActiveElement(document.activeElement);
 
           this.button.setAttribute('aria-disabled', true);
           this.button.classList.add('loading');
-          this.querySelector('.loading-overlay__spinner').classList.remove('hidden');
+          this.button.classList.add('disabled');
+
+          const config = fetchConfig('javascript');
+          config.headers['X-Requested-With'] = 'XMLHttpRequest';
+          config.body = JSON.stringify({
+               ...JSON.parse(serializeForm(this.form)),
+               sections: this.cartNotification.getSectionsToRender().map((section) => section.id),
+               sections_url: window.location.pathname
+          });
 
           //send request for cart addition
           fetch(`${routes.cart_add_url}`, config)
@@ -30,7 +45,7 @@ class AddToCart extends HTMLElement {
                     this.handleErrorMessage(response.description);
                     return;
                }
-
+ 
                this.cartNotification.renderContents(response);
           })
           .catch((e) => {
@@ -38,24 +53,21 @@ class AddToCart extends HTMLElement {
           })
           .finally(() => {
                this.button.classList.remove('loading');
+               this.button.classList.remove('disabled');
                this.button.removeAttribute('aria-disabled');
-               this.querySelector('.loading-overlay__spinner').classList.add('hidden');
           });
-
-          //create info for card popup
-          //place info for card popup into the div element
-          //show the cart popup
-          //remove cart popup after x time.
      }
 
      handleErrorMessage(errorMessage = false) {
-          this.errorMessageWrapper = this.errorMessageWrapper || this.querySelector('.product-form__error-message-wrapper');
+          this.errorMessageWrapper = this.errorMessageWrapper || document.querySelector('.product-form__error-message-wrapper');
           this.errorMessage = this.errorMessage || this.errorMessageWrapper.querySelector('.product-form__error-message');
-
-          this.errorMessageWrapper.toggleAttribute('hidden', !errorMessage);
 
           if (errorMessage) {
                this.errorMessage.textContent = errorMessage;
+               this.errorMessageWrapper.classList.remove('hidden')
+          } else {
+               this.errorMessage.textContent = "";
+               this.errorMessageWrapper.classList.add('hidden');
           }
      }
 }

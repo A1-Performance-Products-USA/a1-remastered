@@ -476,6 +476,9 @@
 .add-cart-btn.loading .loading {
      display: inline-block;
 }
+.add-cart-btn.loading > *:not(.loading) {
+     display: none;
+}
 
 @media screen and (min-width: 990px) {
 

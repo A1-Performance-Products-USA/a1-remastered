@@ -11,7 +11,7 @@
      top: 0;
      left: 0;
 
-     z-index: 4;
+     z-index: 5;
 
      overflow: hidden;
 }
@@ -28,6 +28,9 @@
      justify-content: space-between;
 
      padding: 5px 0;
+
+     z-index: 5;
+     position: relative;
 }
 
 .sticky-header-wrapper > hr {
@@ -178,7 +181,7 @@
 
           width: 90%;
 
-          z-index: 4;
+          z-index: 5;
 
           display: block;
           visibility: visible;
@@ -302,7 +305,7 @@
 
           padding: 10px;
 
-          z-index: 6;
+          z-index: 5;
      }
 
      .sticky-mobile-header {

@@ -36,24 +36,22 @@ class CartNotification extends HTMLElement {
      renderContents(parsedState) {
           this.productId = parsedState.id;
           this.getSectionsToRender().forEach((section => {
+               console.log(parsedState.sections[section.id]);
                document.getElementById(section.id).innerHTML =
                     this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
           }));
 
-          if (this.header) this.header.reveal();
           this.open();
      }
 
      getSectionsToRender() {
-          return [{
+          return [
+               {
                     id: 'cart-notification-product',
                     selector: `#cart-notification-product-${this.productId}`,
                },
                {
                     id: 'cart-notification-button'
-               },
-               {
-                    id: 'cart-icon-bubble'
                }
           ];
      }

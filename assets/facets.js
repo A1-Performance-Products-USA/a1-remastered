@@ -63,6 +63,7 @@ class FacetFiltersForm extends HTMLElement {
                .then((responseText) => {
                     const html = responseText;
                     FacetFiltersForm.filterData = [...FacetFiltersForm.filterData, { html, url }];
+                    FacetFiltersForm.renderTitleBreadcrumb(html);
                     FacetFiltersForm.renderFilters(html, event);
                     FacetFiltersForm.renderProductGridContainer(html);
                     FacetFiltersForm.renderProductCount(html);
@@ -71,9 +72,20 @@ class FacetFiltersForm extends HTMLElement {
 
      static renderSectionFromCache(filterDataUrl, event) {
           const html = FacetFiltersForm.filterData.find(filterDataUrl).html;
+          FacetFiltersForm.renderTitleBreadcrumb(html);
           FacetFiltersForm.renderFilters(html, event);
           FacetFiltersForm.renderProductGridContainer(html);
           FacetFiltersForm.renderProductCount(html);
+     }
+
+     static renderTitleBreadcrumb(html) {
+          if (!document.querySelector('predictive-search-page')) return;
+
+          const newHtml = new DOMParser().parseFromString(html, 'text/html');
+
+          document.title = newHtml.title;
+
+          document.querySelector('.breadcrumb-left span').innerHTML = newHtml.querySelector('.breadcrumb-left span').innerHTML;
      }
 
      static renderProductGridContainer(html) {
@@ -83,6 +95,8 @@ class FacetFiltersForm extends HTMLElement {
                document.querySelector('.sort-wrapper').innerHTML = new DOMParser().parseFromString(html, 'text/html').querySelector('.sort-wrapper').innerHTML
 
                document.querySelector('.collection').innerHTML = new DOMParser().parseFromString(html, 'text/html').querySelector('.collection').innerHTML
+
+               document.querySelector('.pagination-wrapper').innerHTML = new DOMParser().parseFromString(html, 'text/html').querySelector('.pagination-wrapper').innerHTML
 
                document.getElementById('ProductGridContainer').querySelector('.collection').classList.remove('loading')
           }

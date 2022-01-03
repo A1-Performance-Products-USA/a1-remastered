@@ -1,5 +1,6 @@
 <script src="{{ 'component-card.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'component-pagination.js' | asset_url }}" defer="defer"></script>
 
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
@@ -155,7 +156,7 @@
                     </facet-remove>
                </div>
 
-               <div class="product-form__error-message-wrapper" role="alert" hidden="true">
+               <div class="product-form__error-message-wrapper hidden" role="alert">
                     <i class="mdi mdi-sync-alert"></i>
                     <span class="product-form__error-message"></span>
                </div>

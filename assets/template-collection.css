@@ -105,6 +105,10 @@
      display: flex;
 }
 
+.product-form__error-message-wrapper.hidden {
+     display: none;
+}
+
 @media screen and (max-width: 480px) {
      .facet-filters__field {
           font-size: 1.2rem

@@ -1,7 +1,7 @@
 class PredictiveSearchPage extends HTMLElement {
      constructor() {
           super();
-          this.cachedResults = {};
+
           this.input = this.querySelector('input[type="search"]');
 
           this.setupEventListeners();
@@ -36,7 +36,7 @@ class PredictiveSearchPage extends HTMLElement {
           if (!searchTerm.length) {
                return;
           }
-          
+
           this.onChange(event);
      }
 
@@ -49,33 +49,7 @@ class PredictiveSearchPage extends HTMLElement {
           newSearchParams.set('resources[limit]', encodeURIComponent('48'));
           newSearchParams.set('resources[fields]', encodeURIComponent("variants.sku,title,product_type,vendor,variants.barcode"));
 
-          if (this.cachedResults[queryKey]) {
-               this.renderSearchResults(this.cachedResults[queryKey]);
-               return;
-          }
-
           FacetFiltersForm.renderPage(newSearchParams.toString(), event);
-     }
-
-     setLiveRegionLoadingState() {
-          this.statusElement = this.statusElement || this.querySelector('.predictive-search-status');
-          this.loadingText = this.loadingText || this.getAttribute('data-loading-text');
-
-          this.setLiveRegionText(this.loadingText);
-          this.setAttribute('loading', true);
-     }
-
-     renderSearchResults(resultsMarkup) {
-          this.predictiveSearchResults.innerHTML = resultsMarkup;
-          this.setAttribute('results', true);
-
-          this.setLiveRegionResults();
-          this.open();
-     }
-
-     setLiveRegionResults() {
-          this.removeAttribute('loading');
-          this.setLiveRegionText(this.querySelector('[data-predictive-search-live-region-count-value]').textContent);
      }
 }
 

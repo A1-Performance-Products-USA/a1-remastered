@@ -15,6 +15,10 @@
      width: calc( (100% - 24px) / 4 );
 }
 
+.product-list-content {
+     z-index: 1;
+}
+
 .collection--empty .title-wrapper {
      padding: 0;
      margin: 2rem 0;

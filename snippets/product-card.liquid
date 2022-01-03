@@ -42,8 +42,8 @@
                     
                     <div class="card-add_to_cart">
                          <add-to-cart class="pro_btn add_tocart {% unless product_card_product.available %}out_stock{% endunless %}">
-                              <form action="/cart/add" method="post"
-                                   class="add-cart-form clearfix cart-form-{{ product_card_product.id }}">
+                              {%- assign product_form_id = 'product-form-' | append: section.id -%}
+                              {%- form 'product', product_card_product, id: product_form_id, class: 'form add-cart-form clearfix cart-form-{{ product_card_product.id }}', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
                                    <input type="hidden" name="id" value="{{ product_card_product.variants[0].id }}" />
 
                                    {% if show_quantity %}
@@ -62,11 +62,11 @@
                                                   <i class="mdi mdi-cart-off"></i>
                                                   <span class="add_cart">{{ 'products.product.sold_out' | t }}</span>
                                              {% endif %}
-                                             <i class="loading mdi mdi-cached"></i>
+                                             <i class="loading mdi mdi-spin mdi-autorenew"></i>
                                              <span class="loading add_cart">{{ 'accessibility.loading' | t }}</span>
                                         </button>
                                    </div>
-                              </form>
+                              {% endform %}
                          </add-to-cart>
 
                          {%- if show_availability -%}

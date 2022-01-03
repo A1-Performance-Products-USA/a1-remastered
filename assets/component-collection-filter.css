@@ -1,4 +1,5 @@
-.template-collection .page-content.filter-wrapper {
+.template-collection .page-content.filter-wrapper,
+.template-search .page-content.filter-wrapper {
      padding: 20px;
 }
 
