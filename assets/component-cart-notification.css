@@ -171,4 +171,8 @@
      .cart-notification-wrapper {
           max-width: calc(100% - 2rem);
      }
+
+     .cart-notification-product {
+          flex-direction: column;
+     }
 }
