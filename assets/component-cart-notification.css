@@ -166,3 +166,9 @@
           transform: translate(-50%, -50%)
      }
 }
+
+@media screen and (max-width: 768px) {
+     .cart-notification-wrapper {
+          max-width: calc(100% - 2rem);
+     }
+}
