@@ -4,8 +4,6 @@
      top: 70px;
      visibility: hidden;
      display: none;
-
-     transform: translateY(-100%);
 }
 
 .cart-notification-wrapper.active {
@@ -47,8 +45,6 @@
 }
 
 .cart-notification-wrapper.active {
-     transform: translateY(0);
-     transition: transform var(--duration-default) ease, visibility 0s;
      visibility: visible;
 }
 
@@ -160,4 +156,13 @@
 
 .overlay.active {
      display: block;
+}
+
+@media screen and (max-width: 1240px) {
+     .cart-notification-wrapper {
+          top: 50%;
+          left: 50%;
+          right: unset;
+          transform: translate(-50%, -50%)
+     }
 }

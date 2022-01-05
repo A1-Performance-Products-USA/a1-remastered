@@ -16,7 +16,7 @@ Usage:
                     <h2 class="cart-notification__heading caption-large">{%- render 'icon-checkmark' -%}
                          {{ 'general.cart.item_added' | t }}</h2>
                     <button type="button"
-                         class="cart-notification-close"
+                         class="cart-notification-close close-btn"
                          aria-label="{{ 'accessibility.close' | t }}">
                          <i class="mdi mdi-close"></i>
                     </button>
@@ -28,7 +28,7 @@ Usage:
                     <form action="{{ routes.cart_url }}" method="post" id="cart-notification-form">
                          <button class="btn" name="checkout">{{ 'sections.cart.checkout' | t }}</button>
                     </form>
-                    <a type="button" class="link">{{ 'general.continue_shopping' | t }}</a>
+                    <a type="button" class="link close-btn">{{ 'general.continue_shopping' | t }}</a>
                </div>
           </div>
      </div>
