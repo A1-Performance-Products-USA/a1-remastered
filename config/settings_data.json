@@ -114,7 +114,7 @@
             "type": "account_link",
             "settings": {
               "title": "Addresses",
-              "link_page": "",
+              "link_page": "\/account\/addresses",
               "icon": "mdi-home-map-marker"
             }
           },
@@ -122,7 +122,7 @@
             "type": "account_link",
             "settings": {
               "title": "Orders",
-              "link_page": "",
+              "link_page": "\/account?view=orders",
               "icon": "mdi-inbox-arrow-up"
             }
           },
@@ -185,7 +185,7 @@
             "type": "account_link",
             "settings": {
               "title": "Addresses",
-              "link_page": "",
+              "link_page": "\/account\/addresses",
               "icon": "mdi-home-map-marker"
             }
           },
@@ -193,7 +193,7 @@
             "type": "account_link",
             "settings": {
               "title": "Orders",
-              "link_page": "",
+              "link_page": "\/account?view=orders",
               "icon": "mdi-inbox-arrow-up"
             }
           },

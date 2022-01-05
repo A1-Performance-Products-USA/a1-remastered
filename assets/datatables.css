@@ -1,0 +1,92 @@
+.dataTables_wrapper {
+     display: flex;
+     flex-direction: column;
+     gap: 1rem;
+}
+
+.dataTables_filter {
+     display: flex;
+     justify-content: flex-end;
+}
+
+.dataTables_filter > label {
+     display: flex;
+     align-items: center;
+     width: 25%;
+     gap: 1rem;     
+}
+
+.dataTables_filter > label > input {
+     padding: .5rem;
+}
+
+
+.dataTables_wrapper th {
+     font-size: 1.2rem;
+}
+.dataTables_wrapper th:hover {
+     cursor: pointer;
+}
+.dataTables_wrapper th > i {
+     font-size: 1.4rem;
+}
+
+.dataTables_wrapper th i.ascending,
+.dataTables_wrapper th i.descending {
+     display: none;
+     visibility: hidden;
+}
+
+.dataTables_wrapper th[aria-sort='ascending'] i.ascending {
+     display: inline-block;
+     visibility: visible;
+}
+
+.dataTables_wrapper th[aria-sort='descending'] i.descending{
+     display: inline-block;
+     visibility: visible;
+}
+
+.dataTables_wrapper .sorting_1 {
+     background-color: rgb(var(--color-background));
+}
+
+.dataTable {
+     width: 100%;
+     border: 1px solid #e5e5e5;
+     border-collapse: collapse;
+     border-radius: 10px;
+}
+
+.dataTable thead {
+     border: 1px solid #e5e5e5;
+}
+
+.dataTable thead > tr > th {
+     padding: 1rem;
+     text-align: left;
+}
+
+.dataTable tbody > tr {
+     border: 1px solid #e5e5e5;
+}
+
+.dataTable tbody > tr > td {
+     padding: 1rem;
+}
+
+.dataTable tbody > tr > td:last-child {
+     text-align: right;
+}
+
+@media screen and (max-width: 1240px) {
+     .dataTables_filter > label {
+          width: 50%;
+     }
+}
+
+@media screen and (max-width: 768px) {
+     .dataTables_filter > label {
+          width: 100%;
+     }
+}

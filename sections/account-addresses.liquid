@@ -182,6 +182,10 @@
                     </li>
                {% endfor %}
           </ul>
+
+          {%- if paginate.pages > 1 -%}
+               {% render 'pagination', paginate: paginate, anchor: '#breadcrumb' %}
+          {%- endif -%}
      {% endpaginate %}
 </div>
 

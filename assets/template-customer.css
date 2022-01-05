@@ -17,15 +17,27 @@
      position: relative;
 }
 
+.ascending {
+     display: none;
+     visibility: hidden;
+}
+.descending {
+     display: none;
+     visibility: hidden;
+}
+
 @media screen and (max-width: 1240px) {
      .account-wrapper {
           flex-wrap: wrap;
      }
 
-     .account-wrapper > .account-nav-wrapper {
+     .account-dashbard-page > .account-wrapper > .account-nav-wrapper {
           display: none;
           visibility: hidden;
+     }
+     .account-wrapper > .account-nav-wrapper {
           width: 100%;
           max-width: 100%;
+          order: 2;
      }
 }

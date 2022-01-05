@@ -1,0 +1,111 @@
+{{ 'section-account-orders.css' | asset_url | stylesheet_tag }}
+{{ 'datatables.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'datatables.min.js' | asset_url }}" defer="defer"></script>
+
+<div class="account-orders">
+     {% paginate customer.orders by 20 %}
+          <h2>{{ 'customer.orders.title' | t: store_name: shop.name }}</h2>
+     {%- if customer.orders.size > 0 -%}
+          <table role="table" class="order-history" id="OrderHistory">
+               <caption class="visually-hidden">{{ 'customer.orders.title' | t }}</caption>
+               <thead role="rowgroup">
+                    <tr role="row">
+                         <th id="ColumnOrder" scope="col" role="columnheader" data-priority="1">
+                              {{ 'customer.orders.order_number' | t }}
+                              <i class="ascending mdi mdi-menu-up"></i>
+                              <i class="descending mdi mdi-menu-down"></i>
+                         </div>
+                         <th id="ColumnDate" scope="col" role="columnheader" data-priority="1">
+                              {{ 'customer.orders.date' | t }}
+                              <i class="ascending mdi mdi-menu-up"></i>
+                              <i class="descending mdi mdi-menu-down"></i>
+                         </th>
+                         <th id="ColumnPayment" scope="col" role="columnheader">
+                              {{ 'customer.orders.payment_status' | t }}
+                              <i class="ascending mdi mdi-menu-up"></i>
+                              <i class="descending mdi mdi-menu-down"></i>
+                         </th>
+                         <th id="ColumnFulfillment" scope="col" role="columnheader" data-priority="1">
+                              {{ 'customer.orders.fulfillment_status' | t }}
+                              <i class="ascending mdi mdi-menu-up"></i>
+                              <i class="descending mdi mdi-menu-down"></i>
+                         </th>
+                         <th id="ColumnTotal" scope="col" role="columnheader" data-priority="1">
+                              {{ 'customer.orders.total' | t }}
+                              <i class="ascending mdi mdi-menu-up"></i>
+                              <i class="descending mdi mdi-menu-down"></i>
+                         </th>
+                         <th id="ColumnView" scope="col" role="columnheader"></th>
+                    </tr>
+               </thead>
+               <tbody role="rowgroup">
+                    {%- for order in customer.orders -%}
+                         <tr role="row">
+                              <td id="RowOrder" role="cell" headers="ColumnOrder"
+                                   data-label="{{ 'customer.orders.order_number' | t }}">
+                                   <a href="{{ order.customer_url }}"
+                                        aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">
+                                        {{ order.name }}&nbsp;&nbsp;&nbsp;&nbsp;
+                                   </a>
+                              </td>
+                              <td headers="RowOrder ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}">
+                                   <a href="{{ order.customer_url }}"
+                                        aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">
+                                   {{ order.created_at | time_tag: format: 'date' }}
+                                   </a>
+                              </td>
+                              <td headers="RowOrder ColumnPayment" role="cell"
+                                   data-label="{{ 'customer.orders.payment_status' | t }}">
+                                   <a href="{{ order.customer_url }}"
+                                        aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">
+                                   {{ order.financial_status_label }}</a>
+                              </td>
+                              <td headers="RowOrder ColumnFulfillment" role="cell"
+                                   data-label="{{ 'customer.orders.fulfillment_status' | t }}">
+                                   <a href="{{ order.customer_url }}"
+                                        aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">
+                                   {{ order.fulfillment_status_label }}
+                                   </a>
+                              </td>
+                              <td headers="RowOrder ColumnTotal" role="cell" data-label="{{ 'customer.orders.total' | t }}">
+                                   <a href="{{ order.customer_url }}"
+                                        aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">
+                                   {{ order.total_price | money_with_currency }}
+                                   </a>
+                              </td>
+                              <td headers="RowOrder ColumnView" class="ColumnView" role="cell" data-label="{{ 'customer.orders.view' | t }}">
+                                   <a class="btn" href="{{ order.customer_url }}">{{ 'customer.orders.view' | t }}</a></td>
+                         </tr>
+                    {%- endfor -%}
+               </tbody>
+          </table>
+     {%- else -%}
+          <p>{{ 'customer.orders.none' | t }}</p>
+     {%- endif -%}
+
+     {%- if paginate.pages > 1 -%}
+     {% render 'pagination', paginate: paginate, anchor: '' %}
+     {%- endif -%}
+     {% endpaginate %}
+</div>
+
+<script>
+     window.onload = () => {
+          typeof OrderHistory !== 'undefined' && new DataTable('#OrderHistory', {
+               paging: false,
+               responsive: {
+                    details: false
+               }
+          });
+     }
+</script>
+
+{% schema %}
+{
+"name": "Account Orders",
+"class": "account-content page-content",
+"settings": [
+]
+}
+{% endschema %}

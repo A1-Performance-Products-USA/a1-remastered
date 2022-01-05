@@ -1,0 +1,20 @@
+.account-orders {
+     display: flex;
+     flex-direction: column;
+}
+
+.account-orders .dataTable.order-history  tbody > tr > td:not(.ColumnView) {
+     padding: 0;
+}
+
+.account-orders .order-history tbody td > a:not(.btn) {
+     display: block;
+     width: 100%;
+     height: 100%;
+     padding: 1rem;
+}
+
+.account-orders .order-history tbody tr:hover td > a:not(.btn) {
+     color: #C00;
+     cursor: pointer;
+}
