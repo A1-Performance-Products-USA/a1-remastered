@@ -50,11 +50,18 @@
 
 .register-wrapper > .register-pane > form > .goto-login {
      text-align: center;
-     font-size: 1.15rem;
+     font-size: 1rem;
+     padding-bottom: 4px;
+     margin: auto;
+}
+
+.register-wrapper > .register-pane > form a {
+     border-bottom: 1px solid black;
 }
 
 .register-wrapper > .register-pane > form a:hover {
-     color: #111;
+     color: #C00;
+     border-color: #C00;
      cursor: pointer;
 }
 
@@ -66,6 +73,12 @@
 .form__message {
      font-size: 1rem;
      padding-left: 10px;
+}
+
+.form-submit-center > .btn {
+     font-size: 1.28rem;
+     font-weight: normal;
+     border-radius: 30px;
 }
 
 @media screen and (max-width: 1024px) {

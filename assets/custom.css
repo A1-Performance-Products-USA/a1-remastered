@@ -204,6 +204,37 @@ body .page-wrapper::after {
      border-radius: 10px;
 }
 
+.btn.icon-mobile > i {
+     display: none;
+     visibility: hidden;
+}
+
+.title-w-btn {
+     display: flex;
+     align-items: flex-start;
+     gap: 1rem;
+}
+
+.title-w-btn > h2 {
+     flex-grow: 1;
+}
+
+.title-w-btn > button {
+     font-size: 1.3rem;
+     padding: 1rem 1.1rem;
+}
+
+@media screen and (max-width: 768px) {
+     .btn.icon-mobile > i {
+          display: inline-block;
+          visibility: visible;
+     }
+     .btn.icon-mobile > span {
+          display: none;
+          visibility: hidden;
+     }
+}
+
 .btn.disabled {
      opacity: .6;
      color: #fff !important;

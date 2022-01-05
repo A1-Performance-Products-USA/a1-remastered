@@ -4,6 +4,7 @@
      flex-direction: row;
      align-items: flex-start;
      width: 100%;
+     gap: 1rem;
 }
 
 .account-wrapper > .account-nav-wrapper {
@@ -14,5 +15,17 @@
 .account-wrapper > .account-content {
      flex-grow: 1;
      position: relative;
-     margin-left: 20px;
+}
+
+@media screen and (max-width: 1240px) {
+     .account-wrapper {
+          flex-wrap: wrap;
+     }
+
+     .account-wrapper > .account-nav-wrapper {
+          display: none;
+          visibility: hidden;
+          width: 100%;
+          max-width: 100%;
+     }
 }

@@ -109,6 +109,7 @@
      "products": {
           "product": {
                "add_to_cart": "Add to cart",
+               "update_in_cart": "Update Cart",
                "availability": "Only {{ quantity }} Left In-Stock!",
                "description": "Description",
                "on_sale": "Sale",
@@ -312,7 +313,7 @@
                "cancel": "Decline invitation"
           },
           "addresses": {
-               "title": "Addresses",
+               "title": "Your Addresses",
                "default": "Default",
                "add_new": "Add a new address",
                "edit_address": "Edit address",
