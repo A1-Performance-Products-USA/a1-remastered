@@ -71,6 +71,7 @@
      align-items: stretch;
      align-content: center;
      gap: 1rem;
+     margin: 0;
 }
 
 .address-item {

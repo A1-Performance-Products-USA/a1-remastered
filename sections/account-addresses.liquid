@@ -1,7 +1,7 @@
 {{ 'section-account-addresses.css' | asset_url | stylesheet_tag }}
 
 <div class="account-addresses" data-customer-addresses>
-     {%- paginate customer.addresses by 5 -%}
+     {%- paginate customer.addresses by 24 -%}
           <div class="title-w-btn">
                <h2>{{ 'customer.addresses.title' | t: store_name: shop.name }}</h2>
                <button id="new-address" class="btn icon-mobile" aria-expanded="false" aria-controls="AddAddress"><span>{{ 'customer.addresses.add_new' | t }}</span><i class="mdi mdi-plus"></i></button>
