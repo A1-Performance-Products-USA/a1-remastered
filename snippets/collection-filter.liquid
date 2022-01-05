@@ -179,7 +179,7 @@
 
                     
                     {% if section.settings.enable_category and linklists[category_list].links.size > 0 %}
-                         {% comment %}{% unless has_filters %}{% endcomment %}
+                         {% unless has_filters %}
                               <filter-option open class="filter-option open" style="display: flex;">
                                    <div class="filter-title">
                                         <span>{{ category_title }}</span>
@@ -234,7 +234,7 @@
                                         {% endfor %}
                                    </ul>
                               </filter-option open>
-                         {% comment %}{% endunless %}{% endcomment %}
+                         {% endunless %}
                     {% endif %}
                </div>
           </form>
