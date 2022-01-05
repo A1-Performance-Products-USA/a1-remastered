@@ -65,4 +65,12 @@
      .breadcrumb > * > * {
           text-align: center;
      }
+
+     .breadcrumb-left {
+          font-size: 1.6rem;
+     }
+
+     .breadcrumb-right {
+          font-size: 1.3rem;
+     }
 }
