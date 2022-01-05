@@ -6,6 +6,11 @@ class AddToCart extends HTMLElement {
      }
 
      init() {
+          if (this.classList.contains('out_stock')) {
+               this.querySelector('button').disabled = true;
+               return;
+          }
+
           this.form = this.querySelector('form');
           this.form.querySelector('[name=id]').disabled = false;
           this.button = this.querySelector('button');
@@ -43,6 +48,22 @@ class AddToCart extends HTMLElement {
           .then((response) => {
                if (response.status) {
                     this.handleErrorMessage(response.description);
+
+                    const getOffset = ( el ) => {
+                         var _x = 0;
+                         var _y = 0;
+                         while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+                             _x += el.offsetLeft - el.scrollLeft;
+                             _y += el.offsetTop - el.scrollTop;
+                             el = el.offsetParent;
+                         }
+                         return { top: _y, left: _x };
+                    }
+
+                    window.scroll({
+                         top: getOffset(document.querySelector('.breadcrumb')).top,
+                         behavior: 'smooth'
+                    });
                     return;
                }
  

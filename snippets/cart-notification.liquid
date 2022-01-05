@@ -9,29 +9,26 @@ Usage:
 {% endcomment %}
 
 <cart-notification>
-     <div class="cart-notification-wrapper page-width{% if color_scheme %} color-{{ color_scheme }}{% endif %}">
-          <div id="cart-notification" class="cart-notification focus-inset" aria-modal="true"
-               aria-label="{{ 'general.cart.item_added' | t }}" role="dialog" tabindex="-1">
+     <div class="overlay"></div>
+     <div class="cart-notification-wrapper">
+          <div id="cart-notification" class="cart-notification focus-inset" aria-modal="true" aria-label="{{ 'general.cart.item_added' | t }}" role="dialog" tabindex="-1">
                <div class="cart-notification__header">
                     <h2 class="cart-notification__heading caption-large">{%- render 'icon-checkmark' -%}
                          {{ 'general.cart.item_added' | t }}</h2>
                     <button type="button"
-                         class="cart-notification__close modal__close-button link link--text focus-inset"
+                         class="cart-notification-close"
                          aria-label="{{ 'accessibility.close' | t }}">
-                         <svg class="icon icon-close" aria-hidden="true" focusable="false">
-                              <use href="#icon-close">
-                         </svg>
+                         <i class="mdi mdi-close"></i>
                     </button>
                </div>
                <div id="cart-notification-product" class="cart-notification-product"></div>
                <div class="cart-notification__links">
                     <a href="{{ routes.cart_url }}" id="cart-notification-button"
-                         class="button button--secondary button--full-width"></a>
+                         class="btn trans"></a>
                     <form action="{{ routes.cart_url }}" method="post" id="cart-notification-form">
-                         <button class="button button--primary button--full-width"
-                              name="checkout">{{ 'sections.cart.checkout' | t }}</button>
+                         <button class="btn" name="checkout">{{ 'sections.cart.checkout' | t }}</button>
                     </form>
-                    <button type="button" class="link button-label">{{ 'general.continue_shopping' | t }}</button>
+                    <a type="button" class="link">{{ 'general.continue_shopping' | t }}</a>
                </div>
           </div>
      </div>

@@ -10,10 +10,14 @@ class CartNotification extends HTMLElement {
           this.querySelectorAll('button[type="button"]').forEach((closeButton) =>
                closeButton.addEventListener('click', this.close.bind(this))
           );
+          this.querySelector('.overlay').addEventListener('click', this.close.bind(this));
      }
 
      open() {
+          this.querySelector('.cart-notification-wrapper').classList.add('animate', 'active');
           this.notification.classList.add('animate', 'active');
+
+          this.querySelector('.overlay').classList.add('active');
 
           this.notification.addEventListener('transitionend', () => {
                this.notification.focus();
@@ -23,12 +27,17 @@ class CartNotification extends HTMLElement {
           });
 
           document.body.addEventListener('click', this.onBodyClick);
+          this.querySelector('.overlay').addEventListener('click', this.onBodyClick);
      }
 
      close() {
           this.notification.classList.remove('active');
+          this.querySelector('.cart-notification-wrapper').classList.remove('active');
+
+          this.querySelector('.overlay').classList.remove('active');
 
           document.body.removeEventListener('click', this.onBodyClick);
+          this.querySelector('.overlay').removeEventListener('click', this.onBodyClick);
 
           removeTrapFocus(this.activeElement);
      }
@@ -36,7 +45,6 @@ class CartNotification extends HTMLElement {
      renderContents(parsedState) {
           this.productId = parsedState.id;
           this.getSectionsToRender().forEach((section => {
-               console.log(parsedState.sections[section.id]);
                document.getElementById(section.id).innerHTML =
                     this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
           }));
@@ -51,7 +59,11 @@ class CartNotification extends HTMLElement {
                     selector: `#cart-notification-product-${this.productId}`,
                },
                {
-                    id: 'cart-notification-button'
+                    id: 'cart-notification-button',
+               },
+               {
+                    id: 'header-cart',
+                    selector: '.header-cart',
                }
           ];
      }

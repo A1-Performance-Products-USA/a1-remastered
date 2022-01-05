@@ -280,6 +280,7 @@ input.price-filter + .field__label {
 .title-remove {
      display: flex;
      align-items: center;
+     gap: 5px;
 }
 
 @media screen and (max-width: 1024px) {

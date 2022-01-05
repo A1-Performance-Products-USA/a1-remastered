@@ -515,6 +515,13 @@
                     "default": true,
                     "label": "t:settings_schema.search_input.settings.predictive_search_show_price.label",
                     "info": "t:settings_schema.search_input.settings.predictive_search_show_price.info"
+               },
+               {
+                    "type": "checkbox",
+                    "id": "predictive_search_show_partnumber",
+                    "default": true,
+                    "label": "Show part number?",
+                    "info": "Should show part number?"
                }
           ]
      },
