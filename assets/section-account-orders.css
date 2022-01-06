@@ -3,6 +3,10 @@
      flex-direction: column;
 }
 
+.account-orders .order-history {
+     width: 100%;
+}
+
 .account-orders .dataTable.order-history  tbody > tr > td:not(.ColumnView) {
      padding: 0;
 }
