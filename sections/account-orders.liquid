@@ -94,9 +94,7 @@
      window.onload = () => {
           typeof OrderHistory !== 'undefined' && new DataTable('#OrderHistory', {
                paging: false,
-               responsive: {
-                    details: false
-               },
+               responsive: false,
                order: [[1, 'desc']],
                scrollX: true
           });
