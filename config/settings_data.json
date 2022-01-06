@@ -154,7 +154,7 @@
             "type": "account_link",
             "settings": {
               "title": "Sign Out",
-              "link_page": "",
+              "link_page": "\/account\/logout",
               "icon": "mdi-exit-to-app"
             }
           }
@@ -225,7 +225,7 @@
             "type": "account_link",
             "settings": {
               "title": "Sign Out",
-              "link_page": "",
+              "link_page": "\/account\/logout",
               "icon": "mdi-exit-to-app"
             }
           }
