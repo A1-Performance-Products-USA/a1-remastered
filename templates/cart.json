@@ -1,5 +1,5 @@
 {
-     "wrapper": "div.page-content-wrapper",
+     "wrapper": "section.page-content-wrapper",
      "sections": {
           "cart": {
                "type": "main-cart-items",
