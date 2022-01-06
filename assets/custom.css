@@ -158,6 +158,12 @@ body .page-wrapper::after {
 @media screen and (max-width: 1440px) {
      .container {
           box-sizing: border-box;
+          padding: 0 20px;
+     }
+}
+
+@media screen and (max-width: 768px) {
+     .container {
           padding: 0 10px;
      }
 }
