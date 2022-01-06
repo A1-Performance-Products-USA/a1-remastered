@@ -176,7 +176,7 @@ body .page-wrapper::after {
 
      cursor: pointer;
      display: inline-block;
-     font-weight: 600;
+     font-weight: normal;
      font-size: 1.2rem;
      font-family: Muli,Helvetica,sans-serif;
      margin: 0;

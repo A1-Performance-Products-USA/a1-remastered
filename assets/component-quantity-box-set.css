@@ -1,0 +1,73 @@
+.qty-box-set {
+     display: flex;
+     justify-content: center;
+     align-items: stretch;
+     gap: 0px;
+}
+
+.qty-box-set .quantity {
+     font-size: 1rem;
+     padding: .5rem .8rem;
+     height: auto;
+     width: auto;
+     border-radius: 0;
+     text-align: center;
+
+     -moz-appearance: textfield;
+}
+.qty-box-set input.quantity {
+     -moz-appearance: textfield;
+}
+
+.qty-box-set input.quantity:focus:not(:invalid) {
+     outline: 0;
+     border: 1px solid #e5e5e5;
+     border-radius: 0;
+}
+
+.qty-box-set input.quantity:invalid {
+     border: 1px solid #e20303;
+     border-radius: 0;
+}
+
+.qty-box-set .quantity::-webkit-outer-spin-button,
+.qty-box-set .quantity::-webkit-inner-spin-button {
+     -webkit-appearance: none;
+     margin: 0;
+}
+
+.qty-box-set .qtyminus {
+     border-radius: .5rem 0 0 .5rem;
+}
+
+.qty-box-set .qtyplus {
+     border-radius: 0 .5rem .5rem 0;
+}
+
+.qty-box-set .qtyboxbtn {
+     font-size: 1rem;
+     padding: .5rem .75rem;
+}
+
+.qty-box-set .qtyboxbtn.disabled {
+     opacity: .6;
+     color: #fff !important;
+     background: #262629 !important;
+     cursor: default;
+     border: 1px solid #262629 !important;
+}
+
+.btn-soldout > .qty-box-set {
+     visibility: hidden;
+}
+
+@media screen and (max-width: 768px) {
+     .qty-box-set .quantity {
+          padding: .4rem .7rem;
+          font-size: 1rem;
+     }
+     .qty-box-set .qtyboxbtn {
+          font-size: 1rem;
+          padding: .6rem .65rem;
+     }
+}

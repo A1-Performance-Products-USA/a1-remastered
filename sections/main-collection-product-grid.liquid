@@ -1,12 +1,14 @@
 <script src="{{ 'component-card.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'component-pagination-product.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quantity-box-set.js' | asset_url }}" defer="defer"></script>
 
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
 {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-quantity-box-set.css' | asset_url | stylesheet_tag }}
 
 {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
 

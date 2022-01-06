@@ -1,10 +1,8 @@
 {
+     "wrapper": "div.page-content-wrapper",
      "sections": {
-          "cart-items": {
-               "type": "main-cart-items"
-          },
-          "cart-footer": {
-               "type": "main-cart-footer",
+          "cart": {
+               "type": "main-cart-items",
                "blocks": {
                     "subtotal": {
                          "type": "subtotal"
@@ -17,18 +15,9 @@
                     "subtotal",
                     "buttons"
                ]
-          },
-          "featured-products": {
-               "type": "featured-collection",
-               "settings": {
-                    "collection": "all",
-                    "image_ratio": "square"
-               }
           }
      },
      "order": [
-          "cart-items",
-          "cart-footer",
-          "featured-products"
+          "cart"
      ]
 }

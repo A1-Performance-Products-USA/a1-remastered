@@ -33,6 +33,15 @@
      width: 100%;
 }
 
+.order-note {
+     padding: 1.25rem;
+     border: 1px solid #b8daff;
+     background-color: #cce5ff;
+     border-radius: 1rem;
+     margin: 0;
+     width: 100%;
+}
+
 .order-info {
      display: flex;
      flex-direction: column;
@@ -292,7 +301,6 @@
           content: attr(data-label);
           font-size: 1.4rem;
           padding-right: 2rem;
-          text-transform: uppercase;
           flex-grow: 1;
           text-align: left;
      }

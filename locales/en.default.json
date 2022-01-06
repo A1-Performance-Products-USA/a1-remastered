@@ -233,25 +233,28 @@
                }
           },
           "cart": {
-               "title": "Your cart",
+               "title": "Your Cart",
                "caption": "Cart items",
                "remove_title": "Remove  {{ title }}",
                "subtotal": "Subtotal",
                "new_subtotal": "New subtotal",
-               "note": "Order special instructions",
+               "note": "Special instructions for your seller",
                "checkout": "Check out",
                "empty": "Your cart is empty",
                "cart_error": "There was an error while updating your cart. Please try again.",
                "cart_quantity_error_html": "You can only add [quantity] of this item to your cart.",
-               "taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\" {{ link }}\">shipping<\/a> calculated at checkout",
-               "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
+               "taxes_and_shipping_policy_at_checkout_html": "<a href=\" {{ link }}\">Shipping<\/a> and taxes will be calculated at checkout.",
+               "taxes_included_but_shipping_at_checkout": "Tax included. Shipping calculated at checkout",
                "taxes_included_and_shipping_policy_html": "Tax included. <a href=\" {{ link }}\">Shipping<\/a> calculated at checkout.",
-               "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout",
+               "taxes_and_shipping_at_checkout": "Shipping and taxes will be calculated at checkout.",
                "headings": {
                     "product": "Product",
                     "price": "Price",
                     "total": "Total",
-                    "quantity": "Quantity"
+                    "quantity": "Quantity",
+                    "sku": "Sku",
+                    "vendor": "Vendor",
+                    "unit_price": "Unit Price"
                },
                "update": "Update",
                "login": {
@@ -379,7 +382,8 @@
                "tracking_company": "Carrier",
                "tracking_number": "Tracking number",
                "subtotal": "Subtotal",
-               "image": "Image"
+               "image": "Image",
+               "note": "Customer Note: {{ note }}"
           },
           "orders": {
                "title": "Your Order History",
