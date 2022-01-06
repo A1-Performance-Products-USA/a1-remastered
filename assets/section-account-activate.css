@@ -1,0 +1,22 @@
+/*
+     Account Activation
+*/
+.activate-wrapper {
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     gap: 15px;
+
+     max-width: 50%;
+}
+
+.activate-wrapper > h2 {
+     margin-bottom: 0 !important;
+}
+
+.activate-wrapper > form {
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     gap: 10px;
+}
