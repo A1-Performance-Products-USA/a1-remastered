@@ -306,4 +306,8 @@
           border: none;
           text-align: right;
      }
+
+     .account-order .order-totals tbody > tr > td {
+          display: table-cell;
+     }
 }
