@@ -304,5 +304,6 @@
 
      .order-totals td {
           border: none;
+          text-align: right;
      }
 }
