@@ -40,8 +40,24 @@
      margin-top: 2rem;
 }
 
+.cart__ctas .shopify-cleanslate li[data-testid="grid-cell"] {
+     margin: 0 !important;
+}
+
+.cart__ctas .shopify-cleanslate li[data-testid="grid-cell"] > div {
+     border-radius: 10px !important;
+}
+
 @media all and (min-width: 750px) {
      .totals {
           justify-content: flex-end;
+     }
+}
+
+@media all and (max-width: 1240px) {
+     .cart__ctas {
+          justify-content: center;
+          align-content: center;
+          flex-wrap: wrap;
      }
 }

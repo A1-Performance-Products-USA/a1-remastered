@@ -257,6 +257,7 @@ cart-remove-button .icon-remove {
      #CartItems td.cart-item__details {
           width: 100%;
           max-width: 100%;
+          text-align: center;
      }
 
      #CartItems td:not(.cart-item__media):not(.cart-item__details)::before {
