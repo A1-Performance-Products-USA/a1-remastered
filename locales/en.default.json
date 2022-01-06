@@ -28,7 +28,7 @@
                     "tiktok": "TikTok"
                }
           },
-          "continue_shopping": "Continue shopping",
+          "continue_shopping_html": "The page you requested does not exist. Click <a href=\"{{ all_products_link }}\">here<\/a> to continue shopping.",
           "pagination": {
                "label": "Pagination",
                "page": "Page  {{ number }}",
@@ -219,7 +219,7 @@
                "message": "Please complete the form below to assist us in answering your questions. We respond to the questions in the order we receive them. We try to respond as quick as possible, but it may take up to 24 hours to receive a response from us."
           },
           "404": {
-               "title": "Page not found",
+               "title": "Oops! Page not found",
                "subtext": "404"
           }
      },

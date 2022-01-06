@@ -1,23 +1,39 @@
 <style type="text/css">
-  .template-404 .title + * {
-    margin-top: 1rem;
-  }
+     .template-404 {
+          display: flex;
+          flex-direction: column;
+          gap: .5rem;
+          margin-bottom: 6rem;
+     }
 
-  @media screen and (min-width: 750px) {
-    .template-404 .title + * {
-      margin-top: 2rem;
-    }
-  }
+     .template-404 > p {
+          font-size: 115px;
+          font-weight: 700;
+          line-height: 120px;
+          margin: 0;
+          color: #C00;
+     }
+
+     .template-404 .title {
+          margin: 0;
+     }
+
+     .template-404 span {
+          margin-top: 0;
+          font-size: 1.5rem;
+     }
+
+     .template-404 span > a {
+          text-decoration: underline;
+     }
 </style>
 
-<div class="template-404 page-width page-margin center">
-  <p>
-    {{ 'templates.404.subtext' | t }}
-  </p>
-  <h1 class="title">
-    {{ 'templates.404.title' | t }}
-  </h1>
-  <a href="{{ routes.all_products_collection_url }}" class="button">
-    {{ 'general.continue_shopping' | t }}
-  </a>
+<div class="template-404 container center">
+     <p>
+          {{ 'templates.404.subtext' | t }}
+     </p>
+     <h1 class="title">
+          {{ 'templates.404.title' | t }}
+     </h1>
+     <span>{{ 'general.continue_shopping_html' | t: all_products_link: routes.all_products_collection_url }}</span>
 </div>
