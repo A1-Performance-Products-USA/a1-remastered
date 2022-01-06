@@ -99,11 +99,6 @@ select {
      background-position: right 10px center;
      background-size: 6px;
      background-color: #f7f7f7;
-     background-font-size: 14px;
-     background--webkit-border-radius: 8px;
-     background--moz-border-radius: 8px;
-     background--khtml-border-radius: 8px;
-     background-border-radius: 8px;
      padding-right: 28px;
      text-indent: .01px;
      text-overflow: '';
