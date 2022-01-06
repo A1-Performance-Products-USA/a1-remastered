@@ -1,0 +1,308 @@
+.errors {
+     color: #721c24;
+     background-color: #f8d7da;
+     border: 1px solid #f5c6cb;
+
+     font-family: Muli,Helvetica,sans-serif;
+     font-size: 1em;
+     padding: 1.25rem;
+     border-radius: 1rem;
+     float: left;
+     width: 100%;
+}
+
+.errors > .title {
+     font-size: 1.5rem;
+     color: #111;
+     padding: 0;
+     margin: 0;
+}
+
+.errors > .reason {
+     font-size: 1.1rem;
+     padding: 0;
+     margin: .75rem 0 0 0;
+}
+
+.order-placed {
+     padding: 1.25rem;
+     border: 1px solid #e5e5e5;
+     background-color: rgb(var(--color-background));
+     border-radius: 1rem;
+     margin: 0;
+     width: 100%;
+}
+
+.order-info {
+     display: flex;
+     flex-direction: column;
+     gap: 1rem;
+     align-items: flex-end;
+}
+
+.order-addresses {
+     width: 100%;
+     display: flex;
+     gap: 1rem;
+}
+
+.order-addresses > * {
+     width: 50%;
+}
+
+.order-addresses > * > h2 {
+     margin: 0;
+}
+
+.order-addresses > * > p {
+     margin: 0;
+     font-size: 1.2rem;
+     line-height: 1.1;
+}
+
+.account-order {
+     display: flex;
+     flex-direction: column;
+     gap: 1rem;
+}
+
+.account-order .title-w-btn > h2 {
+     margin: 0;
+}
+
+.account-order .order-details {
+     width: 100%;
+     border: 1px solid #e5e5e5;
+     border-collapse: collapse;
+     border-radius: 10px;
+}
+
+.account-order thead {
+     border: 1px solid #e5e5e5;
+}
+
+.account-order thead > tr > th {
+     padding: 1.2rem;
+     text-align: left;
+}
+
+.account-order tbody > tr {
+     border: 1px solid #e5e5e5;
+}
+
+.account-order tbody > tr > td {
+     padding: 1.2rem;
+}
+
+.account-order th {
+     font-size: 1.2rem;
+}
+
+.account-order .order-details td {
+     font-size: 1.1rem;
+     vertical-align: top;
+}
+
+.account-order .order-details td:first-child {
+     vertical-align: middle;
+     text-align: center;
+}
+.account-order .order-details td:first-child > img {
+     margin: auto;
+}
+
+.account-order td > .product-info {
+     display: flex;
+     flex-direction: column;
+     gap: .75rem;
+     justify-content: flex-start;
+     align-items: flex-start;
+     line-height: 1.2;
+}
+
+.account-order td > .product-info > p {
+     padding: 0;
+     margin: 0 1rem 0 0;
+     line-height: 1.2;
+}
+
+.account-order tbody > tr > td:last-child {
+     text-align: right;
+}
+
+.account-order tbody > tr > td > dl {
+     margin: 0;
+     line-height: 1.2;
+}
+
+.account-order tbody > tr > td > dl > dt {
+     margin: 0;
+}
+.account-order tbody > tr > td > dl > dd {
+     margin: 0;
+}
+
+.tags {
+     display: flex;
+     gap: .5rem;
+     flex-wrap: wrap;
+}
+
+.tags .info {
+     border: 1px solid #bee5eb;
+     background-color: #d1ecf1;
+     border-radius: 1rem;
+     padding: .5rem;
+     width: auto;
+     font-size: 1rem;
+}
+
+.tags .shipping {
+     border: 1px solid #ffeeba;
+     background-color: #fff3cd;
+     border-radius: 1rem;
+     padding: .5rem;
+     width: auto;
+     font-size: 1rem;
+}
+
+.tags a.shipping:hover {
+     background-color: #fae9b2;
+     color: #111;
+}
+
+.tags .discount {
+     background-color: #d4edda;
+     border: 1px solid #c3e6cb;
+     border-radius: 1rem;
+     padding: .5rem;
+     width: auto;
+     font-size: 1rem;
+
+     display: flex;
+     align-items: center;
+     gap: .5rem;
+}
+
+.account-order .order-addresses > * {
+     display: flex;
+     flex-direction: column;
+     gap: .5rem;
+}
+
+.account-order .order-addresses > * > h2 {
+     font-size: 1.6rem;
+     padding-bottom: .5rem;
+     margin-bottom: 0;
+}
+
+.account-order .order-statuses {
+     display: flex;
+     width: 100%;
+     gap: 1rem;
+}
+
+.account-order .order-statuses > p {
+     width: 50%;
+     padding: 0;
+     margin: 0;
+     font-size: 1.1rem;
+     line-height: 1.2;
+}
+
+.account-order .order-statuses > p.info {
+     border: 1px solid #e5e5e5;
+     background-color: rgb(var(--color-background));
+     border-radius: 1rem;
+     padding: .75rem;
+}
+
+.account-order .order-statuses > p.info.unfulfilled,
+.account-order .order-statuses > p.info.voided {
+     background-color: #f8d7da;
+     border: 1px solid #f5c6cb;
+}
+
+.account-order .order-statuses > p.info.paid,
+.account-order .order-statuses > p.info.fulfilled {
+     background-color: #d4edda;
+     border: 1px solid #c3e6cb;
+}
+
+#ColumnTotal {
+     text-align: right;
+}
+
+.order-totals {
+     margin-top: -1rem;
+     width: auto;
+     border: 1px solid #e5e5e5;
+     border-collapse: collapse;
+     border-radius: 10px;
+}
+
+.order-totals th {
+     border: 1px solid #e5e5e5;
+     text-align: left;
+     vertical-align: middle;
+     font-size: 1.1rem;
+     padding: 1rem;
+}
+
+.order-totals td {
+     border: 1px solid #e5e5e5;
+     text-align: right;
+     vertical-align: middle;
+     font-size: 1.1rem;
+     padding: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+     .order-addresses,
+     .order-statuses {
+          flex-wrap: wrap;
+     }
+     .account-order .order-statuses {
+          gap: .5rem;
+     }
+     .order-addresses > *,
+     .account-order .order-statuses > p {
+          width: 100%;
+     }
+
+     .order-details thead {
+          display: none;
+     }
+
+     .order-details tr {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          width: 100%;
+     }
+
+     .account-order tbody > tr > td {
+          padding: .75rem;
+          display: flex;
+          justify-content: space-between;
+     }
+
+     .order-details td:not(.product-image):not(.product-title)::before {
+          color: rgba(var(--color-foreground),.75);
+          content: attr(data-label);
+          font-size: 1.4rem;
+          padding-right: 2rem;
+          text-transform: uppercase;
+          flex-grow: 1;
+          text-align: left;
+     }
+
+     .order-totals {
+          width: 100%;
+          margin-top: 0;
+     }
+
+     .order-totals td {
+          border: none;
+     }
+}

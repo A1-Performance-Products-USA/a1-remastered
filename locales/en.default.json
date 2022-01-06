@@ -300,7 +300,7 @@
                "title": "Account",
                "details": "Account details",
                "view_addresses": "View addresses",
-               "return": "Return to Account details",
+               "return": "Return to Orders",
                "account_nav_help": "Choose an option below to manage your account, view order details, see your wishlist, and more."
           },
           "account_fallback": "Account",
@@ -378,7 +378,8 @@
                "tracking_url": "Tracking link",
                "tracking_company": "Carrier",
                "tracking_number": "Tracking number",
-               "subtotal": "Subtotal"
+               "subtotal": "Subtotal",
+               "image": "Image"
           },
           "orders": {
                "title": "Your Order History",
