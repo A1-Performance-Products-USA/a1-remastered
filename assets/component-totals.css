@@ -40,6 +40,10 @@
      margin-top: 2rem;
 }
 
+.cart__ctas .shopify-cleanslate > div > ul {
+     margin: 0 !important;
+}
+
 .cart__ctas .shopify-cleanslate li[data-testid="grid-cell"] {
      margin: 0 !important;
 }
