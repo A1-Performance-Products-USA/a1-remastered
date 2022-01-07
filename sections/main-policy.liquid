@@ -1,0 +1,36 @@
+{% if page.content != blank %}
+     <link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" media="print" onload="this.media='all'">
+
+     <noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
+
+     <div class="page-content-wrapper">
+          <div class="page-content">
+               <div class="main-content">
+                    {{ page.content }}
+               </div>
+          </div>
+     </div>
+{% else %}
+     <style>
+          .page-content.main-page {
+               display: none;
+               visibility: hidden;
+          }
+     </style>
+{% endif %}
+
+{% schema %}
+{
+     "name": "Policy Page",
+     "tag": "section",
+     "class": "page-content main-page",
+     "settings": [
+          {
+               "type": "text",
+               "id": "policy",
+               "label": "Policy"
+          }
+     ]
+}
+{% endschema %}
+
