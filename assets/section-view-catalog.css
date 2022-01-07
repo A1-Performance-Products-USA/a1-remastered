@@ -1,0 +1,42 @@
+.catalog-viewer-wrapper {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-wrap: wrap;
+     position: relative;
+}
+
+.catalog-viewer-wrapper > i {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     font-size: 10rem;
+}
+
+.catalog-viewer-wrapper.loaded > i,
+.catalog-viewer-wrapper.no-cat > i {
+     display: none;
+}
+
+.catalog-viewer-wrapper > embed {
+     min-height: 100vh;
+}
+
+.catalog-viewer-wrapper.no-cat > embed {
+     display: none;
+}
+
+.catalog-viewer-wrapper > h1 {
+     font-size: calc(var(--font-heading-scale) * 4rem);
+     margin: 0;
+     display: none;
+}
+
+.catalog-viewer-wrapper:not(.no-cat) {
+     min-height: 100vh;
+}
+
+.catalog-viewer-wrapper.no-cat > h1 {
+     display: inline;
+}

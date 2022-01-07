@@ -1,11 +1,40 @@
 {{ 'section-view-catalog.css' | asset_url | stylesheet_tag }}
 
-<div class="catalog-viewer-wrapper">
-     <embed src= "/catalogs/2020_Allstar_Catalog.pdf" width= "500" height= "375">
-</div>
+<catalog-viewer class="catalog-viewer-wrapper">
+     <i class="mdi mdi-spin mdi-loading"></i>
+     <h1 class="">{{ 'catalogs.not_found' | t }}</h1>
+</catalog-viewer>
 
 {% javascript %}
-     
+     class CatalogViewer extends HTMLElement {
+          constructor() {
+               super();
+
+               let params = new URLSearchParams(window.location.search)
+               let searchParams = Object.fromEntries(params.entries());
+
+               if (window.location.search == '' || !searchParams.catalog) return this.redirect404();
+
+               this.pdfSrc = `/catalogs/${searchParams.catalog}.pdf`;
+               this.innerHTML = this.innerHTML + `<embed src="${this.pdfSrc}" width= "100%" height="100vh" type="application/pdf">`;
+
+               this.loader = this.querySelector('i');
+               this.embed = this.querySelector('embed');
+               this.error = this.querySelector('h1');
+
+               this.embed.addEventListener('load', this.embedLoaded.bind(this));
+          }
+
+          embedLoaded(e) {
+               this.classList.add('loaded');
+          }
+          
+          redirect404() {
+               this.classList.add('no-cat');
+          }
+     }
+
+     customElements.define('catalog-viewer', CatalogViewer);
 {% endjavascript %}
 
 {% schema %}
