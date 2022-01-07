@@ -1,21 +1,71 @@
 {
-  "sections": {
-    "main": {
-      "type": "brands",
-      "settings": {
-        "title_text_color": "#111",
-        "help_text_color": "#666",
-        "nav_txt_color": "#666",
-        "nav_txt_hvr_color": "#f7f7f7",
-        "nav_bg_hvr_color": "#111111",
-        "border_color": "#eaeaea",
-        "item_text_color": "#515151",
-        "item_text_hvr_color": "#111111",
-        "item_bg_hvr_color": "#ce0000"
-      }
-    }
-  },
-  "order": [
-    "main"
-  ]
+     "wrapper": "div.page-content-wrapper",
+     "sections": {
+          "main": {
+               "type": "line-card",
+               "blocks": {
+                    "3cfd2b79-db1c-41fc-85b2-2fe3e0aeca2a": {
+                         "type": "card_page",
+                         "settings": {
+                              "image_1": "shopify:\/\/shop_images\/A1-LINE-CARD-20-01.jpg",
+                              "image_2": "shopify:\/\/shop_images\/A1-LINE-CARD-20-02.jpg",
+                              "image_3": "shopify:\/\/shop_images\/A1-LINE-CARD-20-03.jpg",
+                              "image_4": "shopify:\/\/shop_images\/A1-LINE-CARD-20-04.jpg",
+                              "image_5": "shopify:\/\/shop_images\/A1-LINE-CARD-20-05.jpg"
+                         }
+                    },
+                    "785ef259-58f0-42c9-a2dd-4769194ea304": {
+                         "type": "card_page",
+                         "settings": {
+                              "image_1": "shopify:\/\/shop_images\/A1-LINE-CARD-20-06.jpg",
+                              "image_2": "shopify:\/\/shop_images\/A1-LINE-CARD-20-07.jpg",
+                              "image_3": "shopify:\/\/shop_images\/A1-LINE-CARD-20-08.jpg",
+                              "image_4": "shopify:\/\/shop_images\/A1-LINE-CARD-20-09.jpg",
+                              "image_5": "shopify:\/\/shop_images\/A1-LINE-CARD-20-10.jpg"
+                         }
+                    },
+                    "7583c993-a609-4a80-b236-2e5680e05c9d": {
+                         "type": "card_page",
+                         "settings": {
+                              "image_1": "shopify:\/\/shop_images\/A1-LINE-CARD-20-11.jpg",
+                              "image_2": "shopify:\/\/shop_images\/A1-LINE-CARD-20-12.jpg",
+                              "image_3": "shopify:\/\/shop_images\/A1-LINE-CARD-20-13.jpg",
+                              "image_4": "shopify:\/\/shop_images\/A1-LINE-CARD-20-14.jpg",
+                              "image_5": "shopify:\/\/shop_images\/A1-LINE-CARD-20-15.jpg"
+                         }
+                    },
+                    "83f391a2-7667-4735-82eb-d38c8bf4b25a": {
+                         "type": "card_page",
+                         "settings": {
+                              "image_1": "shopify:\/\/shop_images\/A1-LINE-CARD-20-16.jpg",
+                              "image_2": "shopify:\/\/shop_images\/A1-LINE-CARD-20-17.jpg",
+                              "image_3": "shopify:\/\/shop_images\/A1-LINE-CARD-20-18.jpg",
+                              "image_4": "shopify:\/\/shop_images\/A1-LINE-CARD-20-19.jpg",
+                              "image_5": "shopify:\/\/shop_images\/A1-LINE-CARD-20-20.jpg"
+                         }
+                    },
+                    "30b4cb80-ae49-484d-894e-f1e3b84ecceb": {
+                         "type": "card_page",
+                         "settings": {
+                              "image_1": "shopify:\/\/shop_images\/A1-LINE-CARD-20-21.jpg",
+                              "image_2": "shopify:\/\/shop_images\/A1-LINE-CARD-20-22.jpg",
+                              "image_3": "shopify:\/\/shop_images\/A1-LINE-CARD-20-23.jpg",
+                              "image_4": "shopify:\/\/shop_images\/A1-LINE-CARD-20-24.jpg",
+                              "image_5": "shopify:\/\/shop_images\/A1-LINE-CARD-20-25.jpg"
+                         }
+                    }
+               },
+               "block_order": [
+                    "3cfd2b79-db1c-41fc-85b2-2fe3e0aeca2a",
+                    "785ef259-58f0-42c9-a2dd-4769194ea304",
+                    "7583c993-a609-4a80-b236-2e5680e05c9d",
+                    "83f391a2-7667-4735-82eb-d38c8bf4b25a",
+                    "30b4cb80-ae49-484d-894e-f1e3b84ecceb"
+               ],
+               "settings": {}
+          }
+     },
+     "order": [
+          "main"
+     ]
 }

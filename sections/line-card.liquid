@@ -1,0 +1,183 @@
+{{ 'swiper.min.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'swiper.min.js' | asset_url }}"></script>
+
+{{ 'section-line-card.css' | asset_url | stylesheet_tag }}
+
+<line-card class="line-card-wrapper">
+     <div class="main-wrapper">
+          <div class="swiper-main">
+               <div class="swiper-wrapper">
+                    {% for block in section.blocks %}
+                         {% unless block.settings.image_1 == blank %}
+                              <div class="swiper-slide">{{ block.settings.image_1 | image_url: width: '600' | image_tag:  widths: '600 400 300 200' }}</div>
+                         {% endunless %}
+
+                         {% unless block.settings.image_2 == blank %}
+                              <div class="swiper-slide">{{ block.settings.image_2 | image_url: width: '600' | image_tag:  widths: '600 400 300 200' }}</div>
+                         {% endunless %}
+
+                         {% unless block.settings.image_3 == blank %}
+                              <div class="swiper-slide">{{ block.settings.image_3 | image_url: width: '600' | image_tag:  widths: '600 400 300 200' }}</div>
+                         {% endunless %}
+
+                         {% unless block.settings.image_4 == blank %}
+                              <div class="swiper-slide">{{ block.settings.image_4 | image_url: width: '600' | image_tag:  widths: '600 400 300 200' }}</div>
+                         {% endunless %}
+
+                         {% unless block.settings.image_5 == blank %}
+                              <div class="swiper-slide">{{ block.settings.image_5 | image_url: width: '600' | image_tag:  widths: '600 400 300 200' }}</div>
+                         {% endunless %}
+                    {% endfor %}
+               </div>
+
+               <div class="swiper-button-prev btn"><i class="mdi mdi-chevron-left"></i></div>
+               <div class="swiper-button-next btn"><i class="mdi mdi-chevron-right"></i></div>
+          </div>
+     </div>
+     <div class="thumbnail-wrapper">
+          <div thumbsSlider="" class="swiper-thumb">
+               <div class="swiper-wrapper">
+                    {% assign counter = 0 %}
+                    {% for block in section.blocks %}
+                         {% unless block.settings.image_1 == blank %}
+                              {% assign counter = counter | plus: 1 %}
+                              <div class="swiper-slide">
+                                   {{ block.settings.image_1 | image_url: width: '110' | image_tag: widths: '110 90 60 30' }}
+                                   <span class="number-indicator btn">{{ counter }}</span>
+                              </div>
+                         {% endunless %}
+
+                         {% unless block.settings.image_2 == blank %}
+                              {% assign counter = counter | plus: 1 %}
+                              <div class="swiper-slide">
+                                   {{ block.settings.image_2 | image_url: width: '110' | image_tag: widths: '110 90 60 30' }}
+                                   <span class="number-indicator btn">{{ counter }}</span>
+                              </div>
+                         {% endunless %}
+
+                         {% unless block.settings.image_3 == blank %}
+                              {% assign counter = counter | plus: 1 %}
+                              <div class="swiper-slide">
+                                   {{ block.settings.image_3 | image_url: width: '110' | image_tag: widths: '110 90 60 30' }}
+                                   <span class="number-indicator btn">{{ counter }}</span>
+                              </div>
+                         {% endunless %}
+
+                         {% unless block.settings.image_4 == blank %}
+                              {% assign counter = counter | plus: 1 %}
+                              <div class="swiper-slide">
+                                   {{ block.settings.image_4 | image_url: width: '110' | image_tag: widths: '110 90 60 30' }}
+                                   <span class="number-indicator btn">{{ counter }}</span>
+                              </div>
+                         {% endunless %}
+
+                         {% unless block.settings.image_5 == blank %}
+                              {% assign counter = counter | plus: 1 %}
+                              <div class="swiper-slide">
+                                   {{ block.settings.image_5 | image_url: width: '110' | image_tag: widths: '110 90 60 30' }}
+                                   <span class="number-indicator btn">{{ counter }}</span>
+                              </div>
+                         {% endunless %}
+                    {% endfor %}
+               </div>
+
+               <div class="swiper-button-prev thumb btn"><i class="mdi mdi-chevron-left"></i></div>
+               <div class="swiper-button-next thumb btn"><i class="mdi mdi-chevron-right"></i></div>
+          </div>
+     </div>
+</line-card>
+
+{% javascript %}
+class LineCard extends HTMLElement {
+     constructor() {
+          super();
+
+          this.thumbnail = new Swiper('.swiper-thumb', {
+               freeMode: true,
+               watchSlidesProgress: true,
+               navigation: {
+                    nextEl: '.swiper-button-next.thumb',
+                    prevEl: '.swiper-button-prev.thumb',
+               },
+               breakpoints: {
+                    768: {
+                         slidesPerView: 5,
+                         spaceBetween: 5,
+                         navigation: false
+                    },
+                    1240: {
+                         slidesPerView: 10,
+                         spaceBetween: 5
+                    }
+               }
+          })
+          
+          this.swiper = new Swiper('.swiper-main', {
+               loop: false,
+               navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+               },
+               thumbs: {
+                    swiper: this.thumbnail,
+               },
+               breakpoints: {
+                    0: {
+                         slidesPerView: 2,
+                         spaceBetween: 0 ,
+                         centeredSlides: true,
+                         navigation: false
+                    },
+                    1240: {
+                         slidesPerView: 2,
+                         spaceBetween: 10
+                    }
+               }
+          });             
+     }      
+}
+customElements.define('line-card', LineCard);
+{% endjavascript %}
+
+{% schema %}
+{
+     "name": "Line Card",
+     "class": "page-content line-card-section",
+     "settings": [
+          
+     ],
+     "blocks": [
+          {
+               "type": "card_page",
+               "name": "Card Page (5 Slides)",
+               "settings": [
+                    {
+                         "type": "image_picker",
+                         "id": "image_1",
+                         "label": "Card Image"
+                    },
+                    {
+                         "type": "image_picker",
+                         "id": "image_2",
+                         "label": "Card Image"
+                    },
+                    {
+                         "type": "image_picker",
+                         "id": "image_3",
+                         "label": "Card Image"
+                    },
+                    {
+                         "type": "image_picker",
+                         "id": "image_4",
+                         "label": "Card Image"
+                    },
+                    {
+                         "type": "image_picker",
+                         "id": "image_5",
+                         "label": "Card Image"
+                    }
+               ]
+          }
+     ]
+}
+{% endschema %}
