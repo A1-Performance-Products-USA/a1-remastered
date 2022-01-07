@@ -11,7 +11,6 @@
           if ($('.sticky-mobile-header').hasClass('active')) {
                var paddingAddition = 10 * 2;
                var topHeight = ($('.sticky-mobile-header.active').height() + paddingAddition);
-               topHeight = ($('.'))
 
                $('.mobile-search-wrapper').css('top', topHeight);
           } else {

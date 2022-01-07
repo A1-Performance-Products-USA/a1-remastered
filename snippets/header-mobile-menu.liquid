@@ -1,6 +1,6 @@
 {{ 'component-header-mobile-menu.css' | asset_url | stylesheet_tag }}
 
-<mobile-menu class="mobile-menu-wrapper">
+<mobile-menu class="mobile-menu-wrapper" data-open="false">
      <div class="mobile-menu-header animate__animated animate__slideInDown">
           <div class="left-side">
                <button class="navigation-icon btn">
@@ -24,27 +24,58 @@
           </div>
      </div>
 
-     <div class="mobile-menu-content animate__animated animate__slideInLeft">
-          <div class="menu-drawer">
-               <ul class="menu-list store-categories">
-                    <div class="title">Shop Categories</div>
-                    {% for link in catMenu %}
-                         {% assign child_list_handle = link.title | split: '[' | first | handleize %}
-                         <li data-child="{{ child_list_handle }}">
-                              <span>{{ link.title }}</span>
-                              <i class="mdi mdi-chevron-right"></i>
-                         </li>
-                    {% endfor %}
-               </ul>
-               <ul class="menu-list store-nav">
-                    <div class="title">Quick Links</div>
-                    {% for link in navMenu %}
-                         {% assign child_list_handle = link.title | split: '[' | first | handleize %}
-                         <li data-child="{{ child_list_handle }}">
-                              <a href="{{ link.url }}">{{ link.title | split: '[' | first | escape }}</a>
-                         </li>
-                    {% endfor %}
-               </ul>
+     <div class="mobile-menu-content">
+          <div class="menu-drawer animate__animated animate__slideInLeft">
+               <div id="menu-list" class="open">
+                    <ul class="menu-list store-categories">
+                         <div class="title">Shop Categories</div>
+                         {% for link in catMenu %}
+                              {% assign child_list_handle = link.title | split: '[' | first | handleize %}
+                              <li data-child="{{ child_list_handle }}" data-parent="menu-list">
+                                   <span>{{ link.title }}</span>
+                                   <i class="mdi mdi-chevron-right"></i>
+                                   
+                                   {% if link.links != blank or link.links != empty %}
+                                        <ul class="child-list animate__animated animate__slideInLeft" id="{{ child_list_handle }}">
+
+                                             <div class="go-back" data-child="{{ child_list_handle }}" data-parent="menu-list"><i class="mdi mdi-chevron-left"></i>{{ 'sections.header.back' | t }}</div>
+                                             <div class="title">{{ link.title }}</div>
+
+                                             {% for child_link in link.links %}
+                                                  {% assign grand_child_list_handle = child_link.title | split: '[' | first | handleize %}
+                                                  <li data-child="{{ grand_child_list_handle }}"  data-parent="{{ child_list_handle }}">
+                                                       <span>{{ child_link.title }}</span>
+                                                       <i class="mdi mdi-chevron-right"></i>
+
+                                                       {% if child_link.links != blank or child_link.links != empty %}
+                                                            <ul class="child-list animate__animated animate__slideInLeft" id="{{ grand_child_list_handle }}">
+                                                                 <div class="go-back" data-child="{{ grand_child_list_handle }}" data-parent="{{ child_list_handle }}"><i class="mdi mdi-chevron-left"></i>{{ 'sections.header.back' | t }}</div>
+                                                                 <div class="title">{{ child_link.title }}</div>
+
+                                                                 {% for grand_child_link in child_link.links %}
+                                                                      <li class="link-item">
+                                                                           <a href="{{ grand_child_link.url }}">{{ grand_child_link.title | split: '[' | first | escape }}</a>
+                                                                      </li>
+                                                                 {% endfor %}
+                                                            </ul>
+                                                       {% endif %}
+                                                  </li>
+                                             {% endfor %}
+                                        </ul>
+                                   {% endif %}
+                              </li>
+                         {% endfor %}
+                    </ul>
+                    <ul class="menu-list store-nav">
+                         <div class="title">Quick Links</div>
+                         {% for link in navMenu %}
+                              {% assign child_list_handle = link.title | split: '[' | first | handleize %}
+                              <li class="link-item" data-child="{{ child_list_handle }}">
+                                   <a href="{{ link.url }}">{{ link.title | split: '[' | first | escape }}</a>
+                              </li>
+                         {% endfor %}
+                    </ul>
+               </div>
           </div>
      </div>
 </mobile-menu>
