@@ -1,8 +1,11 @@
 {{ 'section-popup-newsletter.css' | asset_url | stylesheet_tag }}
 
+<script type="module" src="{{ 'js.cookie.min.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'newsletter-popup.js' | asset_url }}" defer="defer"></script>
+
 {% if section.settings.show %}
      {% unless customer and customer.accepts_marketing %}
-          <newsletter-popup class="newsletter-popup">
+          <newsletter-popup class="newsletter-popup" data-first="{{ section.settings.delay_first }}" data-next="{{ section.settings.delay_next }}">
                <div class="close-overlay"> </div>
                <div class="newsletter-main-wrapper">
                     <div class="newsletter-main">
@@ -49,21 +52,11 @@
      }
 </style>
 
-{% javascript %}
-     class NewsletterPopup extends HTMLElement {
-          constructor() {
-               super();
-          }
-     }
-
-     customElements.define('newsletter-popup', NewsletterPopup);
-{% endjavascript %}
-
 {% schema %}
      {
           "name": "Popup Newsletter",
           "tag": "div",
-          "class": "newsletter-popup-wrapper open",
+          "class": "newsletter-popup-wrapper",
           "settings": [
                {
                     "type": "checkbox",
