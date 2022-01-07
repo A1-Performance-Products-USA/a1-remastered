@@ -817,7 +817,7 @@ form > .errors > ul {
      margin-bottom: 0;
 }
 
-#shopify-privacy-banner-inner-div > #shopify-privacy-banner-button-div::after {
+#shopify-privacy-banner-inner-div::after {
      display: none;
 }
 
