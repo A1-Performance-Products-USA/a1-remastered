@@ -3,7 +3,7 @@
     "main": {
       "type": "main-policy",
       "settings": {
-          "policy": "privacy_policy"
+          "policy": "terms_of_service"
       }
     }
   },
