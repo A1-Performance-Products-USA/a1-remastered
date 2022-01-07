@@ -34,9 +34,19 @@
         "color_scheme": "background-1",
         "full_width": true
       }
+    },
+    "16415378381feaa686": {
+      "type": "newsletter-popup",
+      "settings": {
+        "show": true,
+        "logo": "shopify:\/\/shop_images\/logo_18444a14-8fa7-4753-9d2f-fcc9e9119bda.png",
+        "delay_first": "2000",
+        "delay_next": "1"
+      }
     }
   },
   "order": [
-    "rich_text"
+    "rich_text",
+    "16415378381feaa686"
   ]
 }
