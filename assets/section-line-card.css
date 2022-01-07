@@ -146,6 +146,10 @@
           display: none;
      }
 
+     .line-card-wrapper {
+          gap: 1rem;
+     }
+
      .mobile-help {
           display: inline-block;
           text-align: center;
