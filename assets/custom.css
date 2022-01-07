@@ -801,3 +801,18 @@ form > .errors > ul {
      justify-content: flex-start;
      align-items: flex-start;
 }
+
+#shopify-privacy-banner-inner-div {
+     display: flex;
+     justify-content: space-between;
+     width: 100%;
+     align-items: center;
+}
+
+#shopify-privacy-banner-inner-div > #shopify-privacy-banner-body-div > h3 {
+     margin-top: 0;
+}
+
+#shopify-privacy-banner-inner-div > #shopify-privacy-banner-button-div > button {
+     margin-top: 0;
+}

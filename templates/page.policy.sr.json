@@ -1,20 +1,20 @@
 {
-  "sections": {
-    "shipping": {
-      "type": "main-policy",
-      "settings": {
-          "policy": "shipping_policy"
-      }
-    },
-    "refund": {
-     "type": "main-policy",
-     "settings": {
-         "policy": "refund_policy"
-     }
-   }
-  },
-  "order": [
-    "shipping",
-    "refund"
-  ]
+     "sections": {
+          "shipping": {
+               "type": "main-policy",
+               "settings": {
+                    "policy": "shipping_policy"
+               }
+          },
+          "refund": {
+               "type": "main-policy",
+               "settings": {
+                    "policy": "refund_policy"
+               }
+          }
+     },
+     "order": [
+          "shipping",
+          "refund"
+     ]
 }
