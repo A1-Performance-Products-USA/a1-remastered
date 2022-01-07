@@ -187,7 +187,8 @@
      cursor: pointer;
 }
 
-.menu-drawer .see-more > i {
+.menu-drawer .see-more > i,
+.menu-drawer .see-less > i {
      font-size: 1.3rem;
 }
 
@@ -223,4 +224,52 @@
 .main-header.mobile-open .sticky-mobile-header,
 .main-header.mobile-open .mobile-header {
      display: none;
+}
+
+@media screen and (max-width: 768px) {
+     #menu-list {
+          gap: 1rem;
+     }
+
+     .menu-drawer .title {
+          font-size: 1.1rem;
+          padding: .75rem;
+     }
+     .menu-drawer .see-more,
+     .menu-drawer .see-less {
+          font-size: 1rem;
+          padding: .3rem .5rem;
+     }
+     .menu-drawer .go-back {
+          font-size: 1rem;
+          padding: .5rem;
+     }
+     .menu-drawer .menu-list > li,
+     .menu-drawer .child-list > li {
+          font-size: 1rem;
+          padding: .5rem;
+     }
+
+     .menu-drawer .menu-list > li:not(.link-item) {
+          padding: .5rem .5rem .5rem 1rem;
+     }
+
+     .menu-drawer .menu-list > li.link-item {
+          padding: 0;
+     }
+
+     .menu-drawer li.link-item > a {
+          display: block;
+          width: 100%;
+          height: 100%;
+          padding: .5rem .5rem .5rem 1rem;
+     }
+
+     .menu-drawer .go-back > i {
+          font-size: 1.3rem;
+     }
+     .menu-drawer .see-more > i,
+     .menu-drawer .see-less > i {
+          font-size: 1.1rem;
+     }
 }

@@ -2,7 +2,7 @@ class MobileMenu extends HTMLElement {
      constructor() {
           super();
 
-          if (window.innerWidth > LaptopScreenBreak) return;
+          //if (window.innerWidth > LaptopScreenBreak) return;
 
           this.open = false;
           this.header = document.querySelector('header');
@@ -31,7 +31,10 @@ class MobileMenu extends HTMLElement {
 
      minimizeCounts() {
           const itemCount = 11;
-          const gap = 3;
+          let gap = 2.25;
+          if (window.innerWidth > 768) {
+               gap = 3
+          }
           const catList = this.querySelector('.store-categories');
           let listItems = Array.from(catList.querySelectorAll('li[data-parent="menu-list"]'));
 
