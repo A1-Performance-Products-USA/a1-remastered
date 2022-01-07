@@ -159,4 +159,10 @@
      .newsletter-main .close {
           right: .75rem;
      }
+
+     .newsletter-popup-form input,
+     .newsletter-popup-form button,
+     .newsletter-popup-form label {
+          font-size: 1rem;
+     }
 }
