@@ -722,6 +722,10 @@ body .page-wrapper::after {
      }
 }
 
+.ascending, .descending {
+     display: none;
+}
+
 /**
      Helper
 **/

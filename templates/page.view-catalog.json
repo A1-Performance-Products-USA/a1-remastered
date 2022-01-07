@@ -1,0 +1,12 @@
+{
+     "wrapper": "div.page-content-wrapper",
+     "sections": {
+          "main": {
+               "type": "view-catalog",
+               "settings": {}
+          }
+     },
+     "order": [
+          "main"
+     ]
+}

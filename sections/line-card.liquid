@@ -120,20 +120,19 @@ class LineCard extends HTMLElement {
           this.swiper = new Swiper('.swiper-main', {
                loop: false,
                grabCursor: true,
-               navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-               },
                thumbs: {
                     swiper: this.thumbnail,
                },
                slidesPerView: 1,
                spaceBetween: 0,
                centeredSlides: true,
-               navigation: false,
+               navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+               },
                breakpoints: {
                     480: {
-                         slidesPerView: 2
+                         slidesPerView: 2,
                     },
                     1240: {
                          slidesPerView: 2,

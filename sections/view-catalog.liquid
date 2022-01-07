@@ -1,0 +1,19 @@
+{{ 'section-view-catalog.css' | asset_url | stylesheet_tag }}
+
+<div class="catalog-viewer-wrapper">
+     <embed src= "/catalogs/2020_Allstar_Catalog.pdf" width= "500" height= "375">
+</div>
+
+{% javascript %}
+     
+{% endjavascript %}
+
+{% schema %}
+{
+     "name": "Catalog Viewer",
+     "class": "page-content catalog-viewer-section",
+     "settings": [
+          
+     ]
+}
+{% endschema %}

@@ -230,6 +230,15 @@ cart-remove-button .icon-remove {
      text-align: left;
 }
 
+#CartItems {
+     width: 100%;
+}
+
+#CartItems tr th,
+#CartItems tr td {
+     border-bottom: 1px solid #e5e5e5;
+}
+
 @media screen and (max-width: 1240px) {
      #CartItems {
           width: 100%;
