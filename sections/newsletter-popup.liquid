@@ -1,0 +1,109 @@
+{{ 'section-popup-newsletter.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.show %}
+     {% unless customer and customer.accepts_marketing %}
+          <newsletter-popup class="newsletter-popup">
+               <div class="close-overlay"> </div>
+               <div class="newsletter-main-wrapper">
+                    <div class="newsletter-main">
+                         <button class="close">
+                              <i class="mdi mdi-close"></i>
+                         </button>
+                         <div class="main">
+                              {{ section.settings.logo | image_url: width: '650' | image_tag:  widths: '650 400 300 200', loading: 'lazy' }}
+                              {% assign image = images["popup-signup.png"] %}
+                              {{ image | image_url: width: '478' | image_tag:  widths: '478 400 300 200', loading: 'lazy' }}
+                              {% assign image = images["popup-text.png"] %}
+                              {{ image | image_url: width: '520' | image_tag:  widths: '520 400 300 200', loading: 'lazy' }}
+
+                              {% form 'customer', class: 'newsletter-popup-form' %}
+                                   <input type="hidden" name="contact[tags]" value="newsletter">
+
+                                   <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'newsletter.placeholder' | t }}" name="contact[email]" id="Email" class="input-group-field" aria-label="{{ 'newsletter.placeholder' | t }}" autocorrect="off" autocapitalize="off" required>
+
+                                   <button type="submit" class="btn">{{ 'newsletter.button_label' | t }}</button>
+
+                                   <button class="btn news-close">
+                                        {% assign image = images["popup-no.png"] %}
+                                        <!--<img src="{{ image | img_url: 'master' }}" alt="{{ image.alt }}" class="img-responsive news-no">-->
+                                        {{ 'newsletter.no_thanks' | t }}
+                                   </button>
+
+                                   <div class="checkbox-group form-group-top">
+                                        <input type="checkbox" id="checkBox">
+                                        <label for="checkBox">
+                                             {{ 'newsletter.no_show' | t }}
+                                        </label>
+                                   </div>
+                              {% endform %}
+                         </div>
+                    </div>
+               </div>
+          </newsletter-popup>
+     {% endunless %}
+{% endif %}
+
+<style>
+     .newsletter-popup-wrapper .close-overlay {
+          cursor: url({{ 'pop.png' | asset_url }}), pointer;
+     }
+</style>
+
+{% javascript %}
+     class NewsletterPopup extends HTMLElement {
+          constructor() {
+               super();
+          }
+     }
+
+     customElements.define('newsletter-popup', NewsletterPopup);
+{% endjavascript %}
+
+{% schema %}
+     {
+          "name": "Popup Newsletter",
+          "tag": "div",
+          "class": "newsletter-popup-wrapper open",
+          "settings": [
+               {
+                    "type": "checkbox",
+                    "id": "show",
+                    "label": "Show Popup Newsletter",
+                    "default": true
+               },
+               {
+                    "type": "paragraph",
+                    "content": "After close popup next show will be after 1 minute. If set \"DON'T SHOW THIS POPUP AGAIN\" next show will be after 7 days."
+               },
+               {
+                    "type": "image_picker",
+                    "id": "logo",
+                    "label": "Logo Image",
+                    "info": "Image must be PNG"
+               },
+               {
+                    "type": "header",
+                    "content": "Time Settings"
+               },
+               {
+                    "type": "text",
+                    "id": "delay_first",
+                    "label": "Delay before current show",
+                    "info": "Time in milliseconds. Integer",
+                    "default": "2000"
+               },
+               {
+                    "type": "text",
+                    "id": "delay_next",
+                    "label": "Delay before next show",
+                    "info": "Time in minutes. Integer",
+                    "default": "1"
+               }
+          ],
+          "presets": [
+               {
+                    "name": "Popup Newsletter"
+               }
+          ]
+     }
+{% endschema %}

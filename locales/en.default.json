@@ -60,7 +60,9 @@
           "button_label": "Subscribe",
           "placeholder": "email@example.com",
           "message": "Sign Up To Our Newsletter",
-          "unsubscribe": "Unsubscribe"
+          "unsubscribe": "Unsubscribe",
+          "no_thanks": "No Thanks, Not For Me",
+          "no_show": "Don't show this popup again"
      },
      "accessibility": {
           "skip_to_text": "Skip to content",
