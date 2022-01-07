@@ -9,23 +9,23 @@
                <div class="swiper-wrapper">
                     {% for block in section.blocks %}
                          {% unless block.settings.image_1 == blank %}
-                              <div class="swiper-slide">{{ block.settings.image_1 | image_url: width: '600' | image_tag:  widths: '600 400 300 200' }}</div>
+                              <div class="swiper-slide">{{ block.settings.image_1 | image_url: width: '600' | image_tag:  widths: '600 400 300 200', loading: 'lazy' }}</div>
                          {% endunless %}
 
                          {% unless block.settings.image_2 == blank %}
-                              <div class="swiper-slide">{{ block.settings.image_2 | image_url: width: '600' | image_tag:  widths: '600 400 300 200' }}</div>
+                              <div class="swiper-slide">{{ block.settings.image_2 | image_url: width: '600' | image_tag:  widths: '600 400 300 200', loading: 'lazy' }}</div>
                          {% endunless %}
 
                          {% unless block.settings.image_3 == blank %}
-                              <div class="swiper-slide">{{ block.settings.image_3 | image_url: width: '600' | image_tag:  widths: '600 400 300 200' }}</div>
+                              <div class="swiper-slide">{{ block.settings.image_3 | image_url: width: '600' | image_tag:  widths: '600 400 300 200', loading: 'lazy' }}</div>
                          {% endunless %}
 
                          {% unless block.settings.image_4 == blank %}
-                              <div class="swiper-slide">{{ block.settings.image_4 | image_url: width: '600' | image_tag:  widths: '600 400 300 200' }}</div>
+                              <div class="swiper-slide">{{ block.settings.image_4 | image_url: width: '600' | image_tag:  widths: '600 400 300 200', loading: 'lazy' }}</div>
                          {% endunless %}
 
                          {% unless block.settings.image_5 == blank %}
-                              <div class="swiper-slide">{{ block.settings.image_5 | image_url: width: '600' | image_tag:  widths: '600 400 300 200' }}</div>
+                              <div class="swiper-slide">{{ block.settings.image_5 | image_url: width: '600' | image_tag:  widths: '600 400 300 200', loading: 'lazy' }}</div>
                          {% endunless %}
                     {% endfor %}
                </div>
@@ -50,7 +50,7 @@
                          {% unless block.settings.image_2 == blank %}
                               {% assign counter = counter | plus: 1 %}
                               <div class="swiper-slide">
-                                   {{ block.settings.image_2 | image_url: width: '110' | image_tag: widths: '110 90 60 30' }}
+                                   {{ block.settings.image_2 | image_url: width: '110' | image_tag: widths: '110 90 60 30', loading: 'lazy' }}
                                    <span class="number-indicator btn">{{ counter }}</span>
                               </div>
                          {% endunless %}
@@ -58,7 +58,7 @@
                          {% unless block.settings.image_3 == blank %}
                               {% assign counter = counter | plus: 1 %}
                               <div class="swiper-slide">
-                                   {{ block.settings.image_3 | image_url: width: '110' | image_tag: widths: '110 90 60 30' }}
+                                   {{ block.settings.image_3 | image_url: width: '110' | image_tag: widths: '110 90 60 30', loading: 'lazy' }}
                                    <span class="number-indicator btn">{{ counter }}</span>
                               </div>
                          {% endunless %}
@@ -66,7 +66,7 @@
                          {% unless block.settings.image_4 == blank %}
                               {% assign counter = counter | plus: 1 %}
                               <div class="swiper-slide">
-                                   {{ block.settings.image_4 | image_url: width: '110' | image_tag: widths: '110 90 60 30' }}
+                                   {{ block.settings.image_4 | image_url: width: '110' | image_tag: widths: '110 90 60 30', loading: 'lazy' }}
                                    <span class="number-indicator btn">{{ counter }}</span>
                               </div>
                          {% endunless %}
@@ -74,7 +74,7 @@
                          {% unless block.settings.image_5 == blank %}
                               {% assign counter = counter | plus: 1 %}
                               <div class="swiper-slide">
-                                   {{ block.settings.image_5 | image_url: width: '110' | image_tag: widths: '110 90 60 30' }}
+                                   {{ block.settings.image_5 | image_url: width: '110' | image_tag: widths: '110 90 60 30', loading: 'lazy' }}
                                    <span class="number-indicator btn">{{ counter }}</span>
                               </div>
                          {% endunless %}
@@ -99,13 +99,17 @@ class LineCard extends HTMLElement {
                     nextEl: '.swiper-button-next.thumb',
                     prevEl: '.swiper-button-prev.thumb',
                },
+               grabCursor: true,
+               enabled: false,
                breakpoints: {
                     768: {
+                         enabled: true,
                          slidesPerView: 5,
                          spaceBetween: 5,
                          navigation: false
                     },
                     1240: {
+                         enabled: true,
                          slidesPerView: 10,
                          spaceBetween: 5
                     }
@@ -114,6 +118,7 @@ class LineCard extends HTMLElement {
           
           this.swiper = new Swiper('.swiper-main', {
                loop: false,
+               grabCursor: true,
                navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
@@ -121,13 +126,11 @@ class LineCard extends HTMLElement {
                thumbs: {
                     swiper: this.thumbnail,
                },
+               slidesPerView: 2,
+               spaceBetween: 0 ,
+               centeredSlides: true,
+               navigation: false,
                breakpoints: {
-                    0: {
-                         slidesPerView: 2,
-                         spaceBetween: 0 ,
-                         centeredSlides: true,
-                         navigation: false
-                    },
                     1240: {
                          slidesPerView: 2,
                          spaceBetween: 10
