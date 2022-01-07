@@ -34,6 +34,7 @@
                <div class="swiper-button-next btn"><i class="mdi mdi-chevron-right"></i></div>
           </div>
      </div>
+     <p class="mobile-help">Swipe to view more pages.</p>
      <div class="thumbnail-wrapper">
           <div thumbsSlider="" class="swiper-thumb">
                <div class="swiper-wrapper">
@@ -126,11 +127,14 @@ class LineCard extends HTMLElement {
                thumbs: {
                     swiper: this.thumbnail,
                },
-               slidesPerView: 2,
-               spaceBetween: 0 ,
+               slidesPerView: 1,
+               spaceBetween: 0,
                centeredSlides: true,
                navigation: false,
                breakpoints: {
+                    480: {
+                         slidesPerView: 2
+                    },
                     1240: {
                          slidesPerView: 2,
                          spaceBetween: 10

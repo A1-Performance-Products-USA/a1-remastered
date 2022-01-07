@@ -132,6 +132,10 @@
      display: none;
 }
 
+.mobile-help {
+     display: none;
+}
+
 @media screen and (max-width: 768px) {
      .thumbnail-wrapper {
           display: none;
@@ -140,5 +144,14 @@
      .swiper-button-prev,
      .swiper-button-next {
           display: none;
+     }
+
+     .mobile-help {
+          display: inline-block;
+          text-align: center;
+          margin: 0;
+          font-size: 1.2rem;
+          font-style: italic;
+          line-height: 1.4;
      }
 }
