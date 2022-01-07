@@ -813,6 +813,10 @@ form > .errors > ul {
      margin-top: 0;
 }
 
+#shopify-privacy-banner-inner-div > #shopify-privacy-banner-body-div > h3 {
+     margin-bottom: 0;
+}
+
 #shopify-privacy-banner-inner-div > #shopify-privacy-banner-button-div > button {
      margin-top: 0;
 }
