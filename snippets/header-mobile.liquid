@@ -1,5 +1,3 @@
-<script src="{{ 'component-header-mobile.js' | asset_url }}" defer="defer"></script>
-
 {{ 'component-header-mobile.css' | asset_url | stylesheet_tag }}
 
 <div class="mobile-header">
@@ -37,3 +35,5 @@
           </button>
      </div>
 {% endif %}
+
+{% render 'header-mobile-menu', catMenu: section.settings.category_menu.links navMenu: section.settings.menu.links %}

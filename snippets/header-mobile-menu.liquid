@@ -1,0 +1,98 @@
+{{ 'component-header-mobile-menu.css' | asset_url | stylesheet_tag }}
+
+<mobile-menu class="mobile-menu-wrapper">
+     <div class="mobile-menu-header animate__animated animate__slideInDown">
+          <div class="left-side">
+               <button class="navigation-icon btn">
+                    <i class="mdi mdi-close"></i>
+               </button>
+          </div>
+
+          <div class="center-side">
+               {% render 'logo', logo: settings.sticky_logo_mobile, logoSize: 'small' %}
+               {% assign logo = blank %}
+          </div>
+
+          <div class="right-side">
+               <a class="account-icon btn" href="{{ routes.account_url }}">
+                    <i class="mdi mdi-account"></i>
+               </a>
+          
+               <a class="cart-icon btn" href="{{ routes.cart_url }}">
+                    <i class="mdi mdi-cart"></i>
+               </a>
+          </div>
+     </div>
+
+     <div class="mobile-menu-content animate__animated animate__slideInLeft">
+          <div class="menu-drawer">
+               <ul class="menu-list store-categories">
+                    <div class="title">Shop Categories</div>
+                    {% for link in catMenu %}
+                         {% assign child_list_handle = link.title | split: '[' | first | handleize %}
+                         <li data-child="{{ child_list_handle }}">
+                              <span>{{ link.title }}</span>
+                              <i class="mdi mdi-chevron-right"></i>
+                         </li>
+                    {% endfor %}
+               </ul>
+               <ul class="menu-list store-nav">
+                    <div class="title">Quick Links</div>
+                    {% for link in navMenu %}
+                         {% assign child_list_handle = link.title | split: '[' | first | handleize %}
+                         <li data-child="{{ child_list_handle }}">
+                              <a href="{{ link.url }}">{{ link.title | split: '[' | first | escape }}</a>
+                         </li>
+                    {% endfor %}
+               </ul>
+          </div>
+     </div>
+</mobile-menu>
+
+{% comment %}
+{% for link in linklists[category_list].links %}
+     {% assign child_list_handle = link.title | split: '[' | first | handleize %}
+     {% if link and link.links != blank %}
+          <li>
+               <category-dropdown class="cat-item cat-parent first">
+                    <div class="cat-title" data-child="{{ child_list_handle }}">
+                         <a href="javascript:void(0);" class="category-link cat-sc-toggle {% if link.active or link.child_active %}disabled{% endif %}">
+                              {{ link.title | split: '[' | first | escape }}
+                         </a>
+                         <span class="cat-menu-expand">+</span>
+                    </div>
+                    <ul id="{{ child_list_handle }}" class="children-cat cat-sc-toggle-content" style="display:none">
+                         {% for child_link in link.links %}
+                              {% assign child_list_handle = child_link.title | split: '[' | first | handleize %}
+                              {% if child_link and child_link.links != blank %}
+                              <li>
+                                   <category-dropdown class="cat-item cat-parent first1">
+                                        <div class="cat-title" data-child="{{ child_list_handle }}">
+                                             <a href="javascript:void(0);"
+                                                  class="category-link cat-sc-toggle child-parent {% if link.active or child_link.active or child_link.child_active %}disabled{% endif %}">
+                                                  {{ child_link.title | split: '[' | first | escape }} 
+                                             </a>
+                                             <span class="cat-menu-expand">+</span>
+                                        </div>
+                                        <ul id="{{ child_list_handle }}" class="children-cat cat-sc-toggle-content" style="display:none">
+                                             {% for child_link in child_link.links %}
+                                             <li><a class="category-link clickable{% if child_link.active %}disabled active{% endif %}" href="{{ child_link.url }}">{{ child_link.title | split: '[' | first | escape }} </a></li>
+                                             {% endfor %}
+                                        </ul>
+                                   </category-dropdown>
+                              </li>
+                              {% else %}
+                                   <li class="cat-item cat-parent"><a href="{{ child_link.url }}">{{ child_link.title | split: '[' | first | escape }} </a></li>
+                              {% endif %}
+                         {% endfor %}
+                    </ul>
+               </category-dropdown>
+          </li>
+     {% else %}
+          <li class="cat-item cat-parent">
+               <i></i><a href="{{ link.url }}">{{ link.title | split: '[' | first | escape }} </a>
+          </li>
+     {% endif %}
+{% endfor %}
+</ul>
+{% endcomment %}
