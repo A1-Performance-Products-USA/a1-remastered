@@ -1,0 +1,20 @@
+{% if linklists[settings.category_menu].links.size > 0 %}
+     <mega-menu class="mega-menu">
+          <div class="mega-menu-title">
+               <span class="title">{{ settings.category-title }}</span>
+          </div>
+          <ul class="main-categories-list">
+               {% for link in linklists[settings.category_menu].links %}
+                    {% assign main_title = link.title | split: '[' | first | handleize %}
+                    <li class="main-link">
+                         <span class="title">{{ link.title | split: '[' | first | escape }}</span>
+                         <i class="indicator mdi mdi-chevron-down"></i>
+
+                         <div class="sub-menu" data-parent="{{ main_title }}">
+
+                         </div>
+                    </li>
+               {% endfor %}
+          </ul>
+     </mega-menu>
+{% endif %}

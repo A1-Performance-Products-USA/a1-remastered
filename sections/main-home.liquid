@@ -1,0 +1,111 @@
+{{ 'section-main-home.css' | asset_url | stylesheet_tag }}
+{{ 'component-categories-mega-menu.css' | asset_url | stylesheet_tag }}
+{{ 'component-home-advertisements.css' | asset_url | stylesheet_tag }}
+{{ 'component-home-banner-slider.css' | asset_url | stylesheet_tag }}
+
+<div class="mega-menu-wrapper">
+     {% render 'categories-mega-menu', settings: section.settings %}
+</div>
+
+<div class="main-home-content">
+     {% render 'home-banner-slider', blocks: section.settings.blocks %}
+
+     {% render 'home-advertisements', blocks: section.settings.blocks %}
+</div>
+
+{% javascript %}
+     class MegaMenu extends HTMLElement {
+          constructor() {
+               super();
+
+               this.addEventListener('click', this.print.bind(this));
+          }
+
+          print(e) {
+               e.preventDefault();
+
+               const originalContent = document.body.innerHTML;
+               const printContent = document.querySelector('.product-section').innerHTML;
+
+               document.body.innerHTML = printContent;
+               window.print();
+               document.body.innerHTML = originalContent;
+
+               return true;
+          }
+     }
+
+     customElements.define('mega-menu', MegaMenu);
+{% endjavascript %}
+
+{% schema %}
+{
+     "name": "Main Home",
+     "tag": "section",
+     "class": "page-content main-home",
+     "settings": [
+          {
+               "type": "header",
+               "content": "Category Menu"
+          },
+          {
+               "type": "text",
+               "id": "category-title",
+               "label": "Category Title",
+               "default": "Shop Categories"
+          },
+          {
+               "type": "color",
+               "id": "category-title_bgclr",
+               "label": "Category Title background color",
+               "default": "#202b38"
+          },
+          {
+               "type": "color",
+               "id": "category-title_clr",
+               "label": "Category Title text color",
+               "default": "#fff"
+          },
+          {
+               "type": "color",
+               "id": "category-title_hov_bgclr",
+               "label": "Category Title background hover color",
+               "default": "#000"
+          },
+          {
+               "type": "color",
+               "id": "category-title_hov_clr",
+               "label": "Category Title text hover color",
+               "default": "#fff"
+          },
+
+               {
+               "type": "color",
+               "id": "category-menu_bgclr",
+               "label": "Category Menu background color",
+               "default": "#111"
+          },
+               {
+               "type": "color",
+               "id": "category-menu_txt_clr",
+               "label": "Category Menu text color",
+               "default": "#fff"
+          },
+          {
+               "type": "color",
+               "id": "category-menu_txt_hvr_clr",
+               "label": "Category Menu text Hover color",
+               "default": "#ffd200"
+          },
+          {
+               "type": "link_list",
+               "id": "category_menu",
+               "default": "main-menu",
+               "label": "Category Menu"
+          }
+     ],
+     "blocks": [
+     ]
+}
+{% endschema %}
+

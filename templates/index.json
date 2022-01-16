@@ -1,52 +1,31 @@
 {
-  "sections": {
-    "rich_text": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
+     "wrapper": "div.page-content-wrapper",
+     "sections": {
+          "main_home": {
+               "type": "main-home",
+               "settings": {
+                    "category-title": "Shop Categories",
+                    "category-title_bgclr": "#111111",
+                    "category-title_clr": "#ffffff",
+                    "category-title_hov_bgclr": "#e20303",
+                    "category-title_hov_clr": "#ffffff",
+                    "category-menu_bgclr": "#ffffff",
+                    "category-menu_txt_clr": "#5c5c5c",
+                    "category-menu_txt_hvr_clr": "#000000"
+               }               
+          },
+          "16415378381feaa686": {
+               "type": "newsletter-popup",
+               "settings": {
+                    "show": true,
+                    "logo": "shopify:\/\/shop_images\/logo_18444a14-8fa7-4753-9d2f-fcc9e9119bda.png",
+                    "delay_first": "2000",
+                    "delay_next": "60"
+               }
           }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ],
-      "settings": {
-        "color_scheme": "background-1",
-        "full_width": true
-      }
-    },
-    "16415378381feaa686": {
-      "type": "newsletter-popup",
-      "settings": {
-        "show": true,
-        "logo": "shopify:\/\/shop_images\/logo_18444a14-8fa7-4753-9d2f-fcc9e9119bda.png",
-        "delay_first": "2000",
-        "delay_next": "60"
-      }
-    }
-  },
-  "order": [
-    "rich_text",
-    "16415378381feaa686"
-  ]
+     },
+     "order": [
+          "main_home",
+          "16415378381feaa686"
+     ]
 }

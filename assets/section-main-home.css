@@ -1,0 +1,20 @@
+.page-content.main-home {
+     margin-top: 2.5rem;
+}
+
+.main-home {
+     width: 100%;
+
+     display: flex;
+     justify-content: flex-start;
+     align-content: center;
+     gap: 2rem;
+}
+
+.mega-menu-wrapper {
+     width: calc(22% - 1rem);
+}
+
+.main-home-content {
+     flex-grow: 1;
+}
