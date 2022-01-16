@@ -244,23 +244,6 @@ body .page-wrapper::after {
      border: 1px solid #262629 !important;
 }
 
-.btn::after {
-     -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-     -khtml-border-radius: 5px;
-     border-radius: 5px;
-     display: block;
-     position: absolute;
-     left: 0;
-     top: 0;
-     height: 0;
-     width: 100%;
-     z-index: -1;
-     content: '';
-     color: #fff !important;
-     transition: all .3s cubic-bezier(.215, .61, .355, 1) 0s;
-}
-
 /**
      Category List
 **/

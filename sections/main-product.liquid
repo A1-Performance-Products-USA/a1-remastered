@@ -1,27 +1,39 @@
 {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
-{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
+{{ 'component-quantity-box-set.css' | asset_url | stylesheet_tag }}
 
 <link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="print" onload="this.media='all'">
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quantity-box-set.js' | asset_url }}" defer="defer"></script>
 
 {% assign product_selected = product.selected_or_first_available_variant %}
+{% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+
+{%- liquid 
+     assign in_cart = false
+     
+     for item in cart.items
+          if item.product.id == product.id
+               assign in_cart = item.quantity
+          endif
+     endfor
+-%}
 
 <section class="page-content product-wrapper">
      <div class="product-image-wrapper">
-          {%- if product_selected.featured_media -%}
+          {%- if featured_image -%}
                {%- liquid
-                    assign featured_media_aspect_ratio = product_selected.featured_media.aspect_ratio
+                    assign featured_media_aspect_ratio = featured_image.aspect_ratio
 
-                    if product_selected.featured_media.aspect_ratio == nil
+                    if featured_image.aspect_ratio == nil
                          assign featured_media_aspect_ratio = 1
                     endif
                -%}
 
                <div class="product-image">
-                    {{ product_selected.featured_media | image_url: width: '500' | image_tag:  widths: '478 400 300 200', loading: 'lazy' }}
+                    {{ featured_image | image_url: width: '500' | image_tag:  widths: '478 400 300 200', loading: 'lazy' }}
                </div>
           {%- else -%}
                <div class="product-image">
@@ -32,85 +44,154 @@
           {%- endif -%}
      </div>
      <div class="product-info-wrapper">
-          <span>some text here</span>
-     </div>
-     <div class="extra-details">
-          <p>SsdsdsdsdsdsdadsfdfsadfsAoliD AIUYDGAIGDAIGDagDGADOIGAODGAoDIGDIBAGagFFHBIOSDHFGSFPIAehDIAHDIPUAHBDIUABDUAHSDPIGAHDPIAUWHDIAPWHDAUHDPISAHDIPAUHDPAWHDANDSAJHDAH[AOFJSE[OFHA[HDWA[QH</p>
+          <div class="product-info-header">
+               <span class="product-type">{{ product.type | link_to_type }}</span>
+               <span class="title">{{ product.title | escape }}</span>
+          </div>
+
+          <product-form class="product-info-body {% unless product.available %}sold_out{% endunless %} {% unless in_cart == false %}in_cart{% endunless %}" data-cartcount="{% if in_cart != false %}{{ in_cart }}{% else %}0{% endif %}" data-product="{{ product_selected.id }}">
+               {%- form 'product', product, id: 'AddToCartForm-{{ product.id }}', class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                    <input type="hidden" name="id" value="{{ product_selected.id }}" disabled>
+                    <div class="product-info-specifics">
+                         <div class="product-info-specific-item">
+                              <label class="info-title sku">{{ 'products.product.specifics_titles.sku' | t }}&nbsp;&#58;</label>
+                              <span class="sku">{{ product_selected.sku }}</span>
+                         </div>
+
+                         <div class="product-info-specific-item">
+                              <label class="info-title vendor">{{ 'products.product.specifics_titles.vendor' | t }}&nbsp;&#58;</label>
+                              <span class="vendor">{{ product.vendor | link_to_vendor }}</span>
+                         </div>
+
+                         <div class="product-info-specific-item">
+                              <label class="info-title type">{{ 'products.product.specifics_titles.type' | t }}&nbsp;&#58;</label>
+                              <span class="type">{{ product.type | link_to_type }}</span>
+                         </div>
+
+                         {% if product_selected.barcode != blank %}
+                              <div class="product-info-specific-item">
+                                   <label class="info-title upc">{{ 'products.product.specifics_titles.upc' | t }}&nbsp;&#58;</label>
+                                   <span class="upc">{{ product_selected.barcode }}</span>
+                              </div>
+                         {% endif %}
+
+                         <div class="product-info-specific-item">
+                              <label class="info-title availability">{{ 'products.product.specifics_titles.availability' | t }}&nbsp;&#58;</label>
+                              <span class="availability{% unless product.available and product_selected.inventory_quantity > 0 %} sold_out{% endunless %}{% if product.available and product_selected.inventory_quantity <= 3%} low{% endif %}">
+                                   {% if product.available and product_selected.inventory_quantity > 0 %}
+                                        {{ 'products.product.availability' | t: quantity: product_selected.inventory_quantity }}
+                                   {% else %}
+                                        {{ 'products.product.sold_out' | t }} 
+                                   {% endif %}
+                              </span>
+                         </div>
+                    </div>
+
+                    <div class="product-info-price">
+                         <label class="price-title">{{ 'products.product.price.title' | t }}&nbsp;&#58;</label>
+                         {% render 'price', product: product, price_class: 'price--center' %}
+                    </div>
+
+                    <div class="product-info-links">
+                         <a title="Compare" href="#" class="compare">
+                              <i class="mdi mdi-repeat"></i>
+                              {{ 'products.product.compare' | t }}
+                         </a>
+                         <a title="Wishlist" href="#" class="wishlist">
+                              <i class="mdi mdi-heart-outline"></i>
+                              {{ 'products.product.wishlist' | t }}
+                         </a>
+                         <print-product class="print">
+                              <i class="mdi mdi-printer"></i>
+                              {{ 'products.product.print' | t }}
+                         </print-product>
+                    </div>
+
+                    {% if product.available %}
+                         <div class="product-info-quantity">
+                              <link itemprop="availability" href="http://schema.org/{% if product_selected.available %}InStock{% else %}OutOfStock{% endif %}">
+
+                              <quantity-box-set class="qty-box-set">
+                                   <div class="dec btn qtyminus qtyboxbtn {% if product.available == false %}disabled{% endif %}"><i class="mdi mdi-minus"></i></div>
+                                   <input type="number" name="quantity" value="{% if in_cart != false %}{{ in_cart }}{% elsif product.available == false %}0{% else %}1{% endif %}" min="{% if in_cart != false %}0{% else %}1{% endif %}" max="{{ product_selected.inventory_quantity }}" class="quantity" size="1" for="AddToCartForm-{{ product.id }}">
+                                   <div class="inc btn qtyplus qtyboxbtn {% if product.available == false %}disabled{% endif %}"><i class="mdi mdi-plus"></i></div>
+                              </quantity-box-set>   
+                         </div>
+                    {% endif %}
+
+                    <div class="product-form__error-message-wrapper hidden" role="alert">
+                         <i class="mdi mdi-sync-alert"></i>
+                         <span class="product-form__error-message"></span>
+                    </div>
+
+                    <div class="product-info-buy_btns">
+                         <button class="add-cart-btn btn {% unless product.available %}disabled sold_out{% else %}{% if in_cart != false %}disabled in_cart{% else %}add_to{% endif %}{% endunless %}" title="{{ 'products.product.add_to_cart' | t }}" {% unless product.available or in_cart != false %}disabled{% endunless %}>
+                              {% unless product.available %}
+                                   <i class="mdi mdi-cart-off"></i>
+                                   <span class="add_cart">{{ 'products.product.sold_out' | t }}</span>
+                              {% else %}
+                                   <i class="upd_cart mdi mdi-cart-outline"></i>
+                                   <span class="upd_cart add_cart">{{ 'products.product.update_in_cart' | t }}</span>
+
+                                   <i class="loading mdi mdi-spin mdi-autorenew"></i>
+                                   <span class="loading add_cart">{{ 'accessibility.loading' | t }}</span>
+
+                                   <i class="complete mdi mdi-checkbox-marked-circle-outline"></i>
+                                   <span class="complete add_cart">{{ 'products.product.updated' | t }}</span>
+
+                                   <i class="in_cart mdi mdi-cart"></i>
+                                   <span class="in_cart add_cart">{{ 'products.product.in_cart' | t }}</span>
+
+                                   <i class="add_to mdi mdi-cart-outline"></i>
+                                   <span class="add_to add_cart">{{ 'products.product.add_to_cart' | t }}</span>
+                              {% endunless %}
+                         </button>
+
+                         {% if product.available %}
+                              {{ form | payment_button }}
+                         {% endif %}
+                    </div>
+               {% endform %}
+          </product-form>
+
+          {% assign prop_65 = product.metafields.product_warning.prop_65 %}
+          {% if prop_65 != blank %}
+               <div class="product-info-prop_65">
+                    <img src="{{ 'prop_65.png' | asset_img_url: 'master' }}" alt="PROP 65 WARNING LOGO" loading="lazy">
+                    <span class="prop_65_warning">{{ 'products.product.warning_html' | t: prop_65: prop_65 }}</span>
+               </div>
+          {% endif %}
+
+          <div class="product-info-social">
+               {% render 'social-sharing', template_name: template.name, product: product, shop: shop %}
+          </div>
      </div>
 </section>
 
 {% javascript %}
-class ProductModal extends ModalDialog {
-     constructor() {
-          super();
+     class PrintProduct extends HTMLElement {
+          constructor() {
+               super();
+
+               this.addEventListener('click', this.print.bind(this));
+          }
+
+          print(e) {
+               e.preventDefault();
+
+               const originalContent = document.body.innerHTML;
+               const printContent = document.querySelector('.product-section').innerHTML;
+
+               document.body.innerHTML = printContent;
+               window.print();
+               document.body.innerHTML = originalContent;
+
+               return true;
+          }
      }
-
-     hide() {
-          super.hide();
-     }
-
-     show(opener) {
-          super.show(opener);
-          this.showActiveMedia();
-     }
-
-     showActiveMedia() {
-          this.querySelectorAll(`[data-media-id]:not([data-media-id="${this.openedBy.getAttribute("data-media-id")}"])`).forEach((element) => {
-               element.classList.remove('active');
-          })
-          const activeMedia = this.querySelector(`[data-media-id="${this.openedBy.getAttribute("data-media-id")}"]`);
-          const activeMediaTemplate = activeMedia.querySelector('template');
-          const activeMediaContent = activeMediaTemplate ? activeMediaTemplate.content : null;
-          activeMedia.classList.add('active');
-          activeMedia.scrollIntoView();
-
-          const container = this.querySelector('[role="document"]');
-          container.scrollLeft = (activeMedia.width - container.clientWidth) / 2;
-
-          if (activeMedia.nodeName == 'DEFERRED-MEDIA' && activeMediaContent && activeMediaContent.querySelector('.js-youtube'))
-               activeMedia.loadContent();
-     }
-}
-
-customElements.define('product-modal', ProductModal);
+     
+     customElements.define('print-product', PrintProduct);
 {% endjavascript %}
-
-<script>
-     document.addEventListener('DOMContentLoaded', function () {
-          function isIE() {
-               const ua = window.navigator.userAgent;
-               const msie = ua.indexOf('MSIE ');
-               const trident = ua.indexOf('Trident/');
-
-               return (msie > 0 || trident > 0);
-          }
-
-          if (!isIE()) return;
-          const hiddenInput = document.querySelector('#{{ product_form_id }} input[name="id"]');
-          const noScriptInputWrapper = document.createElement('div');
-          const variantSwitcher = document.querySelector('variant-radios[data-section="{{ section.id }}"]') ||
-               document.querySelector('variant-selects[data-section="{{ section.id }}"]');
-          noScriptInputWrapper.innerHTML = document.querySelector(
-               '.product-form__noscript-wrapper-{{ section.id }}').textContent;
-          variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML;
-
-          document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
-               hiddenInput.value = event.currentTarget.value;
-          });
-     });
-</script>
-
-{%- if first_3d_model -%}
-     <script type="application/json" id="ProductJSON-{{ product.id }}">
-          {
-               {
-                    product.media | where: 'media_type', 'model' | json
-               }
-          }
-     </script>
-
-     <script src="{{ 'product-model.js' | asset_url }}" defer></script>
-{%- endif -%}
 
 <script type="application/ld+json">
      {
@@ -221,29 +302,6 @@ customElements.define('product-modal', ProductModal);
           }
      ],
      "settings": [
-          {
-               "type": "checkbox",
-               "id": "enable_sticky_info",
-               "default": true,
-               "label": "t:sections.main-product.settings.enable_sticky_info.label"
-          },
-          {
-               "type": "header",
-               "content": "t:sections.main-product.settings.header.content",
-               "info": "t:sections.main-product.settings.header.info"
-          },
-          {
-               "type": "checkbox",
-               "id": "hide_variants",
-               "default": false,
-               "label": "t:sections.main-product.settings.hide_variants.label"
-          },
-          {
-               "type": "checkbox",
-               "id": "enable_video_looping",
-               "default": false,
-               "label": "t:sections.main-product.settings.enable_video_looping.label"
-          }
      ]
 }
 {% endschema %}

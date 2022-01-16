@@ -1,0 +1,34 @@
+{% if template_name == 'article' or template_name == 'blog' %}
+     {% capture permalinkURL %}{{ shop.url }}{{ article.url }}{% endcapture %}
+     {% capture shareTitle %}{{ article.title | url_param_escape }}{% endcapture %}
+{% elsif template_name == 'product' %}
+     {% capture permalinkURL %}{{ shop.url }}{{ product.url }}{% endcapture %}
+     {% capture shareTitle %}{{ product.title | url_param_escape }}{% endcapture %}
+{% elsif template_name == 'password' %}
+     {% capture permalinkURL %}{{ shop.url }}{% endcapture %}
+     {% capture shareTitle %}{% unless shop.description == blank %}{{ shop.description | url_param_escape }}{% else %}{{ shop.name | url_param_escape }}{% endunless %}{% endcapture %}
+{% endif %}
+
+<div class="social-sharing" data-permalink="{{ permalinkURL }}">
+     <a target="_blank" href="//www.facebook.com/sharer.php?u={{ permalinkURL }}" class="share-facebook">
+          <i class="icon mdi mdi-facebook-box" aria-hidden="true"></i>
+          <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_facebook' | t }}</span>
+          <span class="hidden">{{ 'general.social.alt_text.share_on_facebook' | t }}</span>
+     </a>
+
+     <a target="_blank" href="//twitter.com/share?text={{ shareTitle }}&amp;url={{ permalinkURL }}" class="share-twitter">
+          <i class="icon mdi mdi-twitter" aria-hidden="true"></i>
+          <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_twitter' | t }}</span>
+          <span class="hidden">{{ 'general.social.alt_text.share_on_twitter' | t }}</span>
+     </a>
+
+     {% if template_name == 'product' %}
+          <a target="_blank"
+               href="//pinterest.com/pin/create/button/?url={{ permalinkURL }}&amp;media=http:{{ product.featured_image | img_url: '1024x1024' }}&amp;description={{ shareTitle }}"
+               class="share-pinterest">
+               <i class="icon mdi mdi-pinterest" aria-hidden="true"></i>
+               <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_pinterest' | t }}</span>
+               <span class="hidden">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+          </a>
+     {% endif %}
+</div>

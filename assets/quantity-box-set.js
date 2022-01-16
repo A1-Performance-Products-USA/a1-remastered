@@ -90,6 +90,23 @@ class QuantityBoxSet extends HTMLElement {
                this.up.classList.remove('disabled');
           }
      }
+
+     disableAll() {
+          this.input.disabled = true;
+          this.input.classList.add('disabled');
+          this.down.disabled = true;
+          this.down.classList.add('disabled');
+          this.up.disabled = true;
+          this.up.classList.add('disabled');
+     }
+
+     enableAll() {
+          this.input.disabled = false;
+          this.down.disabled = false;
+          this.up.disabled = false;
+
+          this.inputOnChange();
+     }
 }
 
 customElements.define('quantity-box-set', QuantityBoxSet);

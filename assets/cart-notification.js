@@ -41,8 +41,8 @@ class CartNotification extends HTMLElement {
           removeTrapFocus(this.activeElement);
      }
 
-     renderContents(parsedState) {
-          this.productId = parsedState.id;
+     renderContents(parsedState, id) {
+          this.productId = id || parsedState.id;
           this.getSectionsToRender().forEach((section => {
                document.getElementById(section.id).innerHTML =
                     this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);

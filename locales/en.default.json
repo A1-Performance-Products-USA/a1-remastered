@@ -11,6 +11,9 @@
                "powered_by_shopify_html": "This shop will be powered by  {{ shopify }}"
           },
           "social": {
+               "share_on_facebook": "Share",
+               "share_on_twitter": "Tweet",
+               "share_on_pinterest": "Pin",
                "alt_text": {
                     "share_on_facebook": "Share on Facebook",
                     "share_on_twitter": "Tweet on Twitter",
@@ -28,6 +31,7 @@
                     "tiktok": "TikTok"
                }
           },
+          "continue_shopping": "Continue Shopping",
           "continue_shopping_html": "The page you requested does not exist. Click <a href=\"{{ all_products_link }}\">here<\/a> to continue shopping.",
           "pagination": {
                "label": "Pagination",
@@ -112,7 +116,9 @@
           "product": {
                "add_to_cart": "Add to cart",
                "update_in_cart": "Update Cart",
-               "availability": "Only {{ quantity }} Left In-Stock!",
+               "updated": "Updated Cart",
+               "in_cart": "In Cart",
+               "availability": "{{ quantity }} In-Stock",
                "description": "Description",
                "on_sale": "Sale",
                "product_variants": "Product variants",
@@ -141,18 +147,31 @@
                     "from_price_html": "From  {{ price }}",
                     "regular_price": "Regular price",
                     "sale_price": "Sale price",
-                    "unit_price": "Unit price"
+                    "unit_price": "Unit price",
+                    "title": "Price"
                },
                "share": "Share this product",
+               "print": "Print",
                "sold_out": "Sold out",
                "unavailable": "Unavailable",
-               "vendor": "Vendor",
+               "vendor": "Brand",
                "video_exit_message": "{{ title }}opens full screen video in same window.",
                "view_full_details": "View full details",
                "xr_button": "View in your space",
                "xr_button_label": "View in your space, loads item in augmented reality window",
                "include_taxes": "Tax included.",
-               "shipping_policy_html": "<a href=\" {{ link }}\">Shipping<\/a> calculated at checkout."
+               "shipping_policy_html": "<a href=\" {{ link }}\">Shipping<\/a> calculated at checkout.",
+               "specifics_titles": {
+                    "vendor": "Brand",
+                    "upc": "UPC",
+                    "type": "Type",
+                    "sku": "Part Number",
+                    "availability": "Availability",
+                    "part_number": "Part Number"
+               },
+               "warning_html": "<strong>WARNING:</strong> {{ prop_65 }}. For more information, go to <a href='www.P65Warnings.ca.gov'>www.P65Warnings.ca.gov</a>.",
+               "wishlist": "Wishlist",
+               "compare": "Compare"
           },
           "modal": {
                "label": "Media gallery"
