@@ -11,6 +11,7 @@
                          <i class="indicator mdi mdi-chevron-down"></i>
 
                          <div class="sub-menu" data-parent="{{ main_title }}">
+                              {% comment %}
                               <ul>
                                    {% for child_link in link.links %}
                                         <li class="child-link">{{ child_link.title }}</li>
@@ -27,6 +28,7 @@
                                         </div>
                                    {% endfor %}
                               </ul>
+                              {% endcomment %}
                          </div>
                     </li>
                {% endfor %}
