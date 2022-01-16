@@ -4,7 +4,7 @@
 {{ 'component-home-banner-slider.css' | asset_url | stylesheet_tag }}
 
 <div class="mega-menu-wrapper">
-     {% render 'categories-mega-menu', settings: section.settings %}
+     {% render 'categories-mega-menu', settings: section.settings, collections: collections %}
 </div>
 
 <div class="main-home-content">

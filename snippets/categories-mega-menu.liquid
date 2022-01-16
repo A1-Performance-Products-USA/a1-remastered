@@ -11,7 +11,22 @@
                          <i class="indicator mdi mdi-chevron-down"></i>
 
                          <div class="sub-menu" data-parent="{{ main_title }}">
+                              <ul>
+                                   {% for child_link in link.links %}
+                                        <li class="child-link">{{ child_link.title }}</li>
 
+                                        <div class="child-sub-menu" data-parent="{{ main_title }}">
+                                             <ul>
+                                                  {% for grand_child_link in child_link.links %}
+                                                       {% assign linkCollection = grand_child_link.url | split: '/' | last | handleize %}
+                                                       {% if linkCollection != blank and collections[linkCollection] != blank %}
+                                                            <li class="grand-child-link">{{ collections[linkCollection].featured_image.src }}</li>
+                                                       {% endif %}
+                                                  {% endfor %}
+                                             </ul>
+                                        </div>
+                                   {% endfor %}
+                              </ul>
                          </div>
                     </li>
                {% endfor %}
