@@ -28,7 +28,7 @@
 .swiper-button-next {
      background-color: #ffffff;
      color: #000;
-     font-size: 3rem;
+     font-size: 2.5rem;
      padding: .25rem;
      width: auto;
      height: auto;
@@ -40,6 +40,8 @@
      -ms-transition: 300ms ease-in-out;
      -o-transition: 300ms ease-in-out;
      transition: 300ms ease-in-out;
+     top: 50%;
+     transform: translateY(-50%);
 }
 
 .swiper-button-next > i,

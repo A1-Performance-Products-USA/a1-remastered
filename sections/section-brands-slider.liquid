@@ -1,0 +1,83 @@
+{{ 'section-brands-slider.css' | asset_url | stylesheet_tag }}
+
+<brands-slider class="brands-slider-wrapper">
+     <h2 class="product-slider-header">{{ 'sections.brands-slider.title' | t }}</h2>
+     <div class="brands-slider-main">
+          <div class="swiper-wrapper">
+               {% for vendor in shop.vendors limit:48 %}
+                    <div class="swiper-slide brand-slide">
+                         <div class="brand-img">
+                              <a href="{{ vendor | url_for_vendor }}">
+                                   {% assign vendorFile = vendor | replace: ' & ', '_' | replace: ',', '_' | replace: '.', '_' | replace: ' ', '_' | replace: '/', '' | replace: '__', '_' | append:'.jpg' | replace: '_.jpg', '.jpg' %}
+                                   {% assign brand_img = vendorFile | file_img_url: 'master' %}
+
+                                   <img height="auto" width="130px" src="{{ brand_img }}" alt="{{ vendor }}" loading="lazy" />
+                              </a>
+                         </div>
+                    </div>
+               {% endfor %}
+          </div>
+
+          <div class="brands-slider-swiper-button-prev btn"><i class="mdi mdi-chevron-left"></i></div>
+          <div class="brands-slider-swiper-button-next btn"><i class="mdi mdi-chevron-right"></i></div>
+     </div>
+</brands-slider>
+
+{% javascript %}
+     class BrandsSlider extends HTMLElement {
+          constructor() {
+               super();
+
+               this.swiper = new Swiper('.brands-slider-main', {
+                    loop: true,
+                    grabCursor: true,
+                    slidesPerView: 3,
+                    spaceBetween: 4,
+                    centeredSlides: false,
+                    navigation: {
+                         nextEl: '.brands-slider-swiper-button-next',
+                         prevEl: '.brands-slider-swiper-button-prev',
+                    },
+                    autoplay: {
+                         delay: 10000
+                    },
+                    preloadImages: false,
+                    breakpoints: {
+                         768: {
+                              enabled: true,
+                              slidesPerView: 6,
+                              spaceBetween: 8,
+                              navigation: false
+                         },
+                         1240: {
+                              enabled: true,
+                              slidesPerView: 12,
+                              spaceBetween: 12
+                         }
+                    }
+               });
+          }
+     }
+     customElements.define('brands-slider', BrandsSlider);
+{% endjavascript %}
+
+{% schema %}
+     {
+          "name": "Brands Slider",
+          "class": "page-content brands-slider-section",
+          "settings": [
+               {
+                    "type": "text",
+                    "id": "addclass",
+                    "label": "Add Class",
+                    "default": "catalogs"
+               }
+          ],
+          "presets": [
+               {
+                    "name": "Brands Slider",
+                    "category": "Image"
+               }
+          ]
+     }
+{% endschema %}
