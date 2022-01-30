@@ -92,3 +92,9 @@
           display: none;
      }
 }
+
+@media screen and (max-width: 468px) {
+     .swiper-main {
+          border-radius: 1rem;
+     }
+}

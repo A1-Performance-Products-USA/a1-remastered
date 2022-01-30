@@ -120,3 +120,27 @@
      background-color: #111111;
      border-radius: 2rem;
 }
+
+@media screen and (max-width: 768px) {
+     .home-sale {
+          width: 100%;
+     }
+}
+
+@media screen and (max-width: 468px) {
+     .home-sales-wrapper {
+          gap: 1.25rem;
+     }
+     
+     .sale-info .sale-title {
+          font-size: 1.5rem;
+     }
+
+     .sale-info .sale-promo {
+          font-size: 1.25rem;
+     }
+
+     .sale-info .sale-extra {
+          font-size: 1rem;
+     }
+}

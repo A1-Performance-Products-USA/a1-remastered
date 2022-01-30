@@ -36,3 +36,9 @@
           display: none;
      }
 }
+
+@media screen and (max-width: 768px) {
+     .main-home-content {
+          gap: 1.25rem;
+     }
+}
