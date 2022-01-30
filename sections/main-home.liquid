@@ -18,21 +18,190 @@
           constructor() {
                super();
 
-               this.addEventListener('click', this.print.bind(this));
+               this.countSetting = parseInt(this.dataset.count);
+               this.mainHeight = 54.8885;
+               this.closedHeight = (this.countSetting + 1) * this.mainHeight;
+
+               this.init();
           }
 
-          print(e) {
+          init() {
+               this.mainLinks = this.querySelectorAll('.main-link');
+
+               this.mainLinks.forEach(element => {
+                    element.addEventListener('mouseenter', () => {
+                         this.querySelector('.cat-overlay').classList.add('active');
+                    })
+
+                    element.addEventListener('mouseleave', () => {
+                         this.querySelector('.cat-overlay').classList.remove('active');
+                    })
+               })
+
+               this.fixSubMenuHeight();
+
+               this.initSubMenus();
+
+               this.initChildLinks();
+
+               this.initMore();
+
+               this.initLess();
+
+               this.closeList();
+          }
+
+          initSubMenus() {
+               this.mainLinks.forEach(element => {
+                    let firstElement = element.querySelector('.sub-menu .child-links .child-link:first-child');
+                    let firstElementTitleHTML = firstElement.querySelector('span.title').outerHTML;
+                    let firstElementListHTML = element.querySelector('#' + firstElement.dataset.id).outerHTML;
+
+                    firstElement.classList.add('active');
+                    element.querySelector('.grand-child-links > .grand-child-links-list').outerHTML = firstElementListHTML;
+                    element.querySelector('.grand-child-links > .grand-child-header').insertAdjacentHTML('afterbegin', firstElementTitleHTML);
+               });
+          }
+
+          fixSubMenuHeight() {
+               this.mainLinks.forEach(element => {
+                    let secondCatCount = Math.round(Array.from(element.querySelectorAll('.sub-menu .child-links .child-link')).length / 2);
+                    let totalHeight = (secondCatCount * 60) + (secondCatCount * 20);
+                    
+                    let listHeight = totalHeight - (60 + 40);
+
+                    if (listHeight > 150) {
+                         element.querySelectorAll('.sub-menu .child-links > .grand-child-links-list').forEach(el => {
+                              el.style.maxHeight = listHeight + 'px';
+                         });
+                    } else {
+                         element.querySelectorAll('.sub-menu .child-links > .grand-child-links-list').forEach(el => {
+                              el.style.maxHeight = '160px';
+                         });
+                    }
+               });
+          }
+
+          initChildLinks() {
+               this.querySelectorAll('.child-link').forEach(element => {
+                    element.addEventListener('click', this.selectChild.bind(this));
+               });
+          }
+
+          async selectChild(e) {
                e.preventDefault();
 
-               const originalContent = document.body.innerHTML;
-               const printContent = document.querySelector('.product-section').innerHTML;
+               const target = e.currentTarget;
+               if (!target) return;
+          
+               const menu = target.closest('.sub-menu-content');
+               const elementTitle = target.querySelector('span.title').outerHTML;
+               const elementList = menu.querySelector('#' + target.dataset.id).outerHTML;
 
-               document.body.innerHTML = printContent;
-               window.print();
-               document.body.innerHTML = originalContent;
+               menu.querySelector('.child-link.active').classList.remove('active');
+               target.classList.add('active');
 
-               return true;
+               MegaMenu.fadeOut(this.querySelector('.grand-child-links'), (el) => {
+                    menu.querySelector('.grand-child-links > .grand-child-header').innerHTML = elementTitle;
+                    menu.querySelector('.grand-child-links > .grand-child-links-list').outerHTML = elementList;
+
+                    MegaMenu.fadeIn(el, 'flex');
+               });
           }
+
+          initMore() {
+               const mainCount = Array.from(this.querySelectorAll('.main-link')).length;
+
+               if (mainCount > this.countSetting) {
+                    const showMore = document.createElement('li');
+                    showMore.classList.add('main-link', 'show-more');
+                    showMore.innerHTML = `
+                         <a href="javascript:void(0)">
+                              <div class="cat-info">
+                                   <i class="mdi mdi-dots-horizontal"></i>
+                                   <span class="title">More</span>
+                              </div>
+
+                              <i class="mdi mdi-plus"></i>
+                         </a>
+                    `;
+                    showMore.addEventListener('click', this.expandList.bind(this));
+
+                    this.querySelector('.main-link:nth-child('+(this.countSetting)+")").after(showMore);
+               }
+          }
+
+          initLess() {
+               const mainCount = Array.from(this.querySelectorAll('.main-link')).length;
+
+               if (mainCount > this.countSetting) {
+                    const showLess = document.createElement('li');
+                    showLess.classList.add('main-link', 'show-less');
+                    showLess.innerHTML = `
+                         <a href="javascript:void(0)">
+                              <div class="cat-info">
+                                   <i class="mdi mdi-dots-horizontal"></i>
+                                   <span class="title">Less</span>
+                              </div>
+
+                              <i class="mdi mdi-minus"></i>
+                         </a>
+                    `;
+                    showLess.addEventListener('click', this.closeList.bind(this));
+
+                    this.querySelector('.main-categories-list').append(showLess);
+               }
+          }
+
+          expandList() {
+               const mainCount = Array.from(this.querySelectorAll('.main-link')).length;
+               const el = this.querySelector('.main-categories-list');
+               el.style.height = ((mainCount - 1) * this.mainHeight) + "px";
+
+               this.querySelectorAll('.main-link:nth-child(n+' + (this.countSetting + 2) + ')').forEach(element => {
+                    element.style.display = 'flex';
+               });
+
+               this.querySelector('.show-more').style.display = "none";
+          }
+
+          closeList() {
+               this.querySelector('.show-more').style.display = "flex";
+
+               const el = this.querySelector('.main-categories-list');
+               
+               var height = el.clientHeight + "px";
+
+               el.style.height = this.closedHeight + "px";
+
+               this.querySelectorAll('.main-link:nth-child(n+' + (this.countSetting + 2) + ')').forEach(element => {
+                    element.style.display = 'none';
+               });
+          }
+
+          static fadeOut(el, cb) {
+               el.style.opacity = 1;
+               (function fade() {
+                    if ((el.style.opacity -= .1) <= 0) {
+                         el.style.display = "none";
+                         if (cb) cb(el);
+                    } else {
+                         requestAnimationFrame(fade);
+                    }
+               })();
+          };
+   
+          static fadeIn(el, display) {
+               el.style.opacity = 0;
+               el.style.display = display || "block";
+               (function fade() {
+                    var val = parseFloat(el.style.opacity);
+                    if (!((val += .1) > 1)) {
+                         el.style.opacity = val;
+                         requestAnimationFrame(fade);
+                    }
+               })();
+          };
      }
 
      customElements.define('mega-menu', MegaMenu);
@@ -102,6 +271,12 @@
                "id": "category_menu",
                "default": "main-menu",
                "label": "Category Menu"
+          },
+          {
+               "type": "number",
+               "id": "category-menu_count",
+               "label": "Number to Show",
+               "default": 20
           }
      ],
      "blocks": [

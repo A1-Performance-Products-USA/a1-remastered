@@ -1,50 +1,84 @@
 {% if linklists[settings.category_menu].links.size > 0 %}
-     <mega-menu class="mega-menu">
+     <mega-menu class="mega-menu" data-count="{{ settings.category-menu_count }}">
+          <div class="cat-overlay"> </div>
           <div class="mega-menu-title">
                <span class="title">{{ settings.category-title }}</span>
+               <i class="mdi mdi-menu"></i>
           </div>
           <ul class="main-categories-list">
                {% for link in linklists[settings.category_menu].links %}
                     {% assign main_title = link.title | split: '[' | first | handleize %}
-                    <li class="main-link">
-                         <span class="title">
+                    {% assign main_index = forloop.index0 %}
+                    <li class="main-link" data-id="{{ main_index }}">
+                         <a href="javascript:void(0)">
+                              <div class="cat-info">
+                                   <div class="cat-img">
+                                        {% assign linkCollection = link.url | split: '/' | last | handleize %}
+                                        {% if linkCollection != blank and collections[linkCollection] != blank %}
+                                             {% if collections[linkCollection].image %}
+                                                  {{ collections[linkCollection].image | image_url: width: 30 | image_tag }}
+                                             {% endif %}
+                                        {% endif %}
+                                   </div>
 
-                              {% assign linkCollection = link.url | split: '/' | last | handleize %}
-                              {% if linkCollection != blank and collections[linkCollection] != blank %}
-                                   {% if collections[linkCollection].image %}
-                                        {{ collections[linkCollection].image | image_url: width: 100 | image_tag }}
-                                   {% endif %}
-                              {% endif %}
-
-                            {{ link.title | split: '[' | first | escape }}
-                         </span>
-                         <i class="indicator mdi mdi-chevron-down"></i>
+                                   <span class="title">{{ link.title | split: '[' | first | escape }}</span>
+                              </div>
+                              <i class="indicator mdi mdi-chevron-down"></i>
+                         </a>
 
                          <div class="sub-menu" data-parent="{{ main_title }}">
-                              <ul>
-                                   {% for child_link in link.links %}
-                                        <li class="child-link">
-                                             <div class="category-image">
-                                                  {% assign linkCollection = child_link.url | split: '/' | last | handleize %}
-                                                  {% if linkCollection != blank and collections[linkCollection] != blank %}
-                                                       {% if collections[linkCollection].image %}
-                                                            {{ collections[linkCollection].image | image_url: width: 100 | image_tag }}
-                                                       {% endif %}
-                                                  {% endif %}
-                                             </div>
+                              <div class="sub-menu-header">
+                                   <span class="title">{{ link.title | split: '[' | first | escape }}</span>
+                              </div>
+                              <div class="sub-menu-content">
+                                   <ul class="child-links">
+                                        {% for child_link in link.links %}
+                                             {% assign child_title = child_link.title | split: '[' | first | handleize | replace: '0', 'zero' | replace: '1', 'one' | replace: '2', 'two' | replace: '3', 'three' | replace: '4', 'four' | replace: '5', 'five' | replace: '6', 'six' | replace: '7', 'seven' | replace: '8', 'eight' | replace: '9', 'nine'%}
+                                             {% assign child_index = forloop.index0 %}
+                                             <li class="child-link" data-id="{{ child_title }}">
+                                                  <a href="javascript:void(0)">
+                                                       <div class="cat-img">
+                                                            {% assign linkCollection = child_link.url | split: '/' | last | handleize %}
+                                                            {% if linkCollection != blank and collections[linkCollection] != blank %}
+                                                                 {% if collections[linkCollection].image %}
+                                                                      {{ collections[linkCollection].image | image_url: height: 60 | image_tag }}
+                                                                 {% endif %}
+                                                            {% endif %}
+                                                       </div>
 
-                                             <span>{{ child_link.title }}</span>
-                                        </li>
+                                                       <span class="title">{{ child_link.title | split: '[' | first | escape }}</span>
+                                                  </a>
+                                             </li>
 
-                                        <div class="child-sub-menu" data-parent="{{ main_title }}">
-                                             <ul>
+                                             <ul id="{{ child_title }}" class="grand-child-links-list" data-parent="{{ child_title }}">
+                                                  {% for grand_child_link in child_link.links %}
+                                                       {% assign grand_child_title = grand_child_link.title | split: '[' | first | handleize | replace: '0', 'zero' | replace: '1', 'one' | replace: '2', 'two' | replace: '3', 'three' | replace: '4', 'four' | replace: '5', 'five' | replace: '6', 'six' | replace: '7', 'seven' | replace: '8', 'eight' | replace: '9', 'nine'%}
+                                                       {% assign grand_child_index = forloop.index0 %}
+                                                       <li class="grand-child-link" data-id="{{ grand_child_title }}">
+                                                            <a href="{{ grand_child_link.url }}">
+                                                                 <span class="title">{{ grand_child_link.title | split: '[' | first | escape }}</span>
+                                                            </a>
+                                                       </li>
+                                                  {% endfor %}
                                              </ul>
+                                        {% endfor %}
+                                   </ul>
+                                   <div class="grand-child-links">
+                                        <div class="grand-child-header">
+                                             
                                         </div>
-                                   {% endfor %}
-                              </ul>
+                                        <ul class="grand-child-links-list"></ul>
+                                   </div>
+                              </div>
                          </div>
                     </li>
                {% endfor %}
           </ul>
      </mega-menu>
 {% endif %}
+
+<style>
+     .sub-menu-header {
+          background-image: url("{{ 'mm_header_bg.png' | asset_img_url: '1000x100' }}");
+     }
+</style>

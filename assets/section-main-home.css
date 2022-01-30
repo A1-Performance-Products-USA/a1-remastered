@@ -1,5 +1,10 @@
+.page-wrapper {
+     overflow: visible;
+}
+
 .page-content.main-home {
      margin-top: 2.5rem;
+     overflow: visible;
 }
 
 .main-home {
@@ -12,7 +17,7 @@
 }
 
 .mega-menu-wrapper {
-     width: calc(22% - 1rem);
+     width: calc(25% - 1rem);
 }
 
 .main-home-content {
