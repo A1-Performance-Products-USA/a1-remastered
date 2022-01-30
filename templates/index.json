@@ -110,7 +110,7 @@
         "category-menu_txt_clr": "#5c5c5c",
         "category-menu_txt_hvr_clr": "#000000",
         "category_menu": "main-menu",
-        "category-menu_count": 15
+        "category-menu_count": 12
       }
     },
     "16415378381feaa686": {
@@ -121,10 +121,17 @@
         "delay_first": "2000",
         "delay_next": "60"
       }
+    },
+    "16435338462589c01b": {
+      "type": "section-brands-slider",
+      "settings": {
+        "addclass": "brands"
+      }
     }
   },
   "order": [
     "main_home",
-    "16415378381feaa686"
+    "16415378381feaa686",
+    "16435338462589c01b"
   ]
 }
