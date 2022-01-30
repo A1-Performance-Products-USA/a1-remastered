@@ -4,7 +4,7 @@
      <h2 class="product-slider-header">{{ 'sections.brands-slider.title' | t }}</h2>
      <div class="brands-slider-main">
           <div class="swiper-wrapper">
-               {% for vendor in shop.vendors limit:48 %}
+               {% for vendor in shop.vendors limit:24 %}
                     <div class="swiper-slide brand-slide">
                          <div class="brand-img">
                               <a href="{{ vendor | url_for_vendor }}">
