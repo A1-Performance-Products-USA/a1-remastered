@@ -18,10 +18,16 @@
 
 .mega-menu-wrapper {
      width: calc(25% - 1rem);
+     flex-shrink: 0;
 }
 
 .main-home-content {
      flex-grow: 1;
+     width: calc(75% - 1rem);
+     display: flex;
+     flex-direction: column;
+     gap: 0;
+     z-index: 0;
 }
 
 @media screen and (max-width: 1024px) {

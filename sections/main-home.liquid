@@ -1,3 +1,5 @@
+{{ 'swiper.min.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'swiper.min.js' | asset_url }}"></script>
 {{ 'section-main-home.css' | asset_url | stylesheet_tag }}
 {{ 'component-categories-mega-menu.css' | asset_url | stylesheet_tag }}
 {{ 'component-home-advertisements.css' | asset_url | stylesheet_tag }}
@@ -8,9 +10,9 @@
 </div>
 
 <div class="main-home-content">
-     {% render 'home-banner-slider', blocks: section.settings.blocks %}
+     {% render 'home-banner-slider', blocks: section.blocks %}
 
-     {% render 'home-advertisements', blocks: section.settings.blocks %}
+     {% render 'home-sales', blocks: section.blocks %}
 </div>
 
 {% javascript %}
@@ -205,6 +207,31 @@
      }
 
      customElements.define('mega-menu', MegaMenu);
+
+     class HomeBanner extends HTMLElement {
+          constructor() {
+               super();
+
+               this.swiper = new Swiper('.swiper-main', {
+                    loop: true,
+                    grabCursor: true,
+                    thumbs: {
+                         swiper: this.thumbnail,
+                    },
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                    centeredSlides: true,
+                    navigation: {
+                         nextEl: '.swiper-button-next',
+                         prevEl: '.swiper-button-prev',
+                    },
+                    autoplay: {
+                         delay: 10000
+                    }
+               });
+          }
+     }
+     customElements.define('home-banner', HomeBanner);
 {% endjavascript %}
 
 {% schema %}
@@ -280,6 +307,58 @@
           }
      ],
      "blocks": [
+          {
+               "type": "home_banner",
+               "name": "Home Banner",
+               "settings": [
+                    {
+                         "type": "text",
+                         "id": "title",
+                         "label": "Banner Title"
+                    },
+                    {
+                         "type": "url",
+                         "id": "banner_link",
+                         "label": "Banner Link"
+                    },
+                    {
+                         "type": "image_picker",
+                         "id": "banner_img",
+                         "label": "Banner Image"
+                    }
+               ]
+          },
+          {
+               "type": "home_ads",
+               "name": "Home Ads",
+               "settings": [
+                    {
+                         "type": "text",
+                         "id": "ad_promo",
+                         "label": "Ad Promo Text"
+                    },
+                    {
+                         "type": "text",
+                         "id": "ad_title",
+                         "label": "Ad Title Text"
+                    },
+                    {
+                         "type": "text",
+                         "id": "ad_extra",
+                         "label": "Ad Extra Text"
+                    },
+                    {
+                         "type": "url",
+                         "id": "ad_link",
+                         "label": "Ad Link"
+                    },
+                    {
+                         "type": "image_picker",
+                         "id": "ad_img",
+                         "label": "Ad Image"
+                    }
+               ]
+          }
      ]
 }
 {% endschema %}

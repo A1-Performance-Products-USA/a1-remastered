@@ -1,3 +1,24 @@
-<div class="home-banner-wrapper">
-     
-</div>
+<home-banner class="home-banner-wrapper">
+     <div class="main-wrapper">
+          <div class="swiper-main">
+               <div class="swiper-wrapper">
+                    {% for block in blocks %}
+                         {% if block.type == "home_banner" %}
+                              <div class="swiper-slide">
+                                   {% if block.settings.banner_link != blank %}
+                                        <a href="{{ block.settings.banner_link }}">
+                                   {% endif %}
+                                        {{ block.settings.banner_img | image_url: height: 540 | image_tag: alt: block.settings.title }}
+                                   {% if block.settings.banner_link != blank %}
+                                        </a>
+                                   {% endif %}
+                              </div>
+                         {% endif %}
+                    {% endfor %}
+               </div>
+
+               <div class="swiper-button-prev btn"><i class="mdi mdi-chevron-left"></i></div>
+               <div class="swiper-button-next btn"><i class="mdi mdi-chevron-right"></i></div>
+          </div>
+     </div>
+</home-banner>
