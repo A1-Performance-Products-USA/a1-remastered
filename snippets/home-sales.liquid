@@ -1,5 +1,33 @@
 <div class="home-sales-wrapper">
      {% for block in blocks %}
-          <div class="home-sales"
+          {% if block.type == "home_ad" %}
+               <div class="home-sale">
+                    {% if block.settings.ad_link != blank %}
+                         <a href="{{ block.settings.ad_link }}">
+                    {% endif %}
+                    <div class="sale-img">
+                         {{ block.settings.ad_img | image_url: width: 100 | image_tag: alt: block.settings.title, preload: true }}
+                    </div>
+                    <div class="sale-info">
+                         {% if block.settings.ad_promo != blank %}
+                              <span class="sale-promo">{{ block.settings.ad_promo }}</span>
+                         {% endif %}
+
+                         {% if block.settings.title != blank %}
+                              <span class="sale-title">{{ block.settings.title }}</span>
+                         {% endif %}
+
+                         {% if block.settings.ad_promo != blank %}
+                              <span class="sale-extra">{{ block.settings.ad_extra }}</span>
+                         {% endif %}
+                    </div>
+                    <div class="sale-overlay">
+                         <span class="view-more">View More</span>
+                    </div>
+                    {% if block.settings.ad_link != blank %}
+                         </a>
+                    {% endif %}
+               </div>
+          {% endif %}
      {% endfor %}
 </div>

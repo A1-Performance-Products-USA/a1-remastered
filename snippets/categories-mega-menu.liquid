@@ -16,7 +16,7 @@
                                         {% assign linkCollection = link.url | split: '/' | last | handleize %}
                                         {% if linkCollection != blank and collections[linkCollection] != blank %}
                                              {% if collections[linkCollection].image %}
-                                                  {{ collections[linkCollection].image | image_url: width: 240 | image_tag }}
+                                                  {{ collections[linkCollection].image | image_url: width: 240 | image_tag: preload: true }}
                                              {% endif %}
                                         {% endif %}
                                    </div>

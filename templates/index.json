@@ -7,7 +7,7 @@
         "464582d3-c19d-4eb0-8865-3383557dc0a4": {
           "type": "home_banner",
           "settings": {
-            "title": "",
+            "title": "Become an A1 Elite Marketing Partner",
             "banner_link": "",
             "banner_img": "shopify:\/\/shop_images\/marketing-partner.jpg"
           }
@@ -15,7 +15,7 @@
         "39e49ad0-cea9-46ef-aae4-1bf08027bd88": {
           "type": "home_banner",
           "settings": {
-            "title": "",
+            "title": "Create an Account for Instant 10% Off",
             "banner_link": "",
             "banner_img": "shopify:\/\/shop_images\/account-discount_024bc696-d064-45cf-8770-08317b02f84f.jpg"
           }
@@ -23,16 +23,82 @@
         "eab08f31-9287-44bd-9983-41830cd64710": {
           "type": "home_banner",
           "settings": {
-            "title": "",
+            "title": "First 50 Orders Over $150 Are 15% Off",
             "banner_link": "",
             "banner_img": "shopify:\/\/shop_images\/first-50-orders.jpg"
+          }
+        },
+        "e63930e3-b0e9-4565-9440-42c4ed0c98f9": {
+          "type": "home_ad",
+          "settings": {
+            "ad_promo": "start saving today",
+            "title": "performance friction",
+            "ad_extra": "save 10% on",
+            "ad_link": "\/collections\/vendors?q=PERFORMANCE%20FRICTION",
+            "ad_img": "shopify:\/\/shop_images\/pfc_brakes.jpg"
+          }
+        },
+        "e5f19beb-eb66-42a1-a21c-d0e40729317d": {
+          "type": "home_ad",
+          "settings": {
+            "ad_promo": "start saving today",
+            "title": "spectre performance",
+            "ad_extra": "free shipping on",
+            "ad_link": "\/collections\/vendors?q=SPECTRE",
+            "ad_img": "shopify:\/\/shop_images\/sceptre_perf.jpg"
+          }
+        },
+        "c38a8a1a-a66b-4490-b77d-588363a23bf7": {
+          "type": "home_ad",
+          "settings": {
+            "ad_promo": "on qualifying engines",
+            "title": "chevrolet performance",
+            "ad_extra": "crate engine rebate $250.00",
+            "ad_link": "\/collections\/vendors?q=CHEVROLET PERFORMANCE",
+            "ad_img": "shopify:\/\/shop_images\/chevrolet.jpg"
+          }
+        },
+        "a63f2039-82fa-46b2-84dc-a6a4477bd3b6": {
+          "type": "home_ad",
+          "settings": {
+            "ad_promo": "save 10% on",
+            "title": "all aeroquip products",
+            "ad_extra": "start saving",
+            "ad_link": "\/collections\/vendors?q=AEROQUIP",
+            "ad_img": "shopify:\/\/shop_images\/aeroquip_c27b9d77-972c-4a48-9303-3c0aeda552e6.jpg"
+          }
+        },
+        "ffe6591d-fe72-4e21-9153-750ce7be0ec0": {
+          "type": "home_ad",
+          "settings": {
+            "ad_promo": "start saving",
+            "title": "all autometer products",
+            "ad_extra": "save 5% on",
+            "ad_link": "\/collections\/vendors?q=AUTOMETER",
+            "ad_img": "shopify:\/\/shop_images\/current_deal-autometer.jpg"
+          }
+        },
+        "5efcf2c8-c364-40ab-b01c-c38c4e0e2615": {
+          "type": "home_ad",
+          "settings": {
+            "ad_promo": "save 10% on",
+            "title": "all amalie motor oils",
+            "ad_extra": "start saving",
+            "ad_link": "\/collections\/vendors?q=AMALIE",
+            "ad_img": "shopify:\/\/shop_images\/current_deals-amalie.jpg"
           }
         }
       },
       "block_order": [
         "464582d3-c19d-4eb0-8865-3383557dc0a4",
         "39e49ad0-cea9-46ef-aae4-1bf08027bd88",
-        "eab08f31-9287-44bd-9983-41830cd64710"
+        "eab08f31-9287-44bd-9983-41830cd64710",
+        "e63930e3-b0e9-4565-9440-42c4ed0c98f9",
+        "e5f19beb-eb66-42a1-a21c-d0e40729317d",
+        "c38a8a1a-a66b-4490-b77d-588363a23bf7",
+        "a63f2039-82fa-46b2-84dc-a6a4477bd3b6",
+        "ffe6591d-fe72-4e21-9153-750ce7be0ec0",
+        "5efcf2c8-c364-40ab-b01c-c38c4e0e2615"
       ],
       "settings": {
         "category-title": "Shop Categories",

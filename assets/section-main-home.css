@@ -19,6 +19,7 @@
 .mega-menu-wrapper {
      width: calc(25% - 1rem);
      flex-shrink: 0;
+     z-index: 1;
 }
 
 .main-home-content {
@@ -26,7 +27,7 @@
      width: calc(75% - 1rem);
      display: flex;
      flex-direction: column;
-     gap: 0;
+     gap: 3.25rem;
      z-index: 0;
 }
 

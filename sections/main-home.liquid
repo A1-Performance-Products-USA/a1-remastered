@@ -2,7 +2,7 @@
 <script src="{{ 'swiper.min.js' | asset_url }}"></script>
 {{ 'section-main-home.css' | asset_url | stylesheet_tag }}
 {{ 'component-categories-mega-menu.css' | asset_url | stylesheet_tag }}
-{{ 'component-home-advertisements.css' | asset_url | stylesheet_tag }}
+{{ 'component-home-sales.css' | asset_url | stylesheet_tag }}
 {{ 'component-home-banner-slider.css' | asset_url | stylesheet_tag }}
 
 <div class="mega-menu-wrapper">
@@ -329,8 +329,8 @@
                ]
           },
           {
-               "type": "home_ads",
-               "name": "Home Ads",
+               "type": "home_ad",
+               "name": "Home Ad",
                "settings": [
                     {
                          "type": "text",
@@ -339,7 +339,7 @@
                     },
                     {
                          "type": "text",
-                         "id": "ad_title",
+                         "id": "title",
                          "label": "Ad Title Text"
                     },
                     {
