@@ -23,3 +23,9 @@
 .main-home-content {
      flex-grow: 1;
 }
+
+@media screen and (max-width: 1024px) {
+     .mega-menu-wrapper {
+          display: none;
+     }
+}

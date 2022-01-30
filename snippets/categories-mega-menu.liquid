@@ -16,7 +16,7 @@
                                         {% assign linkCollection = link.url | split: '/' | last | handleize %}
                                         {% if linkCollection != blank and collections[linkCollection] != blank %}
                                              {% if collections[linkCollection].image %}
-                                                  {{ collections[linkCollection].image | image_url: width: 30 | image_tag }}
+                                                  {{ collections[linkCollection].image | image_url: width: 240 | image_tag }}
                                              {% endif %}
                                         {% endif %}
                                    </div>
@@ -41,7 +41,7 @@
                                                             {% assign linkCollection = child_link.url | split: '/' | last | handleize %}
                                                             {% if linkCollection != blank and collections[linkCollection] != blank %}
                                                                  {% if collections[linkCollection].image %}
-                                                                      {{ collections[linkCollection].image | image_url: height: 60 | image_tag }}
+                                                                      {{ collections[linkCollection].image | image_url: height: 300 | image_tag }}
                                                                  {% endif %}
                                                             {% endif %}
                                                        </div>
