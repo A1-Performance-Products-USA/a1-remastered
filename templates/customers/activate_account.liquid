@@ -1,26 +1,33 @@
-{% layout settings.customer_layout %}
+{{ 'section-account-activate.css' | asset_url | stylesheet_tag }}
 
-<div id="template">
-  <div class="template_header">
-    <h2 class="title">Activate Account</h2>
-    <p class="note">Create your password to activate your account</p>
-  </div>
+<div class="page-content-wrapper center-page">
+     <div class="page-content activate-wrapper">
+          <h2>{{ 'customer.activate_account.title' | t }}</h2>
+          <!-- /templates/customers/activate_account.liquid -->
+          {% form 'activate_customer_password' %}
 
-  {% form 'activate_customer_password' %}
-    {{ form.errors | default_errors }}
+               {{ form.errors | default_errors }}
 
-    <div id="password" class="clearfix large_form">
-      <label class="large" for="password">Password</label>
-      <input type="password" value="" name="customer[password]" id="customer_password" class="large password" size="16" />
-    </div>
-    <div id="password_confirm" class="clearfix large_form">
-      <label class="large" for="password_confirmation">Password Confirmation</label>
-      <input type="password" value="" name="customer[password_confirmation]" id="customer_password_confirmation" class="large password" size="16" />
-    </div>
-    <div class="action_bottom">
-      <input class="btn" type="submit" value="Activate Account" />
-      <span class="note">or</span>
-      <input type="submit" class="cancel" name="decline" id="customer_decline" value="Decline Invitation" />
-    </div>
-  {% endform %}
+
+               <label for="password" class="hidden">{{ 'customer.activate_account.password' | t }}</label>
+               <input type="password"
+               name="customer[password]"
+               id="password"
+               autocomplete="new-password"
+               placeholder="{{ 'customer.activate_account.password' | t }}"/>
+
+               <label for="password_confirmation" class="hidden">{{ 'customer.activate_account.password_confirm' | t }}</label>
+               <input type="password"
+               name="customer[password_confirmation]"
+               id="password_confirmation"
+               autocomplete="new-password"
+               placeholder="{{ 'customer.activate_account.password_confirm' | t }}"/>
+
+               <div class="form-submit-center">
+                    <button type="submit" class="btn">{{ 'customer.activate_account.submit' | t }}</button>
+                    <span>or</span>
+                    <button type="submit" name="decline" class="btn">{{ 'customer.activate_account.cancel' | t }}</button>
+               </div>
+          {% endform %}
+     </div>
 </div>
