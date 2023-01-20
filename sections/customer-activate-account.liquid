@@ -1,6 +1,39 @@
+{{ 'section-account-activate.css' | asset_url | stylesheet_tag }}
+
+<div class="page-content-wrapper center-page">
+     <div class="page-content activate-wrapper">
+          <h2>{{ 'customer.activate_account.title' | t }}</h2>
+          <!-- /templates/customers/activate_account.liquid -->
+          {% form 'activate_customer_password' %}
+
+               {{ form.errors | default_errors }}
+
+
+               <label for="password" class="hidden">{{ 'customer.activate_account.password' | t }}</label>
+               <input type="password"
+               name="customer[password]"
+               id="password"
+               autocomplete="new-password"
+               placeholder="{{ 'customer.activate_account.password' | t }}"/>
+
+               <label for="password_confirmation" class="hidden">{{ 'customer.activate_account.password_confirm' | t }}</label>
+               <input type="password"
+               name="customer[password_confirmation]"
+               id="password_confirmation"
+               autocomplete="new-password"
+               placeholder="{{ 'customer.activate_account.password_confirm' | t }}"/>
+
+               <div class="form-submit-center">
+                    <button type="submit" class="btn">{{ 'customer.activate_account.submit' | t }}</button>
+                    <span>or</span>
+                    <button type="submit" name="decline" class="btn">{{ 'customer.activate_account.cancel' | t }}</button>
+               </div>
+          {% endform %}
+     </div>
+</div>
 {% schema %}
   {
-    "name": "Section name",
+    "name": "Customer Activate Account",
     "settings": []
   }
 {% endschema %}
